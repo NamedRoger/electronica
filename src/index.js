@@ -1,4 +1,6 @@
 const {app, BrowserWindow}  = require('electron');
+const path = require('path');
+const {urlFiles} = require('../src/consts');
 
 //ventenas 
 let mainWindow;
@@ -17,7 +19,11 @@ app.on('ready',() => {
         }
     });
 
-    mainWindow.loadURL();
+    mainWindow.loadURL(`${urlFiles}/index.html`);
+
+    mainWindow.on('close', () => {
+        app.quit();
+    });
 });
 
 function createProvidesMainWindow() {
@@ -29,5 +35,5 @@ function createCustomersMainWindow(){
 }
 
 function createStockMainWindow(){
-    
+
 }

@@ -25,7 +25,7 @@ const getCategories = () => {
 
 const addCatalog = (nombre) =>{
     return new Promise((resolve,reject) => {
-        db.conn.query(`insert into catalogs (name,active) vaulues (${nombre},${true})`,(err,res) => {
+        db.conn.query(`insert into catalogs (name,active) values (${nombre},${true})`,(err,res) => {
             if(err) reject("ocurrio un error");
             resolve(true);
             db.conn.end();
@@ -48,6 +48,7 @@ const desactiveCatalog = (id) => {
         db.conn.query(`update catalogs set active = ${false}`,(err,res) => {
             if(err)reject(err);
             resolve(true);
+            db.conn.end();
         });
     });
 }

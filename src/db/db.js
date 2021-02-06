@@ -13,7 +13,7 @@ module.exports = class Db {
             user:this.user,
             password:this.password,
             database:this.db,
-            port:this.port
+            port:this.port,
         });   
 
     }

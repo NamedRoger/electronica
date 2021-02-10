@@ -5,7 +5,7 @@ const db = new Db();
 const getRepresentativesByidProvider = (idProvider) =>{
     const sql = `
     select 
-	    * from provider_representatives where id_provider = ${idProvider}  
+	    * from representatives where id_provider = ${idProvider}  
     `;
     return new Promise((resolve, reject) => {
         db.conn.query(sql, (err, res) => {
@@ -16,9 +16,9 @@ const getRepresentativesByidProvider = (idProvider) =>{
     });
 }
 
-const addRrepresentatives = ({ name, rfc, razonSocial, tel, cel, email, parcel, address, city, state, country, zip }) => {
+const addRrepresentatives = ({ name, last_name, tel, cel, email,parcel, addresss, city, state, country,zip, id_provider }) => {
     return new Promise((resolve,reject) => {
-        db.conn.query(`Insert into provider_banks ({ name, rfc, razonSocial, tel, cel, email, parcel, address, city, state, country, zip }) values('${idProvider}',${name}'${bank_account}'${bank_key})`,(err,res) =>{
+        db.conn.query(`Insert into provider_representatives (name, last_name, tel, cel, email,parcel, addresss, city, state, country,zip, id_provider) values('${name}',${last_name}',${tel}',${cel}',${email}',${parcel}',${addresss}',${city}',${state}',${country}',${zip}',${id_provider}')`,(err,res) =>{
             if(err)reject(err);
             resolve(true);
             db.conn.end();
@@ -26,3 +26,23 @@ const addRrepresentatives = ({ name, rfc, razonSocial, tel, cel, email, parcel, 
      });
 }
 
+const updateRepresentative = ({ name, last_name, tel, cel, email,parcel, addresss, city, state, country,zip, id_provider }) => {
+    return new Promise((resolve,reject) => {
+        db.conn.query(`Update representatives set name = ${name}  last_name ='${last_name}' tel = '${tel}' cel = '${cel}' email = '${email}' parcel = '${parcel}' addresss = '${addresss}' city = '${city}' state = '${state}' country = '${country}' zip = '${zip}'  where id_provider = ${id_provider}'`,(err,res) =>{
+            if (err)reject(err);
+            resolve(true);
+            db.conn.end();
+        });
+    });
+}
+
+const desactiveRepresentative = ({ name, last_name, tel, cel, email,parcel, addresss, city, state, country,zip, id_provider }) =>{
+    return new Promise ((resolve,reject) =>{
+        db.conn.query(`update representative set active = ${false} where id_provider = ${id_provider}`,(err,res) => {
+            if(err)reject(err);
+            resolve(true);
+            db.conn.end();
+        
+        });
+    });
+}

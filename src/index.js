@@ -8,7 +8,7 @@ let providersMainWindow;
 let stockMainWindow;
 let customersMainWindow;
 
-app.on('ready',() => {
+  app.on('ready',() => {
     mainWindow = new BrowserWindow({
         width:800,
         height:800,
@@ -21,9 +21,21 @@ app.on('ready',() => {
 
     mainWindow.loadURL(`${urlFiles}/index.html`);
 
-    mainWindow.on('close', () => {
+   mainWindow.on('close', () => {
         app.quit();
     });
+
+    /*app.on('window-all-closed', ()=>{
+        if(process.platform === 'darwin'){
+            app.quit();
+        }
+    });
+
+   app.on('activate', ()=>{
+        if(BrowserWindow.getAllWindows().length === 0){
+            crearVentanaPrincipal();
+        }
+    });*/
 });
 
 function createProvidesMainWindow() {

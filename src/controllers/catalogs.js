@@ -20,6 +20,10 @@ const getCatalogByCode = () => {
     
 }
 
+/**
+ * 
+ * @param {string} name 
+ */
 const addCatalog = (name) =>{
     const code = generateCode(name);
     return new Promise((resolve,reject) => {
@@ -30,7 +34,11 @@ const addCatalog = (name) =>{
         });
     });
 }
-
+/**
+ * 
+ * @param {number} id 
+ * @param {string} nombre 
+ */
 const updateCatalog = (id,nombre) => {
     return new Promise((resolve,reject) => {
         db.conn.query(`update catalogs set name = ${nombre} where id_catalog = ${id}`,(err,res) =>{
@@ -41,6 +49,10 @@ const updateCatalog = (id,nombre) => {
     });
 }
 
+/**
+ * 
+ * @param {number} id 
+ */
 const desactiveCatalog = (id) => {
     return new Promise((resolve,reject) => {
         db.conn.query(`update catalogs set active = ${false}`,(err,res) => {
@@ -50,7 +62,10 @@ const desactiveCatalog = (id) => {
         });
     });
 }
-
+/**
+ * 
+ * @param {string} name 
+ */
 const generateCode = (name) => {
     let spltiName = name.split(/[\s_-]/);
     let code = "";

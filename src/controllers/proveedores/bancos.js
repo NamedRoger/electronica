@@ -2,6 +2,11 @@ const Db = require('../db/db');
 
 const db = new Db();
 
+/**
+ * 
+ * @param {number} idProvider Para el id del provedor
+ */
+
 const getBanksByIdProvider = (idProvider) => {
     const sql = `
     select 
@@ -17,6 +22,13 @@ const getBanksByIdProvider = (idProvider) => {
     });
 }
 
+/**
+ * 
+ * @param {number} idProvider 
+ * @param {string} name 
+ * @param {string} bank_account 
+ * @param {string} bank_key 
+ */
 const addBanks = (idProvider, name, bank_account, bank_key) => {
     return new Promise((resolve,reject) => {
         db.conn.query(`Insert into provider_banks (idProvider, name, bank_account, bank_key) values('${idProvider}',${name}'${bank_account}'${bank_key})`,(err,res) =>{
@@ -26,6 +38,14 @@ const addBanks = (idProvider, name, bank_account, bank_key) => {
         });
      });
 }
+/**
+ * 
+ * @param {number} idBank 
+ * @param {number} idProvider 
+ * @param {string} name 
+ * @param {string} bank_account 
+ * @param {string} bank_key 
+ */
 
 const updateBanks = (idBank,idProvider, name, bank_account, bank_key) => {
     return new Promise ((resolve,reject)=>{
@@ -36,6 +56,15 @@ const updateBanks = (idBank,idProvider, name, bank_account, bank_key) => {
         });
     });
 }
+
+/**
+ * 
+ * @param {number} idBank 
+ * @param {number} idProvider 
+ * @param {string} name 
+ * @param {string} bank_account 
+ * @param {string} bank_key 
+ */
 
 const desactiveBanks = (idBank,idProvider,name,bank_account,bank_key) =>{
     return new Promise ((resolve,reject) =>{

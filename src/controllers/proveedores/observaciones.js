@@ -2,6 +2,11 @@ const Db = require('../db/db');
 
 const db = new Db();
 
+/**
+ * 
+ * @param {number} idProvider 
+ */
+
 
 const getObservationsByIdProvider = (idProvider) => {
     const sql = `
@@ -18,7 +23,11 @@ const getObservationsByIdProvider = (idProvider) => {
     });
 }
 
-
+/**
+ * 
+ * @param {number} idProvider 
+ * @param {string} description 
+ */
  
 const addObservations = (idProvider,description) =>{
     return new Promise((resolve,reject)=>{
@@ -30,6 +39,12 @@ const addObservations = (idProvider,description) =>{
     });
 }
 
+/**
+ * 
+ * @param {number} idObservations 
+ * @param {string} description 
+ */
+
 const updateObservations = (idObservations,description) => {
     return new Promise((resolve,reject) => {
         db.conn.query(`Update provider_observations set description = ${description} where id_observations = ${idObservations}`,(err,res) =>{
@@ -40,7 +55,11 @@ const updateObservations = (idObservations,description) => {
     });
 }
 
-
+/**
+ * 
+ * @param {number} idObservations 
+ * @param {string} description 
+ */
 
 const desactiveObservations = (idObservations,description) => {
     return new Promise ((resolve,reject)=>{

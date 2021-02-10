@@ -21,6 +21,10 @@ const getCategoriesByCodeCatalog = (codeCatalog) => {
     });
 }
 
+/**
+ * 
+ * @param {number} idCatalog 
+ */
 const getCategoriesByIdCatalog = (idCatalog) => {
     const sql = `
     select * from catalog_options as categories 
@@ -35,7 +39,11 @@ const getCategoriesByIdCatalog = (idCatalog) => {
 
     });
 }
-
+/**
+ * 
+ * @param {number} id_catalog 
+ * @param {string} name 
+ */
 const addCategories = (id_catalog,name) => {
     return new Promise((resolve,reject)=>{
         db.conn.query(`Insert into catalog_options (id_catalog,name)values ('${name}',${1},'CAT_${id_catalog}')`,(err,res)=>{
@@ -45,7 +53,11 @@ const addCategories = (id_catalog,name) => {
         });
     });
 }
-
+/**
+ * 
+ * @param {number} id 
+ * @param {string} name 
+ */
 const updateCategories = (id,name) =>{
     return new Promise((resolve,reject)=>{
         db.conn.query(`update catalog_options set name = ${name} where id_categories = ${id}`,(err,res)=>{
@@ -55,7 +67,10 @@ const updateCategories = (id,name) =>{
         });
     });
 }
-
+/**
+ * 
+ * @param {number} id 
+ */
 const desactiveCategories = (id) => {
     return new Promise((resolve,reject)=>{
         db.conn.query(`update categories set active = ${false}`,(err,res)=>{

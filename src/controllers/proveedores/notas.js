@@ -2,6 +2,10 @@ const Db = require('../db/db');
 
 const db = new Db();
 
+/**
+ * 
+ * @param {number} idProvider 
+ */
 
 const getNotasByIdProvider = (idProvider) => {
     const sql = `
@@ -19,7 +23,11 @@ const getNotasByIdProvider = (idProvider) => {
 }
 
 
- 
+ /**
+  * 
+  * @param {number} idProvider 
+  * @param {string} description 
+  */
 const addNotas = (idProvider,description) =>{
     return new Promise((resolve,reject)=>{
         db.conn.query(`Insert into provider_notes (idProvider,description) values('${idProvider}',${description}')`,(err,res)=>{
@@ -29,6 +37,12 @@ const addNotas = (idProvider,description) =>{
         });
     });
 }
+
+/**
+ * 
+ * @param {number} idNote 
+ * @param {string} description 
+ */
 
 const updateNotas = (idNote,description) => {
     return new Promise((resolve,reject) => {
@@ -40,7 +54,11 @@ const updateNotas = (idNote,description) => {
     });
 }
 
-
+/**
+ * 
+ * @param {number} idNote 
+ * @param {string} description 
+ */
 
 const desactiveNotas = (idNote,description) => {
     return new Promise ((resolve,reject)=>{

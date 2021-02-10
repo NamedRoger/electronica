@@ -41,7 +41,7 @@ const getProvider = (id) => {
 const addProvider = ({ name, rfc, razonSocial, tel, cel, email, parcel, address, city, state, country, zip }) => {
     const sqlQuery = `insert into 
     providers(nick_name,rfc,razon_social,tel,cel,email,parcel,addresss,city,state,country,zip,active)
-    values ('${name}','${rfc}','${razonSocial}','${tel}','${cel}','${email}','${parcel}','${address}','${city}','${state}','${country},${zip},${1}')`;
+    values ('${name}','${rfc}','${razonSocial}','${tel}','${cel}','${email}','${parcel}','${address}','${city}','${state}','${country}','${zip}',${true})`;
 
     return new Promise((resolve, reject) => {
         db.conn.query(sqlQuery, (err, res) => {
@@ -59,7 +59,18 @@ const addProvider = ({ name, rfc, razonSocial, tel, cel, email, parcel, address,
  * @param {object} provider 
  */
 const updateProvider = (id, { name, rfc, razonSocial, tel, cel, email, parcel, address, city, state, country, zip }) => {
+    const sqlQuery = `insert into 
+    providers(nick_name,rfc,razon_social,tel,cel,email,parcel,addresss,city,state,country,zip,active)
+    values ('${name}','${rfc}','${razonSocial}','${tel}','${cel}','${email}','${parcel}','${address}','${city}','${state}','${country}','${zip}',${true})`;
 
+    return new Promise((resolve, reject) => {
+        db.conn.query(sqlQuery, (err, res) => {
+            if (err) reject(err);
+
+            db.conn.end();
+            resolve(res);
+        });
+    })
 }
 
 /**
@@ -67,5 +78,15 @@ const updateProvider = (id, { name, rfc, razonSocial, tel, cel, email, parcel, a
  * @param {number} id 
  */
 const desactiveProvider = (id) => {
+    const sqlQuery = `
+        update providers set active = ${false}
+    `;
 
+    return new Promise((resolve,reject) => {
+        db.conn.query(sqlQuery,(err,res) => {
+            if(err) reject(err);
+
+            resolve(res);
+        });
+    });
 }

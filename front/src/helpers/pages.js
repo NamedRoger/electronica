@@ -9,6 +9,8 @@ export const pages = [
         name: 'Proveedores', link: "/proveedores", img: proveedores,
         dropdown: [{ name: 'Añadir Proveedor', link: "/addproveedor" },
         { name: 'Listado de Proveedores', link: "/proveedores" },
+        { name: 'Editar Proveedor', link: "/edit" },
+        { name: 'Eliminar Proveedor', link: "/delete" },
         { name: 'Listado de Bancos', link: "/listadobancos" },
         { name: 'Listado de Notas', link: "/listadonotas" }]
     },

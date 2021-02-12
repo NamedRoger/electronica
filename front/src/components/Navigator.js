@@ -13,37 +13,29 @@ const Navbar = () => {
         M.Collapsible.init(collapse.current);
     }, []);
 
-    /*const handleClick =()=>{
+    const handleClick =()=>{
         const instance  = M.Sidenav.getInstance(navigator.current);
-        instance.close();
-    }*/
+        instance.open();
+    }
     return (
         <header>
         <nav>
             <div className="nav-wrapper deep-purple darken-3">
-                <div className="brand-logo center-align"><Link to="/">Electrónica</Link></div>
-                <a href="#/" data-target="menu" className="sidenav-trigger">
+            <div className="brand-logo center"><Link to="/">Electrónica</Link></div>
+                <a onClick={handleClick} data-target="menu"
+                 className="btn-floating btn-large waves-effect waves-light blue darken-4" 
+                 style={{marginLeft: '10px'}}
+                 href="#/">
                     <i className="material-icons">menu</i>
-                </a>
-                <ul className="sidenav sidenav-fixed" id="menu" ref={navigator}>
-                    <ul className="collapsible" ref={collapse}>
-                {pages.map((target, index)=>{
-                    return(
-                        <li key={index}>
-      <div className="collapsible-header text">
-          {target.name}<i className="material-icons">arrow_drop_down</i>
-          </div>
-      <div className="collapsible-body">
-          <ul>
-              {target.dropdown.map((item, index)=><li key={index}><Link to={item.link}>{item.name}</Link></li>)}
-          </ul>
-      </div>
-                  </li>
-                    )
-                })}
-                </ul>
-                </ul>
+                    </a>
             </div>
+                <ul className="sidenav" id="menu" ref={navigator}>
+                    {pages.map((item, index)=>{
+                        return(
+                            <li key={index}><a href={item.link} target="_blank" rel="noreferrer">{item.name}</a></li>
+                        )
+                    })}
+                </ul>
         </nav>
         </header>
     );

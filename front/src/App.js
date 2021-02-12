@@ -4,6 +4,7 @@ import Navigator from './components/Navigator';
 import FormProveedor from './pages/proveedores/Form';
 import ListadoBancos from './pages/proveedores/ListadoBancos';
 import ListadoNotas from './pages/proveedores/ListadoNotas';
+import ListadoObservaciones from './pages/proveedores/listadoObservaciones'
 import Home from './pages/Home';
 import 'materialize-css/dist/css/materialize.min.css';
 
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/addproveedor" component={FormProveedor}/>
           <Route exact path="/listadobancos" component={ListadoBancos}/>
           <Route exact path="/listadonotas" component={ListadoNotas}/>
+          <Route exact path="/obvservaciones" component={ListadoObservaciones}/>
         </Switch>
         </main>
       </Router>

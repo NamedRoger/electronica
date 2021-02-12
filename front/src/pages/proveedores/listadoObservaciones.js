@@ -1,13 +1,6 @@
-import React, { useEffect } from 'react';
-import { pages } from '../../helpers/pages';
-import './index.css';
+import React from 'react';
 
-
-export default function ListadoNotas() {
-
-    useEffect(()=>{
-        document.title= 'Notas';
-    }, []);
+export default function ListadoObservaciones() {
     return (
         <div>
             <section className="container">
@@ -22,13 +15,14 @@ export default function ListadoNotas() {
             </form>
             <div className="buttons">
                 <button className="waves-effect waves-light btn-small green">Guardar</button>
+                <button className="waves-effect waves-light btn-small blue">Editar</button>
+                <button className="waves-effect waves-light btn-small red">Eliminar</button>
             </div>
             <table className="highlight">
                 <thead>
                     <tr>
                         <th>Descripción Nota: </th>
                         <th>Fecha: </th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
 
@@ -37,20 +31,17 @@ export default function ListadoNotas() {
                         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacus sed est ultricies
                             ullamcorper. Integer eleifend sapien in massa pulvinar sollicitudin. </td>
                         <td>2/02/2021</td>
-                        <td>
-                        <div className="botones">
-                        <a className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-             href={pages[0].dropdown[2].link} rel="noreferrer" target="_blank">
-                    <i className="material-icons">edit</i>
-                    </a>
-            <a className="btn-floating btn-large waves-effect waves-light red darken-3" 
-            href={pages[0].dropdown[3].link} rel="noreferrer" target="_blank">
-                    <i className="material-icons">delete</i>
-                    </a>
-                    </div>
-                        </td>
                     </tr>
-                    
+                    <tr>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacus sed est ultricies
+                            ullamcorper. Integer eleifend sapien in massa pulvinar sollicitudin. </td>
+                        <td>2/02/2021</td>
+                    </tr>
+                    <tr>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacus sed est ultricies
+                            ullamcorper. Integer eleifend sapien in massa pulvinar sollicitudin. </td>
+                        <td>2/02/2021</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

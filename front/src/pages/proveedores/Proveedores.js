@@ -6,6 +6,9 @@ export default function Proveedores() {
     return (
         <div className="">
             <h1 className="center-align">Listado de Proveedores</h1>
+            <a className="waves-effect waves-light green btn-large" 
+            style={{display: 'block', margin: '2em 40vw'}} href={pages[0].dropdown[0].link} rel="noreferrer" target="_blank">
+              <i class="material-icons left">add</i>Añadir</a>
             <table className="highlight">
         <thead>
           <tr>
@@ -37,14 +40,15 @@ export default function Proveedores() {
              href={pages[0].dropdown[2].link} rel="noreferrer" target="_blank">
                     <i className="material-icons">edit</i>
                     </a>
-            <a className="btn-floating btn-large waves-effect waves-light red darken-3" 
-            href={pages[0].dropdown[3].link} rel="noreferrer" target="_blank">
+            <button className="btn-floating btn-large waves-effect waves-light red darken-3">
                     <i className="material-icons">delete</i>
-                    </a>
+                    </button>
             <a className="waves-effect waves-light grey darken-1 btn-small" 
-            href={pages[0].dropdown[4].link} rel="noreferrer" target="_blank">Bancos</a>
+            href={pages[0].dropdown[3].link} rel="noreferrer" target="_blank">Bancos</a>
             <a className="waves-effect waves-light yellow lighten-1 btn-small" 
-            href={pages[0].dropdown[5].link} rel="noreferrer" target="_blank">Notas</a>
+            href={pages[0].dropdown[4].link} rel="noreferrer" target="_blank">Notas</a>
+            <a className="waves-effect waves-light light-green accent-2 btn-small" 
+            href={pages[0].dropdown[5].link} rel="noreferrer" target="_blank">Observaciones</a>
             </div>
             </td>
           </tr>

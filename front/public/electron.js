@@ -15,6 +15,8 @@ function createWindow() {
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
     mainWindow.webContents.openDevTools();
   }
+  mainWindow.title = `Electrónica`;
+  mainWindow.setMenu(null);
   mainWindow.on('closed', () => mainWindow = null);
 }
 

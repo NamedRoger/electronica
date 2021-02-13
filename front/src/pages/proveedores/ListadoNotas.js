@@ -4,7 +4,6 @@ import './index.css';
 
 
 export default function ListadoNotas() {
-
     useEffect(()=>{
         document.title= 'Notas';
     }, []);

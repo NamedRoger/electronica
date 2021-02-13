@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { pages } from '../../helpers/pages';
 import './index.css'
 
 export default function ListadoBancos() {
+        useEffect(()=>{
+            document.title= 'Listado De Bancos';
+        }, []);
     return (
         <div>
             <section className="container">

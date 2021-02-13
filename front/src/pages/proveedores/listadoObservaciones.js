@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 export default function ListadoObservaciones() {
+        useEffect(()=>{
+            document.title= 'Listado Observaciones';
+        }, []);
     return (
         <div>
             <section className="container">

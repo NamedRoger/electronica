@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { pages } from '../helpers/pages';
 
 export default function Home() {
+  useEffect(()=>{
+    document.title= 'Electrónica';
+}, []);
   return (
     <div className="container">
       <div className="row">

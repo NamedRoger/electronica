@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { pages } from '../../helpers/pages';
 import './index.css';
 
 export default function Proveedores() {
+    useEffect(()=>{
+      document.title= 'Proveedores';
+  }, []);
     return (
         <div className="">
             <h1 className="center-align">Listado de Proveedores</h1>
@@ -45,9 +48,9 @@ export default function Proveedores() {
                     </button>
             <a className="waves-effect waves-light grey darken-1 btn-small" 
             href={pages[0].dropdown[3].link} rel="noreferrer" target="_blank">Bancos</a>
-            <a className="waves-effect waves-light yellow lighten-1 btn-small" 
+            <a className="waves-effect waves-light red lighten-1 btn-small" 
             href={pages[0].dropdown[4].link} rel="noreferrer" target="_blank">Notas</a>
-            <a className="waves-effect waves-light light-green accent-2 btn-small" 
+            <a className="waves-effect waves-light blue accent-2 btn-small" 
             href={pages[0].dropdown[5].link} rel="noreferrer" target="_blank">Observaciones</a>
             </div>
             </td>

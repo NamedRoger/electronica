@@ -71,3 +71,9 @@ const desactiveNotas = (idNote,description) => {
 }
 
 
+module.export = {
+    addNotas,
+    getNotasByIdProvider,
+    updateNotas,
+}
+

@@ -46,3 +46,9 @@ const desactiveRepresentative = ({ name, last_name, tel, cel, email,parcel, addr
         });
     });
 }
+
+module.exports = {
+    getRepresentativesByidProvider,
+    addRrepresentatives,
+    updateRepresentative
+}

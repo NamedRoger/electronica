@@ -3,12 +3,20 @@ const Db = require('../../db/db');
 const db = new Db();
 
 const getProviders = () => {
-    return new Promise((resolve, reject) => {
-        db.conn.query(`select * from providers where active = 1`, (err, res) => {
-            if (err) reject(err);
-            return resolve(res);
-        });
+    const querySql = `SELECT id_provider, 
+    nick_name, 
+    rfc, 
+    razon_social, 
+    tel, cel, 
+    email, parcel, addresss, city, state, country
+    FROM providers WHERE active = ${true}`;
 
+    return new Promise((resolve, reject) => {
+        db.conn.query(querySql, (err, res) => {
+            if (err) reject(err);
+
+            resolve(res);
+        });
         db.conn.end();
     });
 };
@@ -89,4 +97,12 @@ const desactiveProvider = (id) => {
             resolve(res);
         });
     });
+}
+
+module.exports = {
+    getProvider,
+    getProviders,
+    addProvider,
+    updateProvider,
+    desactiveProvider
 }

@@ -77,3 +77,9 @@ const desactiveBanks = (idBank,idProvider,name,bank_account,bank_key) =>{
     });
 }
 
+module.exports = {
+    getBanksByIdProvider,
+    addBanks,
+    updateBanks,
+    desactiveBanks
+}

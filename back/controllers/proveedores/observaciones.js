@@ -71,4 +71,8 @@ const desactiveObservations = (idObservations,description) => {
     }); 
 }
 
-
+module.exports = {
+    getObservationsByIdProvider,
+    addObservations,
+    updateObservations,
+}

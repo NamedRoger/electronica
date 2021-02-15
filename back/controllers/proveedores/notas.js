@@ -60,16 +60,19 @@ const updateNotas = (idNote,description) => {
  * @param {string} description 
  */
 
-const desactiveNotas = (idNote,description) => {
-    return new Promise ((resolve,reject)=>{
-        db.conn.query(`Update provider_notes set active = ${false} where id_note = ${idNote}`,(err,res) => {
-            if(err)reject(err);
-            resolve(true);
-            db.conn.end();
+const deleteNote = (idNote) => {
+    const querysql = `
+        Delete from provider_notes where id_notes = ${idNote}
+            `;
+        return new Promise ((resolve,reject) =>{
+            db.conn.query(querysql, (err,res) => {
+                if(err)reject(err);
+                resolve(true);
+                db.conn.end();
+            
+            });
         });
-    }); 
-}
-
+    }
 
 module.export = {
     addNotas,

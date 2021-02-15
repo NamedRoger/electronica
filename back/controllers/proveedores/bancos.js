@@ -66,16 +66,21 @@ const updateBanks = (idBank,idProvider, name, bank_account, bank_key) => {
  * @param {string} bank_key 
  */
 
-const desactiveBanks = (idBank,idProvider,name,bank_account,bank_key) =>{
-    return new Promise ((resolve,reject) =>{
-        db.conn.query(`update provider_banks set active = ${false} where id_bank = ${idBank}`,(err,res) => {
-            if(err)reject(err);
-            resolve(true);
-            db.conn.end();
-        
+
+const deleteBanks = (idBank) => {
+    const querysql = `
+        Delete from provider_banks where id_banks = ${idBank}
+            `;
+        return new Promise ((resolve,reject) =>{
+            db.conn.query(querysql, (err,res) => {
+                if(err)reject(err);
+                resolve(true);
+                db.conn.end();
+            
+            });
         });
-    });
-}
+    }
+
 
 module.exports = {
     getBanksByIdProvider,

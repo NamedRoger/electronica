@@ -61,15 +61,22 @@ const updateObservations = (idObservations,description) => {
  * @param {string} description 
  */
 
-const desactiveObservations = (idObservations,description) => {
-    return new Promise ((resolve,reject)=>{
-        db.conn.query(`Update provider_observations set active = ${false} where id_observations = ${idObservations}`,(err,res) => {
-            if(err)reject(err);
-            resolve(true);
-            db.conn.end();
+const deleteObservation = (idObservations) => {
+    const querysql = `
+        Delete from provider_observations where id_observations = ${idObservations}
+            `;
+        return new Promise ((resolve,reject) =>{
+            db.conn.query(querysql, (err,res) => {
+                if(err)reject(err);
+                resolve(true);
+                db.conn.end();
+            
+            });
         });
-    }); 
-}
+    }
+
+
+
 
 module.exports = {
     getObservationsByIdProvider,

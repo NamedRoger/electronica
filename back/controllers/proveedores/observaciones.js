@@ -82,4 +82,5 @@ module.exports = {
     getObservationsByIdProvider,
     addObservations,
     updateObservations,
+    deleteObservation
 }

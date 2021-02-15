@@ -86,5 +86,5 @@ module.exports = {
     getBanksByIdProvider,
     addBanks,
     updateBanks,
-    desactiveBanks
+    deleteBanks
 }

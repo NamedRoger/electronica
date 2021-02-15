@@ -78,5 +78,6 @@ module.export = {
     addNotas,
     getNotasByIdProvider,
     updateNotas,
+    deleteNote
 }
 

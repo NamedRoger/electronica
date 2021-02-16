@@ -1,4 +1,6 @@
-require('dotenv').config({});
+require('dotenv').config({
+
+});
 
 const mysql = require('mysql');
 
@@ -21,5 +23,5 @@ module.exports = class Db {
     }
 }
 
+console.log(__dirname)
 console.log(process.env.DB_PORT);
-

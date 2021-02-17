@@ -19,7 +19,7 @@ module.exports = class Db {
             database:this.db,
             port:this.port,
         });   
-
+        this.conn.connect();
     }
 }
 

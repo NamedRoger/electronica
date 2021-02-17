@@ -16,7 +16,7 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
   }
   mainWindow.title = `Electrónica`;
-  mainWindow.setMenu(null);
+  //mainWindow.setMenu(null);
   mainWindow.on('closed', () => mainWindow = null);
 }
 

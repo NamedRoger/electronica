@@ -13,16 +13,20 @@ const Navbar = () => {
         M.Collapsible.init(collapse.current);
     }, []);
 
-    const handleClick =()=>{
+    const handleOpen =()=>{
         const instance  = M.Sidenav.getInstance(navigator.current);
         instance.open();
+    }
+    const handleClose = () =>{
+        const instance  = M.Sidenav.getInstance(navigator.current);
+        instance.close();
     }
     return (
         <header>
         <nav>
             <div className="nav-wrapper deep-purple darken-3">
             <div className="brand-logo center"><Link to="/">Electrónica</Link></div>
-                <a onClick={handleClick} data-target="menu"
+                <a onClick={handleOpen} data-target="menu"
                  className="btn-floating btn-large waves-effect waves-light blue darken-4" 
                  style={{marginLeft: '10px'}}
                  href="#/">
@@ -32,7 +36,7 @@ const Navbar = () => {
                 <ul className="sidenav" id="menu" ref={navigator}>
                     {pages.map((item, index)=>{
                         return(
-                            <li key={index}><a href={item.link} target="_blank" rel="noreferrer">{item.name}</a></li>
+                            <li key={index} onClick={handleClose}><Link to={item.link}>{item.name}</Link></li>
                         )
                     })}
                 </ul>

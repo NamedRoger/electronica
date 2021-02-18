@@ -35,4 +35,8 @@ module.exports = class Db {
             });
         });
     }
+
+    insert(query,params){
+
+    }
 }

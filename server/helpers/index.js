@@ -18,3 +18,5 @@ const generateCode = (prefijo,name) => {
     });
     return `${prefijo.toUpperCase()}_${code.toUpperCase()}`;
 }
+
+exports.generateCode = generateCode;

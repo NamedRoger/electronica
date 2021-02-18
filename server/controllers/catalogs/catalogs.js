@@ -11,7 +11,12 @@ const database = new db();
 const catalogPrefix = 'CAT';
 
 const getCatalogByCode = (CodeCatalog) => {
-    const query = `SELECT id_catalog FROM catalogs WHERE active = 1 AND code = ${CodeCatalog}`;
+    const query = `SELECT id_catalog, name, code FROM catalogs WHERE active = 1 AND code = ${CodeCatalog}`;
+    return database.query(query);
+}
+
+const getCatalogs = () => {
+    const query = `SELECT id_catalog, name FROM catalogs WHERE active = 1`;
     return database.query(query);
 }
 

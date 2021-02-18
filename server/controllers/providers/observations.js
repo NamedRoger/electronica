@@ -6,23 +6,23 @@ require('dotenv').config({
 const db = require('../../db/database');
 const database = new db();
 
-const getObservationByProvider = (id_provider, id_observation) => {
-    const query = `SELECT FROM provider_observation WHERE id_provider = ${id_provider}`;
+const getObservationByProvider = (id_provider) => {
+    const query = `SELECT FROM provider_observations WHERE id_provider = ${id_provider}`;
     return database.query(query);
 }
 
-const addObservation = (id_provider,id_observation) =>{
-    const query = `INSERT INTO provider_observation(id_provider,id_observation) VALUES(${id_provider},'${id_observation}')`;
+const addObservation = (id_provider, description) =>{
+    const query = `INSERT INTO provider_observations (id_provider, description) VALUES(${id_provider},'${description}')`;
     return database.query(query);
 }
 
 const updateObservation = (id_observation, description) => {
-    const query = `UPDATE provider_observation SET description = '${description}' WHERE id_observation = ${id_observation}`;
+    const query = `UPDATE provider_observations SET description = '${description}' WHERE id_observation = ${id_observation}`;
     return database.query(query);
 }
 
 const deleteObservation = (id_observation) => {
-    const query = `DELETE FROM provider_observation WHERE id_observation = ${id_observation}`;
+    const query = `DELETE FROM provider_observations WHERE id_observation = ${id_observation}`;
     return database.query(query);
 }
 

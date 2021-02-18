@@ -7,12 +7,12 @@ const db = require('../../db/database');
 const database = new db();
 
 const getObservationByProvider = (id_provider, id_observation) => {
-    const query = `SELECT FROM provider_observation WHERE id_provider = ${idProvider}`;
+    const query = `SELECT FROM provider_observation WHERE id_provider = ${id_provider}`;
     return database.query(query);
 }
 
 const addObservation = (id_provider,id_observation) =>{
-    const query = `INSERT INTO provider_observation(id_provider,id_observation) VALUES(${idProvider},'${id_observation}')`;
+    const query = `INSERT INTO provider_observation(id_provider,id_observation) VALUES(${id_provider},'${id_observation}')`;
     return database.query(query);
 }
 

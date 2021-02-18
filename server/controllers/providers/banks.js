@@ -23,14 +23,14 @@ const addBank = (bank) => {
     }
 }
 
-const updateBank =(name,bankAccount,bankKey) => {
-    const query = `UPDATE provider_banks SET name = '${bank.name}' bank_account = '${bankAccount} bank_key '${bankKey}' WHERE provider_banks = ${idProvider}`;
+const updateBank =(idBank,name,bankAccount,bankKey) => {
+    const query = `UPDATE provider_banks SET name = '${name}' bank_account = '${bankAccount} bank_key = '${bankKey}' WHERE id_bank = ${idBank}`;
     return database.query(query);
 }
 
 
-const deleteBanks = (bank,idProvider,name) => {
-        const query = `Delete from banks where provider_banks = ${idProvider}`;
+const deleteBanks = (idBank) => {
+        const query = `Delete from provider_banks where id_bank = ${idBank}`;
     return database.query(query);
 }
 

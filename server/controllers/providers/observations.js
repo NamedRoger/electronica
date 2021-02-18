@@ -7,7 +7,7 @@ const db = require('../../db/database');
 const database = new db();
 
 const getObservationByProvider = (id_provider) => {
-    const query = `SELECT FROM provider_observations WHERE id_provider = ${id_provider}`;
+    const query = `SELECT id_observation, description FROM provider_observations WHERE id_provider = ${id_provider}`;
     return database.query(query);
 }
 

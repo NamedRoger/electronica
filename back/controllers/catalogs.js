@@ -4,16 +4,24 @@ const db = new DB();
 
 const getCatalogs = () => {
     return new Promise((resolve,reject) =>{
-        db.conn.query("select * from catalogs_view",(err,res) => {
+        db.conn.query("select * from catalogs",(err,res) => {
             if(err) reject("ocurrio un error");
-            resolve(res);
+
             db.conn.end();
+            resolve(res);
         });
     });    
 }
 
-const getCatalogById = () => {
-
+const getCatalogById = (idCatalog) => {
+    const querySql = `select * from catalogs`;
+    return new Promise((resolve,reject)=> {
+        db.conn.query(querySql,(err,res) => {
+            if(err) reject(err);
+            db.conn.end();
+            resolve(res);
+        })
+    })
 }
 
 const getCatalogByCode = () => {
@@ -29,8 +37,8 @@ const addCatalog = (name) =>{
     return new Promise((resolve,reject) => {
         db.conn.query(`insert into catalogs (name,active,code) values ('${name}',${1},'CAT_${code}')`,(err,res) => {
             if(err) reject(err);
-            resolve(true);
             db.conn.end();
+            resolve(true);
         });
     });
 }
@@ -43,8 +51,8 @@ const updateCatalog = (id,nombre) => {
     return new Promise((resolve,reject) => {
         db.conn.query(`update catalogs set name = ${nombre} where id_catalog = ${id}`,(err,res) =>{
             if(err) reject(err);
-            resolve(true); 
             db.conn.end();
+            resolve(true); 
         });
     });
 }
@@ -57,8 +65,8 @@ const desactiveCatalog = (id) => {
     return new Promise((resolve,reject) => {
         db.conn.query(`update catalogs set active = ${false}`,(err,res) => {
             if(err)reject(err);
-            resolve(true);
             db.conn.end();
+            resolve(true);
         });
     });
 }

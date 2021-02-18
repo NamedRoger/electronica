@@ -6,6 +6,7 @@ require('dotenv').config({
 });
 
 const mysql = require('mysql');
+const { resolve } = require('path');
 
 module.exports = class Db {
     constructor(){
@@ -23,5 +24,15 @@ module.exports = class Db {
             port:this.port,
         });   
         this.conn.connect();
+    }
+
+    query(query){
+        return new Promise((resolve,reject) => {
+            this.conn.query(query,(err, result) => {
+                if(err) reject(err);
+                this.conn.end();
+                resolve(result);
+            });
+        });
     }
 }

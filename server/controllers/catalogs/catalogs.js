@@ -19,3 +19,14 @@ const addCatalog = (name) => {
     const query = `INSERT INTO catalogs (name, active, code) values ('${name}',${true},'${generateCode(catalogPrefix,name)}')`;
     return database.query(query);
 }
+
+const updateCatalog =(idCatalog, name) => {
+    const query = `UPDATE catalogs SET name = '${name}' code = '${generateCode(catalogPrefix,name)} WHERE id_catalog = ${idCatalog}`;
+    return database.query(query);
+}
+
+const desactiveCatalog =(idCatalog, name) =>{
+    const query = `DESACTIVE catalogs SET active = '${true}', (err,res)`;
+    return database.query(query);
+}
+

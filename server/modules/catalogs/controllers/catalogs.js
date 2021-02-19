@@ -19,10 +19,26 @@ const getCatalogByCode = async (req,res) => {
     }
 }
 
-const addCatalog = (req, res) => {
-
+const addCatalog = async (req, res) => {
+    const newCatalog = req.body;
+    await catalogsService.addCatalog(newCatalog.name);
+    res.status(201).json({success:true});
 }
 
+const updateCatalog = async (req, res) => {
+    const idCatalog = req.params.idCatalog;
+    const newDataCatalog = req.body;
+    await catalogsService.updateCatalog(idCatalog,newDataCatalog.name);
+    res.status(204);
+    res.send();
+} 
+
+const desactiveCatalog = async (req, res) => {
+    const idCatalog = req.params.idCatalog;
+    await catalogsService.desactiveCatalog(idCatalog);
+    res.status(204);
+    res.send();
+}
 
 module.exports = {
     getCatalgos,

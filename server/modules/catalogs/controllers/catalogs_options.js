@@ -6,6 +6,10 @@ const getOptions = async (req,res)=> {
     res.json(options);
 }
 
+const addOption = async (req, res) => {
+    const newOption = req.body;
+    await OptionsService.addOption(newOption.idCatalog, newOption.name);
+}
 
 module.exports = {
     getOptions,

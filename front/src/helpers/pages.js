@@ -8,7 +8,7 @@ export const pages = [
     {
         name: 'Proveedores', link: "/proveedores", img: proveedores,
         dropdown: [{ name: 'Añadir Proveedor', link: "/addproveedor" },
-        { name: 'Listado de Proveedores', link: "/proveedores" },
+        { name: 'Listado de Proveedores', link: "/proveedoressss" },
         { name: 'Editar Proveedor', link: "/edit" },
         { name: 'Listado de Bancos', link: "/listadobancos" },
         { name: 'Listado de Notas', link: "/listadonotas" },
@@ -18,13 +18,13 @@ export const pages = [
         name: 'Clientes', link: "/clientes", img: clientes,
         dropdown: [{ name: 'Listado de Clientes', link: "/clientes" },
         { name: 'Listado de Bancos', link: "/listadobancos" },
-        { name: 'Listado de Notas', link: "/listadonotas" }]
+        { name: 'Ver Proveedores', link: "/proveedoresalmacen" }]
     },
     {
         name: 'Almacén', link: "/almacen", img: almacen,
-        dropdown: [{ name: 'Listado de Almacén', link: "/almacen" },
-        { name: 'Listado de Bancos', link: "/listadobancos" },
-        { name: 'Listado de Notas', link: "/listadonotas" }]
+        dropdown: [{ name: 'Añadir Almacen', link: "/addalmacen" },
+        { name: 'Editar Almacen', link: "/editalmacen" },
+        { name: 'Ver Proveedores', link: "/proveedoresalmacen" }]
     },
     {
         name: 'Insumos', link: "/insumos", img: insumos,

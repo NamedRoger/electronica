@@ -26,7 +26,10 @@ const addCatalog = async (req, res) => {
         await catalogsService.addCatalog(newCatalog.name);
         res.status(201).json({success:true});
     }catch(e){
-        res.status(400).json()
+        res.status(400).json({
+            ...e,
+            success: false
+        });
     }
     
 }
@@ -34,17 +37,40 @@ const addCatalog = async (req, res) => {
 const updateCatalog = async (req, res) => {
     const idCatalog = req.params.idCatalog;
     const newDataCatalog = req.body;
-    await catalogsService.updateCatalog(idCatalog,newDataCatalog.name);
-    res.status(204).send();
+    try{
+        const catalog = (await catalogsService.getCatalogById(idCatalog))[0] || null;
+        if(catalog === null) throw new NotFoundException();
+
+        await catalogsService.updateCatalog(idCatalog,newDataCatalog.name);
+        res.status(204).send();
+    }catch(e){
+        res.status(e.status || 404).json({
+            ...e,
+            success:false
+        });
+    }
 } 
 
 const desactiveCatalog = async (req, res) => {
     const idCatalog = req.params.idCatalog;
-    await catalogsService.desactiveCatalog(idCatalog);
-    res.status(204).send();
+    try{
+        let catalog = (await catalogsService.getCatalogById(idCatalog))[0] || null;
+        if(catalog === null) throw new NotFoundException();
+
+        await catalogsService.desactiveCatalog(idCatalog);
+        res.status(204).send();
+    }catch(e){
+        res.status(e.status || 404).json({
+            ...e,
+            success:false
+        });
+    }
 }
 
 module.exports = {
     getCatalgos,
-    getCatalogByCode
+    getCatalogByCode,
+    addCatalog,
+    updateCatalog,
+    desactiveCatalog
 }

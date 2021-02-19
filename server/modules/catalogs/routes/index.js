@@ -3,6 +3,7 @@ var router = express.Router();
 
 
 const catalogsController = require('../controllers/catalogs');
+const optionsController = require('../controllers/catalogs_options');
 
 /* GET users listing. */
 router.get('/', catalogsController.getCatalgos);
@@ -20,5 +21,6 @@ router.put('/',(req,res,next) => {
 router.delete('/',(req,res,next) => {});
 
 //catalog options
+router.get('/options/:idCatalog',optionsController.getOptions);
 
 module.exports = router;

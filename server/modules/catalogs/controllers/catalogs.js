@@ -19,6 +19,10 @@ const getCatalogByCode = async (req,res) => {
     }
 }
 
+const addCatalog = (req, res) => {
+
+}
+
 
 module.exports = {
     getCatalgos,

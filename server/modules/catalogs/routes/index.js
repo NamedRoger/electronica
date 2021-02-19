@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 
-const catalogsController = require('../controllers/catalogs');
-const optionsController = require('../controllers/catalogs_options');
+const catalogsController = require('../controllers/catalogsController');
+const optionsController = require('../controllers/catalogsOptionsController');
 
 /* GET users listing. */
 router.get('/', catalogsController.getCatalgos);

@@ -1,5 +1,6 @@
 
-const catalogsService = require('../services/catalogs');
+const catalogsService = require('../services/catalogsService');
+const {NotFoundException} = require('../../../helpers/http/exceptions/index');
 
 const getCatalgos = async (req,res) => {
     const catalogs = await catalogsService.getCatalogs();
@@ -10,7 +11,7 @@ const getCatalogByCode = async (req,res) => {
     const codeCatalog = req.params.code;
     try{
        const catalog = (await catalogsService.getCatalogByCode(codeCatalog))[0] || null;
-       if(catalog === null) throw "No se encotró el catalogo";
+       if(catalog === null) throw new NotFoundException();
        res.json(catalog);
     }catch(e){
         res.status(400).json({
@@ -21,8 +22,13 @@ const getCatalogByCode = async (req,res) => {
 
 const addCatalog = async (req, res) => {
     const newCatalog = req.body;
-    await catalogsService.addCatalog(newCatalog.name);
-    res.status(201).json({success:true});
+    try{
+        await catalogsService.addCatalog(newCatalog.name);
+        res.status(201).json({success:true});
+    }catch(e){
+        res.status(400).json()
+    }
+    
 }
 
 const updateCatalog = async (req, res) => {

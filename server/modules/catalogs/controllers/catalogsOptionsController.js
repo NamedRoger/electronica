@@ -1,4 +1,4 @@
-const OptionsService = require('../services/catalago_options');
+const OptionsService = require('../services/catalagoOptionsService');
 const { NotFoundException } = require('../../../helpers/http/exceptions/index');
 
 const getOptions = async (req,res)=> {

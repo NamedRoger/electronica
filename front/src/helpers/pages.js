@@ -17,8 +17,8 @@ export const pages = [
     {
         name: 'Clientes', link: "/clientes", img: clientes,
         dropdown: [{ name: 'Listado de Clientes', link: "/clientes" },
-        { name: 'Listado de Bancos', link: "/listadobancos" },
-        { name: 'Ver Proveedores', link: "/proveedoresalmacen" }]
+        { name: 'Añadir clientes', link: "/addclientes" },
+        { name: 'Editar Clientes', link: "/editcliente" }]
     },
     {
         name: 'Almacén', link: "/almacen", img: almacen,

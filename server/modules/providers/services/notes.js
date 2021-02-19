@@ -1,8 +1,9 @@
 const path = require('path');
-const pathEnv = path.join(process.cwd()+'\\..','..','.env');
+const pathEnv = path.join(process.cwd()+'\\..','\\..','..','.env');
 require('dotenv').config({
     path:pathEnv
 });
+
 const db = require('../../../db/database');
 const database = new db();
 

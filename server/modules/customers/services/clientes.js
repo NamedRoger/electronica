@@ -1,27 +1,29 @@
 const path = require('path');
-const pathEnv = path.join(process.cwd()+'\\..','..','.env');
+const pathEnv = path.join(process.cwd()+'\\..','\\..','..','.env');
 require('dotenv').config({
     path:pathEnv
 });
-const db = require('../../../db/database');
-const database = new db();
 
-const getCustomer  = (idCustomer) => {
+console.log((pathEnv));
+// const db = require('../../../db/database');
+// const database = new db();
+
+// const getCustomer  = (idCustomer) => {
     
-}
+// }
 
-const getCustomers = () => {
+// const getCustomers = () => {
 
-}
+// }
 
-const addCustomer = () => {
+// const addCustomer = () => {
 
-}
+// }
 
-const updateCustomer = () => {
+// const updateCustomer = () => {
 
-}
+// }
 
-const desactiveCustomer = () => {
+// const desactiveCustomer = () => {
 
-}
+// }

@@ -3,7 +3,7 @@ const pathEnv = path.join(process.cwd()+'\\..','..','.env');
 require('dotenv').config({
     path:pathEnv
 });
-const db = require('../../db/database');
+const db = require('../../../db/database');
 const database = new db();
 
 const getObservationByProvider = (id_provider) => {

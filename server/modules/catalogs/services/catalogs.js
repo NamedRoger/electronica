@@ -4,8 +4,8 @@ const pathEnv = path.join(process.cwd()+'\\..','..','.env');
 require('dotenv').config({
     path:pathEnv
 });
-const db = require('../../db/database');
-const {generateCode} = require('../../helpers');
+const db = require('../../../db/database');
+const {generateCode} = require('../../../helpers');
 const database = new db();
 
 const catalogPrefix = 'CAT';

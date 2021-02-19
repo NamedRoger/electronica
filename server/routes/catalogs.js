@@ -2,7 +2,7 @@ var express = require('express');
 const { route } = require('./users');
 var router = express.Router();
 
-const catalogsController = require('../controllers/catalogs/catalogs');
+const catalogsController = require('../modules/catalogs/services/catalogs');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

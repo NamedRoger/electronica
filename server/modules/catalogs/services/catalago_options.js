@@ -19,4 +19,12 @@ const updateOption = (idOption,name) => {
 
 const desactiveOption = (idOption) => {
     const query = `UPDATE catalog_options SET active = ${false}`;
+    return database.query(query);
+}
+
+module.exports = {
+    getOptions,
+    addOption,
+    updateOption,
+    desactiveOption
 }

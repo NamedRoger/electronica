@@ -16,27 +16,26 @@ module.exports = class Db {
         this.password = process.env.DB_PASSWORD;
         this.db = process.env.DB_DATABASE;
 
-        this.conn = mysql.createConnection({
+        this.handleConnection();
+    }
+
+    handleConnection(){
+        this.conn = mysql.createPool({
             host:this.host,
             user:this.user,
             password:this.password,
             database:this.db,
             port:this.port,
         });   
-        this.conn.connect();
     }
 
     query(query){
         return new Promise((resolve,reject) => {
             this.conn.query(query,(err, result) => {
                 if(err) reject(err);
-                this.conn.end();
                 resolve(result);
             });
         });
     }
 
-    insert(query,params){
-
-    }
 }

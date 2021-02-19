@@ -29,15 +29,13 @@ const updateCatalog = async (req, res) => {
     const idCatalog = req.params.idCatalog;
     const newDataCatalog = req.body;
     await catalogsService.updateCatalog(idCatalog,newDataCatalog.name);
-    res.status(204);
-    res.send();
+    res.status(204).send();
 } 
 
 const desactiveCatalog = async (req, res) => {
     const idCatalog = req.params.idCatalog;
     await catalogsService.desactiveCatalog(idCatalog);
-    res.status(204);
-    res.send();
+    res.status(204).send();
 }
 
 module.exports = {

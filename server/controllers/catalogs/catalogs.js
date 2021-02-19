@@ -35,3 +35,11 @@ const desactiveCatalog =(idCatalog, name) =>{
     return database.query(query);
 }
 
+
+module.exports = {
+    getCatalogByCode,
+    getCatalogs,
+    addCatalog,
+    updateCatalog,
+    desactiveCatalog
+}

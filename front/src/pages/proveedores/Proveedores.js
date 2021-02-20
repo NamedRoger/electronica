@@ -7,12 +7,15 @@ export default function Proveedores() {
     useEffect(()=>{
       document.title= 'Proveedores';
   }, []);
+  const handleOpen = ()=>{
+    window.open(pages[0].dropdown[0].link, null, "width=800,height=600,left=300");
+  }
     return (
         <div className="">
             <h1 className="center-align">Listado de Proveedores</h1>
-            <a className="waves-effect waves-light green btn-large" 
-            style={{display: 'block', margin: '2em 40vw'}} href={pages[0].dropdown[0].link} rel="noreferrer" target="_blank">
-              <i className="material-icons left">add</i>Añadir</a>
+            <button className="waves-effect waves-light green btn-large" 
+            style={{display: 'block', margin: '2em 40vw'}} onClick={handleOpen}>
+              <i className="material-icons left">add</i>Añadir</button>
               <TablaProveedores />
         </div>
     )

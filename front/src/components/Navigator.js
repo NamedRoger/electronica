@@ -15,8 +15,7 @@ const Navbar = () => {
     useEffect(()=>{
         M.Sidenav.init(navigator.current);
         M.Collapsible.init(collapse.current);
-        if(locate.pathname === '/' ||
-         locate.pathname === '/proveedores' || 
+        if(locate.pathname === '/proveedores' || 
          locate.pathname === '/clientes' || 
          locate.pathname === '/almacen' || 
          locate.pathname === '/insumos' || 
@@ -40,6 +39,7 @@ const Navbar = () => {
         <header>
         <nav>
             <div className="nav-wrapper deep-purple darken-3">
+            <div className="brand-logo center"><Link to="/">Electrónica</Link></div>
              <Menu show={show} handleOpen={handleOpen} />
             </div>
                 <ul className="sidenav" id="menu" ref={navigator}>

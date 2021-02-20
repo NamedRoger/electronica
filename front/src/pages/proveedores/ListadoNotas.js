@@ -7,6 +7,18 @@ export default function ListadoNotas() {
     useEffect(()=>{
         document.title= 'Notas';
     }, []);
+    const handleClick = (e)=>{
+        switch (e.target.id) {
+            case 'edit':
+                    window.open(pages[0].dropdown[2].link, null, "width=800,height=600,left=300");
+                break;
+                case 'delete':
+                   alert('Delete');
+                break;
+            default:
+                break;
+        }
+      }
     return (
         <div>
             <section className="container">
@@ -38,14 +50,12 @@ export default function ListadoNotas() {
                         <td>2/02/2021</td>
                         <td>
                         <div className="botones">
-                        <a className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-             href={pages[0].dropdown[2].link} rel="noreferrer" target="_blank">
-                    <i className="material-icons">edit</i>
-                    </a>
-            <a className="btn-floating btn-large waves-effect waves-light red darken-3" 
-            href={pages[0].dropdown[3].link} rel="noreferrer" target="_blank">
-                    <i className="material-icons">delete</i>
-                    </a>
+                        <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1">
+                    <i className="material-icons" id="edit" onClick={handleClick}>edit</i>
+                    </button>
+            <button className="btn-floating btn-large waves-effect waves-light red darken-3">
+                    <i className="material-icons" id="delete" onClick={handleClick}>delete</i>
+                    </button>
                     </div>
                         </td>
                     </tr>

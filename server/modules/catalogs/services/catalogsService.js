@@ -9,6 +9,11 @@ const getCatalogByCode = (CodeCatalog) => {
     return database.query(query);
 }
 
+const getCatalogById = (idCatalog) =>{
+    const query = `SELECT id_catalog, name, code FROM catalogs WHERE id_catalog = ${idCatalog}`;
+    return database.query(query);
+}
+
 const getCatalogs = () => {
     const query = `SELECT id_catalog, name FROM catalogs WHERE active = 1`;
     return database.query(query);
@@ -32,6 +37,7 @@ const desactiveCatalog =(idCatalog, name) =>{
 
 module.exports = {
     getCatalogByCode,
+    getCatalogById,
     getCatalogs,
     addCatalog,
     updateCatalog,

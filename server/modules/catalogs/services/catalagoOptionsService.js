@@ -2,6 +2,10 @@ const Db = require('../../../db/database');
 
 const database = new Db();
 
+/**
+ * 
+ * @param {numbre} idCatalog 
+ */
 const getOptions = (idCatalog) => {
     const query = `SELECT id_option, name, active FROM catalog_options WHERE id_catalog = ${idCatalog}`;
     return database.query(query);
@@ -19,4 +23,12 @@ const updateOption = (idOption,name) => {
 
 const desactiveOption = (idOption) => {
     const query = `UPDATE catalog_options SET active = ${false}`;
+    return database.query(query);
+}
+
+module.exports = {
+    getOptions,
+    addOption,
+    updateOption,
+    desactiveOption
 }

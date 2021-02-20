@@ -32,7 +32,7 @@ export default function TablaProveedores() {
             <td>
                 <div className="botones">
             <a className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-             href={pages[0].dropdown[2].link} rel="noreferrer" target="_blank">
+             href={`${pages[0].dropdown[2].link}/787878`} rel="noreferrer" target="_blank">
                     <i className="material-icons">edit</i>
                     </a>
             <button className="btn-floating btn-large waves-effect waves-light red darken-3">

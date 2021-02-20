@@ -28,6 +28,7 @@ function App() {
             <Route exact path="/proveedores" component={Proveedores} />
             <Route exact path="/listadobancos" component={ListadoBancos} />
             <Route exact path="/listadonotas" component={ListadoNotas} />
+            <Route exact path="/edit/:id" component={FormProveedor} />
             <Route exact path="/obvservaciones" component={ListadoObservaciones} />
             {/*Clientes*/}
             <Route exact path="/clientes" component={Clientes} />

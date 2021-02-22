@@ -8,9 +8,18 @@ const getOptions = async (req,res)=> {
 }
 
 const addOption = async (req, res) => {
+    const idCatalog = req.params.idCatalog;
     const newOption = req.body;
-    await OptionsService.addOption(newOption.idCatalog, newOption.name);
-    res.status(200).send();
+    try{
+        await OptionsService.addOption(idCatalog,newOption.name);
+        res.status(200).send();
+    }catch(e){
+        res.status(e.status||404).json({
+            ...e,
+            success:false
+        });
+    }
+    
 }
 
 const updateOption = async (req, res) => {

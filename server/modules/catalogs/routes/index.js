@@ -10,17 +10,19 @@ router.get('/', catalogsController.getCatalgos);
 router.get('/:code', catalogsController.getCatalogByCode);
 
 
-router.post('/',(req,res,next) => {
-    res.send('esto es un post');
-});
+router.post('/',catalogsController.addCatalog);
 
-router.put('/',(req,res,next) => {
+router.put('/:idCatalog',catalogsController.updateCatalog);
 
-});
-
-router.delete('/',(req,res,next) => {});
+router.delete('/:idCatalog',catalogsController.desactiveCatalog);
 
 //catalog options
 router.get('/options/:idCatalog',optionsController.getOptions);
+
+router.post('/options/:idCatalog',optionsController.addOption);
+
+router.put('/options/:idOption',optionsController.desactiveOption);
+
+router.delete('/options/:idOption',optionsController.desactiveOption);
 
 module.exports = router;

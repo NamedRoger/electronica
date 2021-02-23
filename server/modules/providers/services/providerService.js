@@ -28,7 +28,7 @@ const addProvider = ({nickName,
     tel,
     cel,
     email,
-    parcel,address, city, state, country,zip}) => {
+    parcel, address, city, state, country,zip}) => {
     
     const query = `INSERT INTO 
     providers(nick_name, rfc,razon_social,tel,cel, email,parcel, address, city, state, country, zip,active)

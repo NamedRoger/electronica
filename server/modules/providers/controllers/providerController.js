@@ -17,11 +17,12 @@ const getProvider = async (req, res) => {
 }
 
 const getProviders = async (req, res) => {
-    const providers = await providersService.getProviders();
+        const providers = await providersService.getProviders();
     res.json(providers);
+    
 }
 
-const addProvider = (req, res) => {
+const addProvider = async (req, res) => {
     try{
         const newProvider = req.body;
         await providersService.addProvider(newProvider);
@@ -34,7 +35,7 @@ const addProvider = (req, res) => {
     }
 }
 
-const updateProvider = (req, res) => {
+const updateProvider = async (req, res) => {
     const idProvider = req.params.idProvider;
     const newDataProvider = req.body;
     try{
@@ -51,7 +52,7 @@ const updateProvider = (req, res) => {
     }
 }
 
-const desactiveProvider = (req, res) => {
+const desactiveProvider = async (req, res) => {
     try{
         const idProvider = req.params.idProvider;
         await providersService.desactiveProvider(idProvider);

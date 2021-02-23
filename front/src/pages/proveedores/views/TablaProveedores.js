@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { pages } from '../../../helpers/pages';
+import Loader from '../../../components/Loader';
+import { getProviders } from '../../../services/Providers/getProviders';
 
 export default function TablaProveedores() {
+  const [proveedores, setProveedores] = useState([]);
+  const [load, setLoad] = useState(false);
+  useEffect(()=>{
+    const get = async ()=>{
+      const getProv = await getProviders();
+      setProveedores(getProv);
+      setLoad(true);
+    }
+    get();
+  }, []);
 
+  const openEdit = (id) =>{
+    window.open(`${pages[0].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
+  }
+  const onDelete = (id) =>{
+    console.log(id);
+  }
+  if(!load){
+    return <Loader />
+  }
     return (
+      <>
+        {proveedores.error ? <h3>{proveedores.error}</h3> :
         <table className="highlight">
         <thead>
           <tr>
@@ -17,25 +40,29 @@ export default function TablaProveedores() {
               <th>Acciones</th>
           </tr>
         </thead>
-
         <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>ALVIN300006KT2</td>
-            <td>sandbjsa</td>
-            <td>Telefono: 933848234234
-                Celular: 827388343432
+        {proveedores.map(prov=>{
+          return (
+          <tr key={prov.id_provider}>
+            <td>{prov.nick_name}</td>
+            <td>{prov.rfc}</td>
+            <td>{prov.razon_social}</td>
+            <td>{`
+            Telefono: ${prov.tel}
+            Celular: ${prov.cel}
+            `}   
             </td>
-            <td>alvin_7@gmail.com</td>
-            <td>TM077</td>
-            <td>Alvin #456 col Noreste Monterrey N.L Mexico C.P 63421</td>
+            <td>{prov.email}</td>
+            <td>{prov.parcel}</td>
+            <td>{`${prov.address} ${prov.city} ${prov.state} ${prov.country} ${prov.zip}`}</td>
             <td>
                 <div className="botones">
-            <a className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-             href={`${pages[0].dropdown[2].link}/787878`} rel="noreferrer" target="_blank">
+            <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
+              onClick={() => openEdit(prov.id_provider)}>
                     <i className="material-icons">edit</i>
-                    </a>
-            <button className="btn-floating btn-large waves-effect waves-light red darken-3">
+                    </button>
+            <button className="btn-floating btn-large waves-effect waves-light red darken-3"
+            onClick={() => onDelete(prov.id_provider)}>
                     <i className="material-icons">delete</i>
                     </button>
             <a className="waves-effect waves-light grey darken-1 btn-small" 
@@ -47,7 +74,10 @@ export default function TablaProveedores() {
             </div>
             </td>
           </tr>
+          )
+        })}
         </tbody>
-      </table>
+      </table>}
+      </>
     )
 }

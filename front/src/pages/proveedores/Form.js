@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { addProvider } from '../../services/Providers/getProviders';
+import { getProviderById } from '../../services/Providers/getProviderById';
 
-export default function Form({match}) {
+export default function Form({ match }) {
 
   const [datos, setDatos] = useState({
     nombre: '',
@@ -16,27 +18,43 @@ export default function Form({match}) {
     pais: '',
     cp: ''
   });
-    useEffect(()=>{
-      document.title= 'Añadir Proveedores';
-      if(match.params.id){
+  useEffect(() => {
+    document.title = 'Añadir Proveedores';
+    const editar = async () => {
+      if (match.params.id) {
+        const prov = await getProviderById(match.params.id);
+        const { nick_name,
+          rfc,
+          razon_social,
+          tel,
+          cel,
+          email,
+          parcel,
+          address,
+          city,
+          state,
+          country,
+          zip } = prov;
         setDatos({
-          nombre: 'Alvin',
-    rfc: 'sadsda',
-    razon: 'sadsad',
-    telefono: 'sadasd',
-    celular: '35454354',
-    email: 'dasdas@gmail.com',
-    paquete: '43232',
-    direccion: 'dsfds  dfdsfsdf',
-    ciudad: 'Monterrey',
-    estado: 'Nuevo Leon',
-    pais: 'Mexico',
-    cp: '66423'
+          nombre: nick_name,
+          rfc,
+          razon: razon_social,
+          telefono: tel,
+          celular: cel,
+          email,
+          paquete: parcel,
+          direccion: address,
+          ciudad: city,
+          estado: state,
+          pais: country,
+          cp: zip
         });
       }
+    }
+    editar();
   }, [match.params.id]);
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     switch (e.target.name) {
       case 'nombre':
         setDatos({
@@ -44,67 +62,67 @@ export default function Form({match}) {
           nombre: e.target.value
         });
         break;
-        case 'rfc':
+      case 'rfc':
         setDatos({
           ...datos,
           rfc: e.target.value
         });
         break;
-        case 'razon':
+      case 'razon':
         setDatos({
           ...datos,
           razon: e.target.value
         });
         break;
-        case 'telefono':
+      case 'telefono':
         setDatos({
           ...datos,
           telefono: e.target.value
         });
         break;
-        case 'celular':
+      case 'celular':
         setDatos({
           ...datos,
           celular: e.target.value
         });
         break;
-        case 'email':
+      case 'email':
         setDatos({
           ...datos,
           email: e.target.value
         });
         break;
-        case 'paquete':
+      case 'paquete':
         setDatos({
           ...datos,
           paquete: e.target.value
         });
         break;
-        case 'direccion':
+      case 'direccion':
         setDatos({
           ...datos,
           direccion: e.target.value
         });
         break;
-        case 'ciudad':
+      case 'ciudad':
         setDatos({
           ...datos,
           ciudad: e.target.value
         });
         break;
-        case 'estado':
+      case 'estado':
         setDatos({
           ...datos,
           estado: e.target.value
         });
         break;
-        case 'pais':
+      case 'pais':
         setDatos({
           ...datos,
           pais: e.target.value
         });
         break;
-        case 'cp':
+      case 'cp':
         setDatos({
           ...datos,
           cp: e.target.value
@@ -117,7 +135,45 @@ export default function Form({match}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(datos);
+    const {nombre,
+      rfc,
+      razon,
+      telefono,
+      celular,
+      email,
+      paquete,
+      direccion,
+      ciudad,
+      estado,
+      pais,
+      cp} = datos;
+    if(match.params.id){
+
+    }
+    else{
+      addProvider({ nickName: nombre,
+        rfc,
+        razonSocial: razon,
+        tel: telefono,
+        cel: celular,
+        email,
+        parcel: paquete,
+        address: direccion,
+        city: ciudad,
+        state: estado,
+        country: pais,
+        zip: cp
+       })
+       .then(res=>{
+        if(res.status===204){
+          window.close();
+        }
+        else{
+          alert('Error');
+        }
+       }
+       );
+    }
   }
   return (
     <div>
@@ -125,55 +181,43 @@ export default function Form({match}) {
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="input-field col s12">
-              <input id="first_name" type="text" className="validate" name="nombre" onChange={handleChange} value={datos.nombre}/>
-              <label htmlfor="first_name">Nombre: </label>
+              <input placeholder="Nombre:" id="first_name" type="text" className="validate" name="nombre" onChange={handleChange} value={datos.nombre} />
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" name="rfc" onChange={handleChange} value={datos.rfc}/>
-              <label htmlfor="textarea1">RFC</label>
+              <input placeholder="RFC:" id="textarea1" type="text" className="materialize-textarea" name="rfc" onChange={handleChange} value={datos.rfc} />
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" name="razon" onChange={handleChange} value={datos.razon}/>
-              <label htmlfor="textarea1">Razon Social</label>
+              <input placeholder="Razón Social:" id="textarea1" type="text" className="materialize-textarea" name="razon" onChange={handleChange} value={datos.razon} />
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="tel" className="materialize-textarea" name="telefono" onChange={handleChange} value={datos.telefono}/>
-              <label htmlfor="textarea1">Teléfono</label>
+              <input placeholder="Teléfono:" id="textarea1" type="tel" className="materialize-textarea" name="telefono" onChange={handleChange} value={datos.telefono} />
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="tel" className="materialize-textarea" name="celular" onChange={handleChange} value={datos.celular}/>
-              <label htmlfor="textarea1">Celular</label>
+              <input placeholder="Celular:" id="textarea1" type="tel" className="materialize-textarea" name="celular" onChange={handleChange} value={datos.celular} />
             </div>
             <div className="input-field col s6">
-              <input id="email" type="email" className="validate" name="email" onChange={handleChange} value={datos.email}/>
-              <label htmlfor="email">Email</label>
+              <input placeholder="Email:" id="email" type="email" className="validate" name="email" onChange={handleChange} value={datos.email} />
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" name="paquete" onChange={handleChange} value={datos.paquete}/>
-              <label htmlfor="textarea1">Paquete</label>
+              <input placeholder="Paquete:" id="textarea1" type="text" className="materialize-textarea" name="paquete" onChange={handleChange} value={datos.paquete} />
             </div>
             <div className="input-field col s12">
-              <input id="textarea1" type="text" className="materialize-textarea" name="direccion" onChange={handleChange} value={datos.direccion}/>
-              <label htmlfor="textarea1">Dirección</label>
+              <input placeholder="Dirección:" id="textarea1" type="text" className="materialize-textarea" name="direccion" onChange={handleChange} value={datos.direccion} />
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" name="ciudad" onChange={handleChange} value={datos.ciudad}/>
-              <label htmlfor="textarea1">Cuidad</label>
+              <input placeholder="Ciudad:" id="textarea1" type="text" className="materialize-textarea" name="ciudad" onChange={handleChange} value={datos.ciudad} />
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" name="estado" onChange={handleChange} value={datos.estado}/>
-              <label htmlfor="textarea1">Estado</label>
+              <input placeholder="Estado:" id="textarea1" type="text" className="materialize-textarea" name="estado" onChange={handleChange} value={datos.estado} />
             </div>
-
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" name="pais" onChange={handleChange} value={datos.pais}/>
-              <label htmlfor="textarea1">País</label>
+              <input placeholder="País:" id="textarea1" type="text" className="materialize-textarea" name="pais" onChange={handleChange} value={datos.pais} />
             </div>
-
             <div className="input-field col s6">
               <input
+              placeholder="Código Postal:"
                 id="textarea1"
                 type="text"
                 className="materialize-textarea"
@@ -181,18 +225,17 @@ export default function Form({match}) {
                 onChange={handleChange}
                 value={datos.cp}
               />
-              <label htmlfor="textarea1">Código Postal</label>
             </div>
           </div>
           <div className="buttons row">
             <div className="col s6">
-            <button type="submit" className="waves-effect waves-light btn-small" style={{display: 'block', margin: '0 auto'}}>
-              Guardar
+              <button type="submit" className="waves-effect waves-light btn-small" style={{ display: 'block', margin: '0 auto' }}>
+                Guardar
               </button>
             </div>
             <div className="col s6">
-            <button className="waves-effect waves-light btn-small red" style={{display: 'block', margin: '0 auto'}}>
-              Salir
+              <button className="waves-effect waves-light btn-small red" style={{ display: 'block', margin: '0 auto' }}>
+                Salir
             </button>
             </div>
           </div>

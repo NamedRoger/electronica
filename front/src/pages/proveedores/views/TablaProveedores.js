@@ -1,31 +1,81 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { pages } from '../../../helpers/pages';
 import Loader from '../../../components/Loader';
-import { getProviders } from '../../../services/Providers/getProviders';
+import { getProviders, desactivateProvider } from '../../../services/Providers/getProviders';
+import Search from '../../../components/Search';
+import M from 'materialize-css';
+
 
 export default function TablaProveedores() {
+  const modal = useRef();
   const [proveedores, setProveedores] = useState([]);
   const [load, setLoad] = useState(false);
+  const [change, setChange] = useState(false);
+  const [search, setSearch] = useState({});
+  const [eliminar, setDelete] = useState(null);
   useEffect(()=>{
     const get = async ()=>{
+      M.Modal.init(modal.current);
       const getProv = await getProviders();
       setProveedores(getProv);
       setLoad(true);
     }
     get();
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [load]);
 
+  useEffect(()=>{
+    setSearch(proveedores.map(prov=>prov.nick_name));
+    setChange(true);
+    console.log(search);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [change]);
+
+  const handleChange = () => {
+    setChange(false);
+  }
   const openEdit = (id) =>{
     window.open(`${pages[0].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
   }
   const onDelete = (id) =>{
-    console.log(id);
+    const instance = M.Modal.getInstance(modal.current);
+    setDelete(id);
+    instance.open();
+  }
+  const handleDelete = async (id) =>{
+    const instance = M.Modal.getInstance(modal.current);
+   const eliminar = await desactivateProvider(id);
+   console.log(eliminar);
+   setLoad(false);
+   instance.close();
   }
   if(!load){
     return <Loader />
   }
     return (
-      <>
+      <div>
+        {/*Modal*/}
+      <div className="modal" ref={modal}>
+        <div className="modal-content">
+          <h2>¿Estas Seguro de querer eliminar este articulo?</h2>
+        </div>
+        <div className="modal-footer">
+          <div className="row">
+            <div className="col s6">
+        <button className="btn-large waves-effect waves-light red left" onClick={()=>handleDelete(eliminar)}>
+            Aceptar
+          </button>
+          </div>
+          <div className="col s6">
+        <button className="btn-large waves-effect waves-light red modal-close right">
+            Cancelar
+          </button>
+          </div>
+          </div>
+        </div>
+      </div>
+      
+      <Search onChange={handleChange}/>
         {proveedores.error ? <h3>{proveedores.error}</h3> :
         <table className="highlight">
         <thead>
@@ -77,7 +127,8 @@ export default function TablaProveedores() {
           )
         })}
         </tbody>
-      </table>}
-      </>
+      </table>
+      }
+      </div>
     )
 }

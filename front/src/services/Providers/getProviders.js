@@ -42,3 +42,12 @@ export const addProvider = async (
         
     }
 }
+
+export const desactivateProvider = async (id) =>{
+    try {
+        const eliminar = await axios.delete(`${URL}/providers/${id}`);
+        return eliminar;
+    } catch (error) {
+        
+    }
+}

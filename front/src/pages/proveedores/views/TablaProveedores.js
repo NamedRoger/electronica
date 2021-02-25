@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { pages } from '../../../helpers/pages';
 import Loader from '../../../components/Loader';
-import { getProviders, desactivateProvider } from '../../../services/Providers/getProviders';
+import { getProviders, desactivateProvider, buscarProv } from '../../../services/Providers/getProviders';
 import Search from '../../../components/Search';
 import M from 'materialize-css';
 
@@ -25,7 +25,7 @@ export default function TablaProveedores() {
   }, [load]);
 
   useEffect(()=>{
-    setSearch(proveedores.map(prov=>prov.nick_name));
+    setSearch(buscarProv(proveedores));
     setChange(true);
     console.log(search);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,7 +75,7 @@ export default function TablaProveedores() {
         </div>
       </div>
       
-      <Search onChange={handleChange}/>
+      <Search onChange={handleChange} search={search}/>
         {proveedores.error ? <h3>{proveedores.error}</h3> :
         <table className="highlight">
         <thead>

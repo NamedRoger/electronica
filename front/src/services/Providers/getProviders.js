@@ -51,3 +51,11 @@ export const desactivateProvider = async (id) =>{
         
     }
 }
+
+export const buscarProv = (proveedores) =>{
+    let object = {};
+    for (let i = 0; i < proveedores.length; i++) {
+        object[proveedores[i].nick_name] = null;
+    }
+    return object;
+}

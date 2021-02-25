@@ -25,12 +25,12 @@ const addCatalog = (name) => {
 }
 
 const updateCatalog =(idCatalog, name) => {
-    const query = `UPDATE catalogs SET name = '${name}' code = '${generateCode(catalogPrefix,name)} WHERE id_catalog = ${idCatalog}`;
+    const query = `UPDATE catalogs SET name = '${name}', code = '${generateCode(catalogPrefix,name)} WHERE id_catalog = ${idCatalog}`;
     return database.query(query);
 }
 
-const desactiveCatalog =(idCatalog, name) =>{
-    const query = `DESACTIVE catalogs SET active = '${true}', (err,res)`;
+const desactiveCatalog =(idCatalog) =>{
+    const query = `UPDATE catalogs SET active = '${true}' WHERE id_catalog = ${idCatalog}`;
     return database.query(query);
 }
 

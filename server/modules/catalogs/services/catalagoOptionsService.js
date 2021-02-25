@@ -22,7 +22,7 @@ const updateOption = (idOption,name) => {
 }
 
 const desactiveOption = (idOption) => {
-    const query = `UPDATE catalog_options SET active = ${false}`;
+    const query = `UPDATE catalog_options SET active = ${false} WHERE id_option = ${idOption}`;
     return database.query(query);
 }
 

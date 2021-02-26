@@ -1,17 +1,19 @@
 const { NotFoundException } = require('../../../helpers/http/exceptions');
 
-const observation = require('../services/observations');
+const serviceObservation = require('../services/observations');
 const {NotFoundException} = require ('../../../helpers/http/exceptions/index');
 
 const getObservation = async (req,res) => {
-    const observation = await observation.getObservation();
-    res.json(observation); 
+    const idProvider = req.params.idProvider;
+    const observations = await serviceObservation.getObservationByProvider(idProvider);
+    res.json(observations); 
 }
 
 const addObservation = async (req,res) => {
-    const newobservation = req.body;
+    const idProvider = req.params.idProvider;
+    const newObservation = req.body;
     try {
-        await observation.addObservation(newobservation.description);
+        await serviceObservation.addObservation(idProvider,newObservation.description);
         res.status(201).json({success:true});
     } catch (e) {
         res.status(400).json({
@@ -25,10 +27,7 @@ const updateObservation = async (req,res) => {
     const idObservation = req.params.idObservation;
     const newDataObservation = req.body;
     try{
-        const observation = (await observation.getObservationId(idObservation))[0] || null;
-        if(observation === null) throw new NotFoundException();
-
-        await observation.updateObservation(idObservation,newDataObservation.description);
+        await serviceObservation.updateObservation(idObservation,newDataObservation.description);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 404).json({
@@ -42,10 +41,7 @@ const updateObservation = async (req,res) => {
 const deleteObservation = async (req,res) => {
     const idObservation = req.params.idObservation;
     try{
-        let observation = (await observation.getObservationId(idObservation))[0] || null;
-        if(observation === null) throw new NotFoundException();
-
-        await observation.deleteObservation(idObservation);
+        await serviceObservation.deleteObservation(idObservation);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 404).json({

@@ -1,17 +1,19 @@
 const { NotFoundException } = require('../../../helpers/http/exceptions');
 
-const observation = require('../services/notes');
+const serviceNotes = require('../services/notes');
 const {NotFoundException} = require ('../../../helpers/http/exceptions/index');
 
 const getNote = async (req,res) => {
-    const note = await note.getNote();
+    const idProvider = req.idProvider;
+    const note = await serviceNotes.getNotesByProvider(idProvider);
     res.json(note); 
 }
 
 const addNote = async (req,res) => {
-    const newnote = req.body;
+    const idProvider = req.params.idProvider;
+    const newNote = req.body;
     try {
-        await note.addNote(newnote.description);
+        await serviceNotes.addNote(idProvider,newNote.description)
         res.status(201).json({success:true});
     } catch (e) {
         res.status(400).json({
@@ -28,7 +30,7 @@ const updateNote = async (req,res) => {
         const note = (await note.getNote(idNote))[0] || null;
         if(note === null) throw new NotFoundException();
 
-        await note.updateNote(idNote,newDataNote.description);
+        await serviceNotes.updateNote(idNote,newDataNote.description);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 404).json({
@@ -42,10 +44,7 @@ const updateNote = async (req,res) => {
 const deleteNote = async (req,res) => {
     const idNote = req.params.idNote;
     try{
-        let note = (await note.getNote(idNote))[0] || null;
-        if(note === null) throw new NotFoundException();
-
-        await note.deleteNote(idNote);
+        await serviceNotes.deleteNote(idNote);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 404).json({

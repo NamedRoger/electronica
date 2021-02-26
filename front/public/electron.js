@@ -16,6 +16,7 @@ function createWindow() {
   }
   mainWindow.title = `Electrónica`;
   //mainWindow.setMenu(null);
+  mainWindow.maximize();
   mainWindow.on('closed', () => mainWindow = null);
 }
 

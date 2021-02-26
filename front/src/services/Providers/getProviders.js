@@ -10,33 +10,9 @@ export const getProviders = async () =>{
     }
 }
 
-export const addProvider = async (
-    { nickName,
-        rfc,
-        razonSocial,
-        tel,
-        cel,
-        email,
-        parcel,
-        address,
-        city,
-        state,
-        country,
-        zip }
-) => {
+export const addProvider = async (campos={}) => {
     try {
-        const response = await axios.post(`${URL}/providers`, {nickName,
-                rfc,
-                razonSocial,
-                tel,
-                cel,
-                email,
-                parcel,
-                address,
-                city,
-                state,
-                country,
-                zip });
+        const response = await axios.post(`${URL}/providers`, campos);
                 return response;
     } catch (error) {
         

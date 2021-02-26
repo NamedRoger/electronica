@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { addProvider } from '../../services/Providers/getProviders';
-import { getProviderById } from '../../services/Providers/getProviderById';
+import { getProviderById, updateProviderById } from '../../services/Providers/getProviderById';
 
 export default function Form({ match }) {
 
@@ -148,7 +148,29 @@ export default function Form({ match }) {
       pais,
       cp} = datos;
     if(match.params.id){
-
+      updateProviderById(match.params.id, { nickName: nombre,
+        rfc,
+        razonSocial: razon,
+        tel: telefono,
+        cel: celular,
+        email,
+        parcel: paquete,
+        address: direccion,
+        city: ciudad,
+        state: estado,
+        country: pais,
+        zip: cp
+       })
+       .then(res=>{
+         console.log(res);
+        if(res.status===204){
+          window.close();
+        }
+        else{
+          alert('Error');
+        }
+       }
+       ).catch(e=>console.log(e));
     }
     else{
       addProvider({ nickName: nombre,

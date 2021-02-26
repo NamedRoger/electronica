@@ -24,7 +24,6 @@ const Navbar = () => {
         } else {
             setShow(false);
         }
-        console.log(locate.pathname)
     }, [locate.pathname]);
 
     const handleOpen =()=>{

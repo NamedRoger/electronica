@@ -9,6 +9,9 @@ var app = express();
 
 var catalogsRouter = require('./modules/catalogs/routes/index');
 var providersRouter = require('./modules/providers/routes/routesProviders');
+var providerObservationsRouter = require('./modules/providers/routes/routesObservation');
+var providerNotesRouter = require('./modules/providers/routes/routesNotes');
+var providerBanksRouter = require('./modules/providers/routes/routesBanks');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -18,6 +21,9 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/catalogs',catalogsRouter);
+app.use('/providers/:idProvider/observations',providerObservationsRouter);
+app.use('/providers/:idProvider/notes',providerNotesRouter);
+app.use('/providers/:idProvider/banks',providerBanksRouter);
 app.use('/providers',providersRouter);
 
 module.exports = app;

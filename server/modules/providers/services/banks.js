@@ -7,24 +7,27 @@ const getBanksByProvider = (idProvider) => {
     return database.query(query);
 }
 
-const addBank = (bank) => {
-    if(bank instanceof Bank){
-        const query = `INSERT INTO provider_banks (id_provider, name,bank_account,bank_key) 
-        values (${bank.idProvider},'${bank.name}','${bank.bankAccount}',${bank.bankKey})`;
-        return database.query(query);
-    }else{
-        throw "El parametro no es del tipo Bank";
-    }
+const addBank = (idProvider,{name,bankAccount,bankKey}) => {
+    const query = `INSERT INTO provider_banks (id_provider, name,bank_account,bank_key) 
+        values (${idProvider},'${name}','${bankAccount}','${bankKey}')`;
+    return database.query(query);
 }
 
-const updateBank =(idBank,name,bankAccount,bankKey) => {
-    const query = `UPDATE provider_banks SET name = '${name}' bank_account = '${bankAccount} bank_key = '${bankKey}' WHERE id_bank = ${idBank}`;
+const updateBank = (idBank, {name, bankAccount, bankKey}) => {
+    const query = `UPDATE provider_banks SET name = '${name}', bank_account = '${bankAccount}', bank_key = '${bankKey}' WHERE id_bank = ${idBank}`;
     return database.query(query);
 }
 
 
 const deleteBanks = (idBank) => {
-        const query = `Delete from provider_banks where id_bank = ${idBank}`;
+    const query = `Delete from provider_banks where id_bank = ${idBank}`;
     return database.query(query);
+}
+
+module.exports = {
+    getBanksByProvider,
+    addBank,
+    updateBank,
+    deleteBanks
 }
 

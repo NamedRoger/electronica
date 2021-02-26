@@ -21,3 +21,10 @@ const deleteNote = (idNote) => {
     return database.query(query);
 }
 
+module.exports = {
+    getNotesByProvider,
+    addNote,
+    updateNote,
+    deleteNote
+}
+

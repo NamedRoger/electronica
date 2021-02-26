@@ -21,3 +21,9 @@ const deleteObservation = (id_observation) => {
     return database.query(query);
 }
 
+module.exports = {
+    getObservationByProvider,
+    addObservation,
+    updateObservation,
+    deleteObservation
+}

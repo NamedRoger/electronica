@@ -1,17 +1,19 @@
 const { NotFoundException } = require('../../../helpers/http/exceptions');
 
-const observation = require('../services/banks');
+const serviceBanks = require('../services/banks');
 const {NotFoundException} = require ('../../../helpers/http/exceptions/index');
 
 const getBanks = async (req,res) => {
-    const banks = await banks.getBank();
+    const idProvider = req.params.idProvider;
+    const banks = await serviceBanks.getBanksByProvider(idProvider);
     res.json(banks); 
 }
 
 const addBank = async (req,res) => {
+    const idProvider = req.params.idProvider;
     const newDataBank = req.body;
     try {
-        await note.addBank(idBank,newDataBank.name.bankAccount.bankKey);
+        await serviceBanks.addBank(idProvider,{name:newDataBank.name,bankAccount:newDataBank.bankAccount,bankKey:newDataBank.bankKey});
         res.status(201).json({success:true});
     } catch (e) {
         res.status(400).json({
@@ -28,7 +30,7 @@ const updateBank = async (req,res) => {
         const bank = (await bank.getBank(idBank))[0] || null;
         if(bank === null) throw new NotFoundException();
 
-        await bank.updateBank(idBank,newDataBank.name.bankAccount.bankKey);
+        await serviceBanks.updateBank(idBank,{name:newDataBank.name,bankKey:newDataBank.bankKey,bankAccount:newDataBank.bankKeyAccount})
         res.status(204).send();
     }catch(e){
         res.status(e.status || 404).json({
@@ -45,7 +47,7 @@ const deleteBank = async (req,res) => {
         let bank = (await bank.getBank(idBank))[0] || null;
         if(bank === null) throw new NotFoundException();
 
-        await bank.deleteBank(idBank);
+        await serviceBanks.deleteBanks(idBank);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 404).json({

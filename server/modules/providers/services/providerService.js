@@ -46,9 +46,9 @@ const updateProvider = (idProvider,{nickName,
     email,
     parcel,address, city, state, country,zip}) => {
     
-    const query = `UPDATE providers SET nick_name = '${nickName}' rfc = '${rfc}' 
-    razon_social = '${razonSocial}' tel = '${tel}' cel='${cel}' email = '${email}' parcel = '${parcel}'
-    address = '${address}' city = '${city}' state = '${state}' country = '${country}' zip = '${zip}'
+    const query = `UPDATE providers SET nick_name = '${nickName}', rfc = '${rfc}', 
+    razon_social = '${razonSocial}', tel = '${tel}', cel='${cel}', email = '${email}', parcel = '${parcel}',
+    address = '${address}', city = '${city}', state = '${state}', country = '${country}', zip = '${zip}'
     WHERE id_provider = ${idProvider}`;
 
     return database.query(query);

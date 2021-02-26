@@ -1,13 +1,16 @@
 import React, {useEffect, useRef} from 'react';
 import M from 'materialize-css';
 
-export default function Search({search, onChange}) {
+export default function Search({search, onChange, setProv}) {
     const ref= useRef();
     useEffect(()=>{
   M.Autocomplete.init(ref.current, {
-      data: search
+      data: search,
+      onAutocomplete: (item) => {
+        setProv(item)
+      }
   });
-    }, [search]);
+    }, [search, setProv]);
     return (
         <div className="row">
     <div className="col s6">

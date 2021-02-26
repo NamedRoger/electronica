@@ -8,9 +8,11 @@ import M from 'materialize-css';
 
 export default function TablaProveedores() {
   const modal = useRef();
+  const tooltip = useRef();
   const [proveedores, setProveedores] = useState([]);
   const [load, setLoad] = useState(false);
   const [change, setChange] = useState(false);
+  const [switchBuscar, setSwitchBuscar] = useState(false);
   const [search, setSearch] = useState({});
   const [eliminar, setDelete] = useState(null);
   useEffect(()=>{
@@ -31,6 +33,10 @@ export default function TablaProveedores() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [change]);
 
+  useEffect(()=>{
+    M.Tooltip.init(tooltip.current);
+  },[switchBuscar]);
+  
   const handleChange = () => {
     setChange(false);
   }
@@ -49,15 +55,29 @@ export default function TablaProveedores() {
    setLoad(false);
    instance.close();
   }
+
+  const onSearch = (item) =>{
+  const result = proveedores.find(prov=>item === prov.nick_name);
+  setProveedores([result]);
+  setSwitchBuscar(true);
+  console.log(result);
+  }
+
+  const onSwitch = () => {
+    setSwitchBuscar(false);
+    setLoad(false);
+  }
   if(!load){
     return <Loader />
   }
     return (
-      <div>
-        {/*Modal*/}
+      <>
+      {proveedores.error ? <h3>{proveedores.error}</h3> :
+      <>
       <div className="modal" ref={modal}>
-        <div className="modal-content">
-          <h2>¿Estas Seguro de querer eliminar este articulo?</h2>
+        <div className="modal-content center-align">
+          <h3>Desactivar Proveedor</h3>
+          <h5>¿Estás seguro de querer desactivar este proveedor?</h5>
         </div>
         <div className="modal-footer">
           <div className="row">
@@ -75,8 +95,18 @@ export default function TablaProveedores() {
         </div>
       </div>
       
-      <Search onChange={handleChange} search={search}/>
-        {proveedores.error ? <h3>{proveedores.error}</h3> :
+      {/*Buscar*/}
+      <Search onChange={handleChange} search={search} setProv={onSearch}/>
+      {/*Regresar*/}
+      {switchBuscar && <button className="btn-floating btn waves-effect waves-light red tooltipped" 
+      data-position="bottom" 
+      data-tooltip="Regresar" ref={tooltip}
+      style={{marginLeft: '30px'}}
+      onClick={onSwitch}>
+      <i class="material-icons">arrow_back</i>
+      </button>}
+
+      {/*Tabla de Proveedores*/}
         <table className="highlight">
         <thead>
           <tr>
@@ -128,7 +158,8 @@ export default function TablaProveedores() {
         })}
         </tbody>
       </table>
+      </>
       }
-      </div>
+      </>
     )
 }

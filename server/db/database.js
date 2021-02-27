@@ -8,7 +8,7 @@ require('dotenv').config({
 const mysql = require('mysql');
 const { resolve } = require('path');
 
-module.exports = class Db {
+class Db {
     constructor(){
         this.port = process.env.DB_PORT;
         this.host = process.env.DB_HOST;
@@ -39,3 +39,7 @@ module.exports = class Db {
     }
 
 }
+
+const database = new Db();
+
+module.exports = database;

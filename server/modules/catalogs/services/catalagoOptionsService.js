@@ -1,6 +1,4 @@
-const Db = require('../../../db/database');
-
-const database = new Db();
+const database = require('../../../db/database');
 
 /**
  * 

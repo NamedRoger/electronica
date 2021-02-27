@@ -1,6 +1,5 @@
-const db = require('../../../db/database');
+const database = require('../../../db/database');
 const Bank = require('../../../models/bank');
-const database = new db();
 
 const getBanksByProvider = (idProvider) => {
     const query = `SELECT id_bank, name, bank_account, bank_key FROM provider_banks WHERE id_provider = ${idProvider}`;

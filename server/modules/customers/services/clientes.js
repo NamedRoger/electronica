@@ -1,6 +1,5 @@
-const db = require ('../../../db/database');
+const database = require ('../../../db/database');
 
-const database = new db ();
 
 const getClientes = () => {
     const query =  `SELECT  id_customer, register_key, id_category, presentative, 

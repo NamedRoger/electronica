@@ -1,5 +1,4 @@
-const db = require('../../../db/database');
-const database = new db();
+const database = require('../../../db/database');
 
 const getNotesByProvider = (idProvider) => {
     const query = `SELECT id_note,description FROM provider_notes WHERE id_provider = ${idProvider}`;

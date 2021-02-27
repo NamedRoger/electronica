@@ -1,6 +1,5 @@
-const db = require('../../../db/database');
+const database = require('../../../db/database');
 
-const database = new db();
 
 const getProviders = () => {
     const query = `SELECT id_provider,

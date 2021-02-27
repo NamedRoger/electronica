@@ -50,7 +50,7 @@ const updateCliente = (id_customer,{register_key, id_category, presentative,
 }
 
 const desactiveCustomer = (id_customer) => {
-    const query = `UPDATE providers SET active = ${false} WHERE id_customer = ${id_customer}`;
+    const query = `UPDATE customers SET active = ${false} WHERE id_customer = ${id_customer}`;
     return database.query(query);
 }
 

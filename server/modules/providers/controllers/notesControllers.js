@@ -1,7 +1,5 @@
-const { NotFoundException } = require('../../../helpers/http/exceptions');
 
 const serviceNotes = require('../services/notes');
-const {NotFoundException} = require ('../../../helpers/http/exceptions/index');
 
 const getNote = async (req,res) => {
     const idProvider = req.idProvider;
@@ -27,9 +25,6 @@ const updateNote = async (req,res) => {
     const idNote = req.params.idNote;
     const newDataNote = req.body;
     try{
-        const note = (await note.getNote(idNote))[0] || null;
-        if(note === null) throw new NotFoundException();
-
         await serviceNotes.updateNote(idNote,newDataNote.description);
         res.status(204).send();
     }catch(e){

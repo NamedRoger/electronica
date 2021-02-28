@@ -1,7 +1,5 @@
-const { NotFoundException } = require('../../../helpers/http/exceptions');
 
 const serviceObservation = require('../services/observations');
-const {NotFoundException} = require ('../../../helpers/http/exceptions/index');
 
 const getObservation = async (req,res) => {
     const idProvider = req.params.idProvider;

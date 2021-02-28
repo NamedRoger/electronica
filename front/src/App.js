@@ -26,10 +26,10 @@ function App() {
             {/*Proveedores*/}
             <Route exact path="/addproveedor" component={FormProveedor} />
             <Route exact path="/proveedores" component={Proveedores} />
-            <Route exact path="/listadobancos" component={ListadoBancos} />
-            <Route exact path="/listadonotas" component={ListadoNotas} />
+            <Route exact path="/listadobancos/:id" component={ListadoBancos} />
+            <Route exact path="/listadonotas/:id" component={ListadoNotas} />
             <Route exact path="/edit/:id" component={FormProveedor} />
-            <Route exact path="/obvservaciones" component={ListadoObservaciones} />
+            <Route exact path="/obvservaciones/:id" component={ListadoObservaciones} />
             {/*Clientes*/}
             <Route exact path="/clientes" component={Clientes} />
             <Route exact path="/addclientes" component={FormCliente} />

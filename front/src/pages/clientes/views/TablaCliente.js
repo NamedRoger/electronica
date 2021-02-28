@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { pages } from '../../../helpers/pages';
+import {  getCustomers } from '../../../services/customers/customersService'
 
 export default function TablaCliente() {
-
+    const [clientes, setClientes] = useState([])
+    useEffect(()=>{
+        const Clientes = async () => {
+            const res = await getCustomers();
+            console.log(res)
+            console.log('sjkdbsajnd')
+        }
+        Clientes();
+    }, [])
     return (
         <table className="highlight">
             <thead>
@@ -16,7 +25,9 @@ export default function TablaCliente() {
             </thead>
 
             <tbody>
-                <tr>
+                {/*clientes.map((cliente) => {
+                    return (
+                        <tr >
                     <td>XXX-XXX-XXX</td>
                     <td>XXX-XXX-XXX	</td>
                     <td>XXX-XXX-XXX	</td>
@@ -33,6 +44,8 @@ export default function TablaCliente() {
                         </div>
                     </td>
                 </tr>
+                    )
+                })*/}
             </tbody>
         </table>
     )

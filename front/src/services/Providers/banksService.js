@@ -25,15 +25,15 @@ export const addBank = async (idProvider,{name,bankAccount,bankKey}) => {
     }
 }
 
-export const updateBank = async (idProvider,idBank,{name,bankAccount,bankKey}) => {
+export const updateBank = async (idProvider,idBank,{name,bankKeyAccount,bankKey}) => {
     try{
         const data = {
             name,
-            bankAccount,
+            bankKeyAccount,
             bankKey
         };
 
-        const res = await axios.post(`${URL}/providers/${idProvider}/banks/${idBank}`,data);
+        const res = await axios.put(`${URL}/providers/${idProvider}/banks/${idBank}`,data);
         return res;
     }catch(e){
         return e;
@@ -42,7 +42,7 @@ export const updateBank = async (idProvider,idBank,{name,bankAccount,bankKey}) =
 
 export const deleteBank = async (idProvider,idBank) => {
     try{
-        const res = await axios.post(`${URL}/providers/${idProvider}/banks/${idBank}`);
+        const res = await axios.delete(`${URL}/providers/${idProvider}/banks/${idBank}`);
         return res;
     }catch(e){
         return e;

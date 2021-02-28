@@ -43,6 +43,9 @@ export default function TablaProveedores() {
   const openEdit = (id) =>{
     window.open(`${pages[0].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
   }
+  const handleBancos = (id) => {
+    window.open(`${pages[0].dropdown[3].link}/${id}`, null, "width=800,height=600,left=300");
+  }
   const onDelete = (id) =>{
     const instance = M.Modal.getInstance(modal.current);
     setDelete(id);
@@ -145,8 +148,8 @@ export default function TablaProveedores() {
             onClick={() => onDelete(prov.id_provider)}>
                     <i className="material-icons">delete</i>
                     </button>
-            <a className="waves-effect waves-light grey darken-1 btn-small" 
-            href={pages[0].dropdown[3].link} rel="noreferrer" target="_blank">Bancos</a>
+            <button className="waves-effect waves-light grey darken-1 btn-small" 
+            onClick={() => handleBancos(prov.id_provider)}>Bancos</button>
             <a className="waves-effect waves-light red lighten-1 btn-small" 
             href={pages[0].dropdown[4].link} rel="noreferrer" target="_blank">Notas</a>
             <a className="waves-effect waves-light blue accent-2 btn-small" 

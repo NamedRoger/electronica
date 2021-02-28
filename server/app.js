@@ -28,5 +28,5 @@ app.use('/providers/',providerNotesRouter);
 app.use('/providers/',providerBanksRouter);
 app.use('/providers',providersRouter);
 app.use('/customers',customersRouter);
-app.use('/stock',stockRouter)
+app.use('/stock',stockRouter);
 module.exports = app;

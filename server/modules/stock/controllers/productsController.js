@@ -42,7 +42,7 @@ const updateProduct = async (req,res) => {
 }
 
 const desactiveProduct = async (req,res) => {
-    const idProduct = req.params.idNote;
+    const idProduct = req.params.idProduct;
     try{
         await productService.desactiveProduct(idProduct);
         res.status(204).send();

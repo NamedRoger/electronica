@@ -13,6 +13,8 @@ var providerObservationsRouter = require('./modules/providers/routes/routesObser
 var providerNotesRouter = require('./modules/providers/routes/routesNotes');
 var providerBanksRouter = require('./modules/providers/routes/routesBanks');
 var customersRouter = require('./modules/customers/routes/routesCustomers');
+var stockRouter = require('./modules/stock/routes/routesController');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,4 +28,5 @@ app.use('/providers/:idProvider/notes',providerNotesRouter);
 app.use('/providers/:idProvider/banks',providerBanksRouter);
 app.use('/providers',providersRouter);
 app.use('/customers',customersRouter);
+app.use('/stock',stockRouter)
 module.exports = app;

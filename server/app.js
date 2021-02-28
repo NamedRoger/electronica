@@ -23,8 +23,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/catalogs',catalogsRouter);
-app.use('/providers/:idProvider/observations',providerObservationsRouter);
-app.use('/providers/:idProvider/notes',providerNotesRouter);
+app.use('/providers/',providerObservationsRouter);
+app.use('/providers/',providerNotesRouter);
 app.use('/providers/',providerBanksRouter);
 app.use('/providers',providersRouter);
 app.use('/customers',customersRouter);

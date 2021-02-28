@@ -3,8 +3,8 @@ const router = express.Router();
 
 const observationController = require('../controllers/observationControllers');
 
-router.get('/',observationController.getObservation);
-router.post('/',observationController.addObservation);
-router.put('/:idObservation',observationController.updateObservation);
-router.delete('/:idObservation',observationController.deleteObservation);
+router.get('/:idProvider/observations/',observationController.getObservation);
+router.post('/:idProvider/observations/',observationController.addObservation);
+router.put('/:idProvider/observations/:idObservation',observationController.updateObservation);
+router.delete('/:idProvider/observations/:idObservation',observationController.deleteObservation);
 module.exports = router;

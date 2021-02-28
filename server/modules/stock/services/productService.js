@@ -2,7 +2,7 @@ const db = require('../../../db/database');
 
 
 const getProduct = (idProduct) => {
-    const query = ``;
+    const query = `SELECT * FROM `;
     return db.query(query);
 }
 

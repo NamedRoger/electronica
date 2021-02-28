@@ -65,7 +65,7 @@ export default function Form() {
             <div className="input-field col s6">
               <input
                 id="textarea1"
-                type="number"
+                type="text"
                 className="materialize-textarea"
               />
               <label htmlfor="textarea1">Razon Social</label>

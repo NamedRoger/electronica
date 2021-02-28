@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import { pages } from '../../helpers/pages';
+import { getBanks } from '../../services/Providers/banksService';
 import './index.css'
 
 export default function ListadoBancos() {

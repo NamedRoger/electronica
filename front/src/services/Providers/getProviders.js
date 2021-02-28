@@ -13,7 +13,7 @@ export const getProviders = async () =>{
 export const addProvider = async (campos={}) => {
     try {
         const response = await axios.post(`${URL}/providers`, campos);
-                return response;
+        return response;
     } catch (error) {
         
     }

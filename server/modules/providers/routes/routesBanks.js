@@ -3,7 +3,7 @@ const router = express.Router();
 
 const banksController = require('../controllers/banksControllers');
 
-router.get('/',banksController.getBank);
+router.get('/',banksController.getBanks);
 router.post('/',banksController.addBank);
 router.put('/:idBank',banksController.updateBank);
 router.delete('/:idBank',banksController.deleteBank);

@@ -2,13 +2,12 @@ const productService = require('../services/productService');
 
 const getProduct = async (req,res) => {
     const idProduct = req.idProduct;
-    const product = await productService.getProductByProduct(idProduct);
+    const product = await productService.getProduct(idProduct);
     res.json(product); 
 }
 
 const getProducts = async (req,res) => {
-    const idProduct = req.idProduct;
-    const product = await productService.getProductsByProduct(idProduct);
+    const product = await productService.getProducts();
     res.json(product); 
 }
 
@@ -16,7 +15,7 @@ const addProduct = async (req,res) => {
     const idProduct = req.params.idProduct;
     const newProduct = req.body;
     try {
-        await productService.addProduct(idProduct,newProduct.description)
+        await productService.addProduct(idProduct,newProduct)
         res.status(201).json({success:true});
     } catch (e) {
         res.status(400).json({
@@ -30,7 +29,7 @@ const updateProduct = async (req,res) => {
     const idProduct = req.params.idProduct;
     const newDataProduct = req.body;
     try{
-        await productService.updateProduct(idProduct,newDataProduct.description);
+        await productService.updateProduct(idProduct,newDataProduct);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 404).json({

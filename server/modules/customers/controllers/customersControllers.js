@@ -1,13 +1,13 @@
-const customersControllers = require('../controllers/customersControllers');
+const customersService = require('../services/customers');
 const {NotFoundException} = require('../../../helpers/http/exceptions/index');
 
 const getCliente= async (req, res) => {
-    const idCliente = req.params.idProvider;
+    const idCliente = req.params.idCliente;
     try{
-        const Cliente = (await customersControllers.getCliente(idCliente))[0] || null;
-        if(Cliente === null)throw new NotFoundException();
+        const cliente = (await customersService.getCliente(idCliente))[0] || null;
+        if(cliente === null)throw new NotFoundException();
 
-        res.json(Cliente);
+        res.json(cliente);
     }catch(e){
         res.status(e.status || 400).json({
             ...e, 
@@ -17,15 +17,15 @@ const getCliente= async (req, res) => {
 }
 
 const getClientes = async (req, res) => {
-        const Cliente = await customersControllers.getClientes();
-    res.json(Cliente);
+    const clientes = await customersService.getClientes();
+    res.json(clientes);
     
 }
 
 const addCliente = async (req, res) => {
     try{
         const newCliente = req.body;
-        await customersControllers.addCliente(newCliente);
+        await customersService.addCliente(newCliente);
         res.status(204).send();
     }catch(e){
         res.status(e.status||400).json({
@@ -39,10 +39,10 @@ const updateCliente = async (req, res) => {
     const idCliente = req.params.idCliente;
     const newDataCliente = req.body;
     try{
-        const Cliente = (await customersControllers.getCliente(idCliente))[0] || null;
-        if(Cliente === null )throw new NotFoundException();
+        const cliente = (await customersService.getCliente(idCliente))[0] || null;
+        if(cliente === null )throw new NotFoundException();
 
-        await customersControllers.updateCliente(idCliente,newDataCliente);
+        await customersService.updateCliente(idCliente,newDataCliente);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 400).json({
@@ -55,7 +55,7 @@ const updateCliente = async (req, res) => {
 const desactiveCliente = async (req, res) => {
     try{
         const idCliente = req.params.idCliente;
-        await customersControllers.desactiveCliente(idCliente);
+        await customersService.desactiveCliente(idCliente);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 400).json({

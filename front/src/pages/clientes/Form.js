@@ -52,7 +52,6 @@ export default function Form({ match }) {
     tel_business,
     tel_customer
   } = datos;
-  console.log(match.params.id);
 
   useEffect(() => {
     document.title = 'Añadir Clientes';
@@ -63,7 +62,7 @@ export default function Form({ match }) {
           id_customer,
           register_key,
           id_category,
-          resentative,
+          representative,
           tel_customer,
           cel_customer,
           email,
@@ -87,7 +86,7 @@ export default function Form({ match }) {
           id_customer: id_customer,
           register_key: register_key,
           id_category: id_category,
-          resentative: resentative,
+          representative: representative,
           tel_customer: tel_customer,
           cel_customer: cel_customer,
           email: email,
@@ -104,7 +103,7 @@ export default function Form({ match }) {
           price_number: price_number,
           business: business,
           tel_business: tel_business,
-          cel_business: cel_business
+          cel_business: cel_business,
         });
       }
     }

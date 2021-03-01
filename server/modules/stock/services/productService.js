@@ -1,25 +1,25 @@
 const db = require('../../../db/database');
 
 const getProducts = () => {
-    const query = `SELECT id_product, alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
+    const query = `SELECT id_product, alternative_key, web, description, id_category, characteristics, stock, minimun_order,
     maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat
     FROM products
-    WHERE acttive = 1`;
+    WHERE active = 1`;
     return db.query(query);
 }
 
 const getProduct = (idProduct) => {
-    const query = `SELECT id_product, alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
+    const query = `SELECT id_product, alternative_key, web, description, id_category, characteristics, stock, minimun_order,
     maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat
     FROM products
-    WHERE acttive = 1
+    WHERE active = 1
     AND id_product = ${idProduct}`;
     return db.query(query);
 }
 
 const addProduct = ({alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
     maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat}) => {
-    const query = `INSERT INTO products (alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
+    const query = `INSERT INTO product (alternative_key, web, description, id_category, characteristics, stock, minimun_order,
         maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat) VALUES ('${alternative_key}','${web}','${description}',
         ${id_category},'${caracteristics}','${stock}','${minimun_order}','${maximum_order}','${sales_unit}',
         '${foto}','${ubication}','${price}','${sat_key}','${unit_sat}')`;
@@ -28,8 +28,8 @@ const addProduct = ({alternative_key, web, description, id_category, caracterist
 
 const updateProduct = (idProduct,{alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
     maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat}) =>{
-    const query = `UPDATE products SET alternative_key = '${alternative_key}', web = '${web}', description = '${description}',
-     id_category = '${id_category}', caracteristics = '${caracteristics}', stock = '${stock}', mimimun_order = '${minimun_order}',
+    const query = `UPDATE product SET alternative_key = '${alternative_key}', web = '${web}', description = '${description}',
+     id_category = '${id_category}', characteristics = '${caracteristics}', stock = '${stock}', mimimun_order = '${minimun_order}',
      maximum_order = '${maximum_order}', sales_unit = '${sales_unit}', foto = '${foto}', ubication = '${ubication}', price = '${price}', 
      sat_key = '${sat_key}', unit_sat = '${unit_sat}'
      WHERE idProduct = ${idProduct}`;

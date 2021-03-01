@@ -29,7 +29,7 @@ export const updateNote = async (idProvider,idNote,{description}) => {
             description
         };
 
-        const res = await axios.post(`${URL}/providers/${idProvider}/notes/${idNote}`,data);
+        const res = await axios.put(`${URL}/providers/${idProvider}/notes/${idNote}`,data);
         return res;
     }catch(e){
         return e;
@@ -38,7 +38,7 @@ export const updateNote = async (idProvider,idNote,{description}) => {
 
 export const deleteNote = async (idProvider,idNote) => {
     try{
-        const res = await axios.post(`${URL}/providers/${idProvider}/notes/${idNote}`);
+        const res = await axios.delete(`${URL}/providers/${idProvider}/notes/${idNote}`);
         return res;
     }catch(e){
         return e;

@@ -38,7 +38,7 @@ const updateCliente = (id_customer,{register_key, id_category, representative,
         tel_customer, cel_customer, email, note, address, city, state, country, 
         razon_social, rfc, bank,bank_account, bank_key, price_number, business, tel_business, cel_business}) => {
         
-        const query = `UPDATE customers SET register_key = '${register_key}', id_category = ${id_category}, representative = '${presentative}',
+        const query = `UPDATE customers SET register_key = '${register_key}', id_category = ${id_category}, representative = '${representative}',
         tel_customer = '${tel_customer}', cel_customer = '${cel_customer}', email = '${email}', note = '${note}', address = '${address}',
         city = '${city}', state = '${state}', country = '${country}', razon_social = '${razon_social}', rfc = '${rfc}', 
         bank = '${bank}',bank_account = '${bank_account}', bank_key = '${bank_key}', price_number = ${price_number}, business = '${business}',

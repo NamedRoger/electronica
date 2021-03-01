@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react';
 
 export default function ListadoObservaciones() {
+
+    console.log("hola");
         useEffect(()=>{
             document.title= 'Listado Observaciones';
         }, []);
+
     return (
         <div>
             <section className="container">

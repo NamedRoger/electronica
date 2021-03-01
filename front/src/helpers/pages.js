@@ -7,7 +7,8 @@ import ventas from '../icons/ventas.svg';
 export const pages = [
     {
         name: 'Proveedores', link: "/proveedores", img: proveedores,
-        dropdown: [{ name: 'Añadir Proveedor', link: "/addproveedor" },
+        dropdown: [
+        { name: 'Añadir Proveedor', link: "/addproveedor" },
         { name: 'Listado de Proveedores', link: "/proveedoressss" },
         { name: 'Editar Proveedor', link: "/edit" },
         { name: 'Listado de Bancos', link: "/listadobancos" },

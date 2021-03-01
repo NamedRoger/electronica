@@ -29,7 +29,6 @@ export default function TablaProveedores() {
   useEffect(()=>{
     setSearch(buscarProv(proveedores));
     setChange(true);
-    console.log(search);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [change]);
 
@@ -114,7 +113,7 @@ export default function TablaProveedores() {
       data-tooltip="Regresar" ref={tooltip}
       style={{marginLeft: '30px'}}
       onClick={onSwitch}>
-      <i class="material-icons">arrow_back</i>
+      <i className="material-icons">arrow_back</i>
       </button>}
 
       {/*Tabla de Proveedores*/}

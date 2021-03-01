@@ -55,7 +55,7 @@ const updateCliente = async (req, res) => {
 const desactiveCliente = async (req, res) => {
     try{
         const idCliente = req.params.idCliente;
-        await customersService.desactiveCliente(idCliente);
+        await customersService.desactiveCustomer(idCliente);
         res.status(204).send();
     }catch(e){
         res.status(e.status || 400).json({

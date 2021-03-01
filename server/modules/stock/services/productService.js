@@ -4,7 +4,7 @@ const getProducts = () => {
     const query = `SELECT id_product, alternative_key, web, description, id_category, characteristics, stock, minimun_order,
     maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat
     FROM product
-    WHERE acttive = 1`;
+    WHERE active = 1`;
     return db.query(query);
 }
 
@@ -12,7 +12,7 @@ const getProduct = (idProduct) => {
     const query = `SELECT id_product, alternative_key, web, description, id_category, characteristics, stock, minimun_order,
     maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat
     FROM products
-    WHERE acttive = 1
+    WHERE active = 1
     AND id_product = ${idProduct}`;
     return db.query(query);
 }
@@ -20,9 +20,9 @@ const getProduct = (idProduct) => {
 const addProduct = ({alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
     maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat}) => {
     const query = `INSERT INTO product (alternative_key, web, description, id_category, characteristics, stock, minimun_order,
-        maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat) VALUES ('${alternative_key}','${web}','${description}',
+        maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat,active) VALUES ('${alternative_key}','${web}','${description}',
         ${id_category},'${caracteristics}','${stock}','${minimun_order}','${maximum_order}','${sales_unit}',
-        '${foto}','${ubication}','${price}','${sat_key}','${unit_sat}')`;
+        '${foto}','${ubication}','${price}','${sat_key}','${unit_sat}',${true})`;
     return db.query(query);
 }
 

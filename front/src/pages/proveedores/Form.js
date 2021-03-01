@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { addProvider } from '../../services/Providers/getProviders';
 import { getProviderById, updateProviderById } from '../../services/Providers/getProviderById';
-
+const {ipcRenderer} = window.require('electron');
+ 
 export default function Form({ match }) {
-
   const [datos, setDatos] = useState({
     nombre: '',
     rfc: '',
@@ -188,6 +188,7 @@ export default function Form({ match }) {
        })
        .then(res=>{
         if(res.status===204){
+
           window.close();
         }
         else{

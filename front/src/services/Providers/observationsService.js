@@ -29,7 +29,7 @@ export const updateObservation = async (idProvider,idObservation,{description}) 
             description
         };
 
-        const res = await axios.post(`${URL}/providers/${idProvider}/observations/${idObservation}`,data);
+        const res = await axios.put(`${URL}/providers/${idProvider}/observations/${idObservation}`,data);
         return res;
     }catch(e){
         return e;
@@ -38,7 +38,7 @@ export const updateObservation = async (idProvider,idObservation,{description}) 
 
 export const deleteObservation = async (idProvider,idObservation) => {
     try{
-        const res = await axios.post(`${URL}/providers/${idProvider}/observations/${idObservation}`);
+        const res = await axios.delete(`${URL}/providers/${idProvider}/observations/${idObservation}`);
         return res;
     }catch(e){
         return e;

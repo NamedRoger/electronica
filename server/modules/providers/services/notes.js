@@ -6,7 +6,7 @@ const getNotesByProvider = (idProvider) => {
 }
 
 const addNote = (idProvider,description) =>{
-    const query = `INSERT INTO provider_notes(id_provider,descrption) VALUES(${idProvider},'${description}')`;
+    const query = `INSERT INTO provider_notes(id_provider,description) VALUES(${idProvider},'${description}')`;
     return database.query(query);
 }
 

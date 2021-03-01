@@ -2,7 +2,7 @@
 const serviceNotes = require('../services/notes');
 
 const getNote = async (req,res) => {
-    const idProvider = req.idProvider;
+    const idProvider = req.params.idProvider;
     const note = await serviceNotes.getNotesByProvider(idProvider);
     res.json(note); 
 }

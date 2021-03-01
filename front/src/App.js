@@ -29,7 +29,7 @@ function App() {
             <Route exact path="/listadobancos/:id" component={ListadoBancos} />
             <Route exact path="/listadonotas/:id" component={ListadoNotas} />
             <Route exact path="/edit/:id" component={FormProveedor} />
-            <Route exact path="/obvservaciones/:id" component={ListadoObservaciones} />
+            <Route exact path="/observaciones/:id" component={ListadoObservaciones} />
             {/*Clientes*/}
             <Route exact path="/clientes" component={Clientes} />
             <Route exact path="/addclientes" component={FormCliente} />

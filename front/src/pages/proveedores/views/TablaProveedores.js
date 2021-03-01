@@ -29,7 +29,6 @@ export default function TablaProveedores() {
   useEffect(()=>{
     setSearch(buscarProv(proveedores));
     setChange(true);
-    console.log(search);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [change]);
 
@@ -45,6 +44,14 @@ export default function TablaProveedores() {
   }
   const handleBancos = (id) => {
     window.open(`${pages[0].dropdown[3].link}/${id}`, null, "width=800,height=600,left=300");
+  }
+
+  const handleObservaciones = (id) => {
+    window.open(`${pages[0].dropdown[5].link}/${id}`, null, "width=800,height=600,left=300");
+  }
+
+  const handleNotas = (id) => {
+    window.open(`${pages[0].dropdown[4].link}/${id}`, null, "width=800,height=600,left=300");
   }
   const onDelete = (id) =>{
     const instance = M.Modal.getInstance(modal.current);
@@ -106,7 +113,7 @@ export default function TablaProveedores() {
       data-tooltip="Regresar" ref={tooltip}
       style={{marginLeft: '30px'}}
       onClick={onSwitch}>
-      <i class="material-icons">arrow_back</i>
+      <i className="material-icons">arrow_back</i>
       </button>}
 
       {/*Tabla de Proveedores*/}
@@ -150,10 +157,12 @@ export default function TablaProveedores() {
                     </button>
             <button className="waves-effect waves-light grey darken-1 btn-small" 
             onClick={() => handleBancos(prov.id_provider)}>Bancos</button>
-            <a className="waves-effect waves-light red lighten-1 btn-small" 
-            href={pages[0].dropdown[4].link} rel="noreferrer" target="_blank">Notas</a>
-            <a className="waves-effect waves-light blue accent-2 btn-small" 
-            href={pages[0].dropdown[5].link} rel="noreferrer" target="_blank">Observaciones</a>
+
+            <button className="waves-effect waves-light red lighten-1 btn-small" 
+             onClick={() => handleNotas(prov.id_provider)}>Notas</button>
+
+                 <button className="waves-effect waves-light blue accent-2 btn-small" 
+            onClick={() => handleObservaciones(prov.id_provider)}>Observaciones</button>
             </div>
             </td>
           </tr>

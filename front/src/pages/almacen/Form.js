@@ -20,7 +20,7 @@ export default function Form() {
                         </div>
                         <div className="col s6">
                             <label>Categoria</label>
-                            <select class="browser-default">
+                            <select className="browser-default">
                                 <option value="" disabled selected>Seleccionar...</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -71,12 +71,12 @@ export default function Form() {
                         </div>
 
                         <div className="file-field input-field col s12">
-                            <div class="btn">
+                            <div className="btn">
                                 <span>Archivo</span>
                                 <input type="file" />
                             </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" id="textarea1" type="text" placeholder="Selecciona una foto" />
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" id="textarea1" type="text" placeholder="Selecciona una foto" />
                             </div>
                         </div>
                     </div>

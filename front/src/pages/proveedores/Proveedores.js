@@ -15,10 +15,13 @@ export default function Proveedores() {
   
   return (
     <div className="">
-      <h1 className="center-align">Listado de Proveedores</h1>
-      <button className="waves-effect waves-light green btn-large"
-        style={{ display: 'block', margin: '2em 41vw' }} onClick={handleOpen}>
-        <i className="material-icons left">add</i>Añadir</button>
+      <div style={{marginBottom:'2rem'}}>
+        <h4 className="">Proveedores</h4>
+        <button className="waves-effect waves-light green btn btn-small"
+           onClick={handleOpen}>
+            <i className="material-icons left">add</i>Añadir
+          </button>
+      </div>
       <TablaProveedores />
     </div>
   )

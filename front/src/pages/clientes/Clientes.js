@@ -12,10 +12,13 @@ export default function Clientes() {
     }
     return (
         <div className="">
-            <h1 className="center-align">Listado de Clientes</h1>
-            <button className="waves-effect waves-light green btn-large"
-                style={{ display: 'block', margin: '2em 40vw' }} onClick={handleOpen}>
-                <i className="material-icons left">add</i>Añadir</button>
+            <div className="" style={{marginBottom:'2rem'}}>
+                <h4 className="">Clientes</h4>
+                <button className="waves-effect waves-light green btn btn-small" onClick={handleOpen}>
+                    <i className="material-icons left">add</i>
+                    Añadir
+                </button>
+            </div>
             <TablaCliente />
         </div>
     )

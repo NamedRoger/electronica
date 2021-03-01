@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { pages } from '../../../helpers/pages';
-import {  getCustomers } from '../../../services/customers/customersService'
+import {  getCustomers,desactiveCustomer } from '../../../services/customers/customersService'
 
 export default function TablaCliente() {
     const modal = useRef();
@@ -20,10 +20,18 @@ export default function TablaCliente() {
     }, [load])
 
     const handleEdit = (id) => {
-        console.log(`${pages[1].dropdown[2].link}/${id}`);
         window.open(`${pages[1].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
     }
-
+    
+    const handleDelete = async (id) => {
+        try{
+            const res = await desactiveCustomer(id);
+            
+        }catch(e){
+            console.error(e);
+            alert("Ocurrió un error");
+        }
+    }
     return (
         <table className="highlight">
             <thead>
@@ -50,7 +58,8 @@ export default function TablaCliente() {
                             onClick={() => {handleEdit(cliente.id_customer)}}>
                                 <i className="material-icons">edit</i>
                             </button>
-                            <button className="btn-floating btn-large waves-effect waves-light red darken-3">
+                            <button className="btn-floating btn-large waves-effect waves-light red darken-3"
+                            onClick={() => {handleDelete(cliente.id_customer)}}>
                                 <i className="material-icons">delete</i>
                             </button>
                         </div>

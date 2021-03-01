@@ -13,12 +13,16 @@ export default function TablaCliente() {
         const Clientes = async () => {
             //M.Modal.init(modal.current);
             const res = await getCustomers();
-            console.log(res);
             setClientes(res);
             setLoad(true);
         }
         Clientes();
     }, [load])
+
+    const handleEdit = (id) => {
+        console.log(`${pages[1].dropdown[2].link}/${id}`);
+        window.open(`${pages[1].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
+    }
 
     return (
         <table className="highlight">
@@ -35,17 +39,17 @@ export default function TablaCliente() {
             <tbody>
                 {clientes.map((cliente) => {
                     return (
-                        <tr key={cliente.idCustomer} >
-                    <td>{cliente.razon_social}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                        <tr key={cliente.id_customer} >
+                    <td>{cliente.register_key}</td>
+                    <td>{cliente.representative}</td>
+                    <td>{cliente.razon_social}    </td>
+                    <td>{cliente.business}</td>
                     <td>
                         <div className="botones container">
-                            <a className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-                                href={pages[0].dropdown[2].link} rel="noreferrer" target="_blank">
+                            <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
+                            onClick={() => {handleEdit(cliente.id_customer)}}>
                                 <i className="material-icons">edit</i>
-                            </a>
+                            </button>
                             <button className="btn-floating btn-large waves-effect waves-light red darken-3">
                                 <i className="material-icons">delete</i>
                             </button>

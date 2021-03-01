@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { addCustomer, añadirClientes, getCustomers, updateCustomer } from '../../services/customers/customersService';
+import { addCustomer,getCustomer, updateCustomer } from '../../services/customers/customersService';
+import {getOptionsCatalgos } from '../../services/catalogs/catalogsOptionsService';
 
 export default function Form({ match }) {
+  const [categorias,setCategorias] = useState([]);
+  const [precios, setPrecios] = useState([]);
 
   const [datos, setdatos] = useState({
+    id_customer: 0,
     register_key: '',
-    id_category: '',
-    presentative: '',
+    id_category: 0,
+    representative: '',
     tel_customer: '',
     cel_customer: '',
     email: '',
@@ -18,22 +22,48 @@ export default function Form({ match }) {
     razon_social: '',
     rfc: '',
     bank: '',
+    bank_account:'',
     bank_key: '',
-    price_number: '',
+    price_number: 0,
     business: '',
     tel_business: '',
     cel_business: ''
   });
 
+  const { register_key,
+    address,
+    bank, 
+    bank_key,
+    bank_account,
+    business,
+    cel_business,
+    cel_customer,
+    city,
+    country,
+    email,
+    id_category,
+    id_customer,
+    note,
+    price_number,
+    razon_social,
+    representative,
+    rfc,
+    state,
+    tel_business,
+    tel_customer
+  } = datos;
+  console.log(match.params.id);
+
   useEffect(() => {
     document.title = 'Añadir Clientes';
     const editar = async () => {
       if (match.params.id) {
-        const cliente = await getCustomers(match.params.idCustomer);
+        const cliente = await getCustomer(match.params.id);
         const {
+          id_customer,
           register_key,
           id_category,
-          presentative,
+          resentative,
           tel_customer,
           cel_customer,
           email,
@@ -45,6 +75,7 @@ export default function Form({ match }) {
           razon_social,
           rfc,
           bank,
+          bank_account,
           bank_key,
           price_number,
           business,
@@ -53,213 +84,82 @@ export default function Form({ match }) {
         } = cliente;
 
         setdatos({
-          ClaveRegistro: register_key,
-          idCategoria: id_category,
-          Representante: presentative,
-          Telefono: tel_customer,
-          Celular: cel_customer,
-          Email: email,
-          Nota: note,
-          Domicilio: address,
-          Ciudad: city,
-          Estado: state,
-          Pais: country,
-          RazonSocial: razon_social,
-          Rfc: rfc,
-          Banco: bank,
-          CuentaBancaria: bank_key,
-          NumeroPrecio: price_number,
-          Empresa: business,
-          TelefonoEmpresa: tel_business,
-          CelularEmpresa: cel_business
+          id_customer: id_customer,
+          register_key: register_key,
+          id_category: id_category,
+          resentative: resentative,
+          tel_customer: tel_customer,
+          cel_customer: cel_customer,
+          email: email,
+          note: note,
+          address: address,
+          city: city,
+          state: state,
+          country: country,
+          razon_social: razon_social,
+          rfc: rfc,
+          bank: bank,
+          bank_key: bank_key,
+          bank_account:bank_account,
+          price_number: price_number,
+          business: business,
+          tel_business: tel_business,
+          cel_business: cel_business
         });
       }
     }
     editar();
-  }, [match.params.idCustomer]);
 
-  const handleChange = (e) => {
-    switch (e.target.register_key) {
-      case 'ClaveRegistro':
-        setdatos({
-          ...datos,
-          ClaveRegistro: e.target.value
-        })
-        break;
-
-      case 'idCategoria':
-        setdatos({
-          ...datos,
-          idCategoria: e.target.value
-        })
-        break;
-
-      case 'Representante':
-        setdatos({
-          ...datos,
-          Representante: e.target.value
-        })
-        break;
-
-      case 'Telefono':
-        setdatos({
-          ...datos,
-          Telefono: e.target.value
-        })
-        break;
-
-      case 'Celular':
-        setdatos({
-          ...datos,
-          Celular: e.target.value
-        })
-        break;
-
-      case 'Email':
-        setdatos({
-          ...datos,
-          Email: e.target.value
-        })
-        break;
-
-      case 'Nota':
-        setdatos({
-          ...datos,
-          Nota: e.target.value
-        })
-        break;
-
-      case 'Domicilio':
-        setdatos({
-          ...datos,
-          Domicilio: e.target.value
-        })
-        break;
-
-      case 'Ciudad':
-        setdatos({
-          ...datos,
-          Ciudad: e.target.value
-        })
-        break;
-
-      case 'Estado':
-        setdatos({
-          ...datos,
-          Estado: e.target.value
-        })
-        break;
-
-      case 'Pais':
-        setdatos({
-          ...datos,
-          Pais: e.target.value
-        })
-        break;
-
-      case 'RazonSocial':
-        setdatos({
-          ...datos,
-          RazonSocial: e.target.value
-        })
-        break;
-
-      case 'Rfc':
-        setdatos({
-          ...datos,
-          Rfc: e.target.value
-        })
-        break;
-
-      case 'Banco':
-        setdatos({
-          ...datos,
-          Banco: e.target.value
-        })
-        break;
-
-      case 'CuentaBancaria':
-        setdatos({
-          ...datos,
-          CuentaBancaria: e.target.value
-        })
-        break;
-
-      case 'NumeroPrecio':
-        setdatos({
-          ...datos,
-          NumeroPrecio: e.target.value
-        })
-        break;
-
-      case 'Empresa':
-        setdatos({
-          ...datos,
-          Empresa: e.target.value
-        })
-        break;
-
-      case 'TelefonoEmpresa':
-        setdatos({
-          ...datos,
-          TelefonoEmpresa: e.target.value
-        })
-        break;
-
-      case 'CelularEmpresa':
-        setdatos({
-          ...datos,
-          CelularEmpresa: e.target.value
-        })
-        break;
-
-      default:
-        break;
+    const getPrices = async () => {
+      const  res = await getOptionsCatalgos("CAT_PREC");
+      setPrecios(res);
     }
+
+    const getCategories = async () => {
+      const categories = await getOptionsCatalgos("CAT_CLIE");
+      setCategorias(categories);
+    }
+  
+    getPrices();
+    getCategories();
+    
+  }, [match.params.id]);
+  
+
+  
+  const handleChange = (e) => {
+    const key = e.target.name;
+    setdatos({
+      ...datos,
+      [key]:e.target.value
+    });
+
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { ClaveRegistro,
-      idCategoria,
-      Representante,
-      Telefono,
-      Celular,
-      Email,
-      Nota,
-      Domicilio,
-      Ciudad,
-      Estado,
-      Pais,
-      RazonSocial,
-      Rfc,
-      Banco,
-      CuentaBancaria,
-      NumeroPrecio,
-      Empresa,
-      TelefonoEmpresa,
-      CelularEmpresa } = datos;
-    if (match.params.idCustomer) {
-      updateCustomer(match.params.idCustomer, {
-        register_key,
+    if (match.params.id) {
+      updateCustomer(match.params.id, {
         id_category,
-        presentative,
-        tel_customer,
-        cel_customer,
-        email,
-        note,
         address,
-        city,
-        state,
-        country,
-        razon_social,
-        rfc,
         bank,
         bank_key,
-        price_number,
+        bank_account,
         business,
+        cel_business,
+        cel_customer,
+        city,
+        country,
+        email,
+        note,
+        representative,
+        price_number,
+        razon_social,
+        register_key,
+        rfc,
+        state,
         tel_business,
-        cel_business
+        tel_customer        
       })
         .then(res => {
           console.log(res);
@@ -274,25 +174,26 @@ export default function Form({ match }) {
     }
     else {
       addCustomer({
-        /* ClaveRegistro: register_key ,
-           idCategoria: id_category,
-           Representante: presentative,
-           Telefono: tel_customer,
-           Celular: cel_customer,
-           Email : email,
-           Nota: note,
-           Domicilio: address,
-           Ciudad: city,
-           Estado: state,
-           Pais: country,
-           RazonSocial: razon_social,
-           Rfc: rfc,
-           Banco: bank,
-           CuentaBancaria: bank_key,
-           NumeroPrecio: price_number,
-           Empresa : business,
-           TelefonoEmpresa: tel_business,
-           CelularEmpresa: cel_business*/
+        id_category,
+        address,
+        bank,
+        bank_key,
+        bank_account,
+        business,
+        cel_business,
+        cel_customer,
+        city,
+        country,
+        email,
+        note,
+        representative,
+        price_number,
+        razon_social,
+        register_key,
+        rfc,
+        state,
+        tel_business,
+        tel_customer
       })
         .then(res => {
           if (res.status === 204) {
@@ -309,58 +210,56 @@ export default function Form({ match }) {
   return (
     <div>
       <section className="container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="input-field col s12">
-              <input id="first_name" type="text" className="validate" />
-              <label htmlfor="first_name">Clave De Registro: </label>
+              <input id="first_name" placeholder="Clave De Registro" value={register_key} onChange={handleChange} type="text" className="validate" name="register_key"/>
+              <label htmlFor="first_name">Clave De Registro: </label>
             </div>
             <div className="input-field col s6">
-              <select className="browser-default">
-                <option value="" disabled selected>Categoría</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+              <select className="browser-default" defaultValue={0} name="id_category" value={id_category} onChange={handleChange}>
+              <option value="0" defaultValue disabled selected>Category</option>
+              {categorias.map(c => <option value={c.id_option} key={c.id_option}>{c.name}</option>)}
               </select>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Representante</label>
+              <input id="textarea1" type="text" name="representative" value={representative} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Representante</label>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="tel" className="materialize-textarea" />
-              <label htmlfor="textarea1">Teléfono</label>
+              <input id="textarea1" type="tel" name="tel_customer" value={tel_customer} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Teléfono</label>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="tel" className="materialize-textarea" />
-              <label htmlfor="textarea1">Celular</label>
+              <input id="textarea1" type="tel" name="cel_customer" value={cel_customer} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Celular</label>
             </div>
             <div className="input-field col s6">
-              <input id="email" type="email" className="validate" />
-              <label htmlfor="email">Email</label>
+              <input id="email" type="email" name="email" value={email} onChange={handleChange} className="validate" />
+              <label htmlFor="email">Email</label>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Nota</label>
+              <input id="textarea1" type="text" name="note" value={note} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Nota</label>
             </div>
             <div className="input-field col s12">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Domicilio</label>
+              <input id="textarea1" type="text" name="address" value={address} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Domicilio</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Cuidad</label>
+              <input id="textarea1" type="text" name="city" value={city} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Cuidad</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Estado</label>
+              <input id="textarea1" type="text" name="state" value={state} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Estado</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">País</label>
+              <input id="textarea1" type="text" name="country" value={country} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">País</label>
             </div>
 
             <div className="input-field col s6">
@@ -368,63 +267,51 @@ export default function Form({ match }) {
                 id="textarea1"
                 type="text"
                 className="materialize-textarea"
+                name="razon_social" value={razon_social} onChange={handleChange}
               />
-              <label htmlfor="textarea1">Razon Social</label>
+              <label htmlFor="textarea1">Razon Social</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">RFC</label>
+              <input id="textarea1" type="text" name="rfc" value={rfc} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">RFC</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Banco</label>
+              <input id="textarea1" type="text" name="bank" value={bank} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Banco</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Cuenta Bancaria</label>
+              <input id="textarea1" type="text" name="bank_account" value={bank_account} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Cuenta Bancaria</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Clave Interbancaria</label>
+              <input id="textarea1" type="text" name="bank_key" value={bank_key} onChange={handleChange}   className="materialize-textarea" />
+              <label htmlFor="textarea1">Clave Interbancaria</label>
             </div>
 
             <div className="input-field col s12">
-              <select className="browser-default">
-                <option value="" disabled selected>Número de precio</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+              <select className="browser-default" defaultValue={0} name="price_number" value={price_number} onChange={handleChange} >
+                <option value="0" disabled selected>Número de precio</option>
+                {precios.map(p => <option value={p.id_option} key={p.id_option}>{p.name}</option>)}
               </select>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Empresa</label>
+              <input id="textarea1" type="text" name="business" value={business} onChange={handleChange}  className="materialize-textarea" />
+              <label htmlFor="textarea1">Empresa</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Teléfono Empresa</label>
+              <input id="textarea1" type="text" name="tel_business" value={tel_business} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Teléfono Empresa</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" className="materialize-textarea" />
-              <label htmlfor="textarea1">Celular Empresa</label>
-            </div>
-
-            <div className="input-field col s6">
-              <form action="#">
-                <p>
-                  <label>
-                    <input type="checkbox" />
-                    <span>Active</span>
-                  </label>
-                </p>
-              </form>
+              <input id="textarea1" type="text" name="cel_business" value={cel_business} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="textarea1">Celular Empresa</label>
             </div>
 
           </div>
@@ -435,7 +322,7 @@ export default function Form({ match }) {
               </button>
             </div>
             <div className="col s6">
-              <button className="waves-effect waves-light btn-small red" style={{ display: 'block', margin: '0 auto' }}>
+              <button type="button" className="waves-effect waves-light btn-small red" style={{ display: 'block', margin: '0 auto' }}>
                 Salir
             </button>
             </div>

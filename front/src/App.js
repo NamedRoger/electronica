@@ -33,6 +33,8 @@ function App() {
             {/*Clientes*/}
             <Route exact path="/clientes" component={Clientes} />
             <Route exact path="/addclientes" component={FormCliente} />
+            <Route exact path="/editcliente/:id" component={FormCliente} />
+
             {/*Almacen*/}
             <Route exact path="/almacen" component={Almacen} />
             <Route exact path="/addalmacen" component={FormAlmacen} />

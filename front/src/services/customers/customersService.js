@@ -22,14 +22,14 @@ export const getCustomer = async (idCustomer) => {
     }
 }
 
-export const addCustomer = async ({register_key, id_category, presentative, 
+export const addCustomer = async ({register_key, id_category, representative, 
     tel_customer, cel_customer, email, note, address, city, state, country, 
-    razon_social, rfc, bank, bank_key, price_number, business, tel_business, cel_business}) => {
+    razon_social, rfc, bank,bank_account, bank_key, price_number, business, tel_business, cel_business}) => {
     try{
         const data = {
-            register_key, id_category, presentative, 
+            register_key, id_category, representative, 
             tel_customer, cel_customer, email, note, address, city, state, country, 
-            razon_social, rfc, bank, bank_key, price_number, business, tel_business, cel_business
+            razon_social, rfc, bank,bank_account, bank_key, price_number, business, tel_business, cel_business
         }
         const res = await axios.post(`${URL}/customers`,data);
         return res;
@@ -38,14 +38,14 @@ export const addCustomer = async ({register_key, id_category, presentative,
     }
 }
 
-export const updateCustomer = async (idCustomer, {register_key, id_category, presentative, 
+export const updateCustomer = async (idCustomer, {register_key, id_category, representative, 
     tel_customer, cel_customer, email, note, address, city, state, country, 
-    razon_social, rfc, bank, bank_key, price_number, business, tel_business, cel_business}) => {
+    razon_social, rfc, bank,bank_account, bank_key, price_number, business, tel_business, cel_business}) => {
     try{
         const data = {
-            register_key, id_category, presentative, 
+            register_key, id_category, representative, 
             tel_customer, cel_customer, email, note, address, city, state, country, 
-            razon_social, rfc, bank, bank_key, price_number, business, tel_business, cel_business
+            razon_social, rfc, bank,bank_account, bank_key, price_number, business, tel_business, cel_business
         }
 
         const res = await axios.put(`${URL}/customers/${idCustomer}`,data);

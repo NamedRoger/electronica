@@ -21,15 +21,12 @@ export default function TablaProveedores() {
       })
   }, [load]);
 
-
-
-
   const handleEdit = (id) => {
     window.open(`${pages[2].dropdown[1].link}/${id}`, null, "width=800,height=600,left=300");
   }
 
   const handleWatchProviders = (id) => {
-    window.open(`${pages[2].dropdown[2].link}/id`, null, "width=800,height=600,left=300");
+    window.open(`${pages[2].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
   }
 
   const handleDelete = (id) => {

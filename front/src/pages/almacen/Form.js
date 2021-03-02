@@ -7,7 +7,7 @@ export default function Form({ match }) {
         alternative_key: '',
         web: false,
         description: '',
-        id_category: null,
+        id_category: 0,
         caracteristics: '',
         stock: '',
         minimun_order: '',

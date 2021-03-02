@@ -4,27 +4,16 @@ import { pages } from '../../../helpers/pages';
 import { getCustomers, desactiveCustomer } from '../../../services/customers/customersService'
 import M from 'materialize-css';
 
-const filterProviders = (filterText) => {
+const filterProviders = (filterText,...filters) => {
     filterText = filterText.trim();
     const worsdFilterText = filterText.split(" ");
     const proveedores = [];
     let provedoresFilter = proveedores;
-    const filters = ["id","apodoDeProveedor",
-            "representante",
-            "representanteTelefono",
-            "representanteCelular",
-            "representanteEmail",
-            "representanteCidudad",
-            "razonSocial",
-            "rfc",
-            "ciudad",
-            "telefono",
-            "celular"
-    ];
+  
     if(filterText === ""){
     }else{
         provedoresFilter = provedoresFilter.filter((provider) => {
-            //apodo, repre, repre tel, repre cel, repre email,repre ciudad, razón s, rfc, ciudad, tel, email
+            //apodo, repre, repre tel, reprkwe cel, repre email,repre ciudad, razón s, rfc, ciudad, tel, email
             for(let idxFilter in filters){
                 const filter = filters[idxFilter];
 
@@ -94,7 +83,6 @@ export default function TablaCliente() {
     }
     return (
         <div>
-            <Search onChange={handleChange} search={search} setProv={onSearch} />
             
             <table className="highlight">
                 <thead>

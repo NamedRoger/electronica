@@ -1,7 +1,7 @@
 const productService = require('../services/productService');
 
 const getProduct = async (req,res) => {
-    const idProduct = req.idProduct;
+    const idProduct = req.params.idProduct;
     const product = await productService.getProduct(idProduct);
     res.json(product); 
 }
@@ -12,10 +12,9 @@ const getProducts = async (req,res) => {
 }
 
 const addProduct = async (req,res) => {
-    const idProduct = req.params.idProduct;
     const newProduct = req.body;
     try {
-        await productService.addProduct(idProduct,newProduct)
+        await productService.addProduct(newProduct)
         res.status(201).json({success:true});
     } catch (e) {
         res.status(400).json({

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {URL} from '../../helpers/URL';
 
 

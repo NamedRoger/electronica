@@ -38,6 +38,7 @@ function App() {
             {/*Almacen*/}
             <Route exact path="/almacen" component={Almacen} />
             <Route exact path="/addalmacen" component={FormAlmacen} />
+            <Route exact path="/editalmacen/:id" component={FormAlmacen} />
           </Switch>
         </main>
       </Router>

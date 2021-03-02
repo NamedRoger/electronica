@@ -21,12 +21,12 @@ const addProvider = ({idProduct,idProvider,sales_unit}) => {
 }
 
 const updateProvider = (idProductProvider,{idProvider,sales_unit}) => {
-    const query = (`UPDATE producto_providers SET sales_unit = '${sales_unit}' WHERE id_product_providers = '${idProductProvider}'`);
+    const query = (`UPDATE producto_providers SET sales_unit = '${sales_unit}' WHERE pp.id_product = '${idProduct}'`);
     return db.query(query)
 }
 
 const deleteProvider = (idProductProvider) => {
-    const query = (`DELETE FROM producto_providers WHERE id_product_providers = ${idProductProvider}`);
+    const query = (`DELETE FROM producto_providers WHERE pp.id_product = ${idProduct}`);
     return db.query(query)
 }
 

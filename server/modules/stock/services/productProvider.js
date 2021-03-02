@@ -1,50 +1,38 @@
 const db = require('../../../db/database');
 
-const getProducts = () => {
-    const query = `SELECT id_product, alternative_key, web, description, id_category, characteristics, stock, minimun_order,
-    maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat
-    FROM products
-    WHERE active = 1`;
-    return db.query(query);
+const getProviders = (idProduct) => {
+    const query = (`SELECT pp.id_product_providers,
+    pp.id_product,
+    pp.id_provider,
+    prov.nick_name,
+    prov.razon_social,
+    pp.sales_unit
+    FROM producto_providers AS pp
+    INNER JOIN providers AS prov ON prov.id_provider = pp.id_provider
+    INNER JOIN products AS prod ON prod.id_product = pp.id_product
+    WHERE prod.active = 1`)
+    return db.query(query)
 }
 
-const getProduct = (idProduct) => {
-    const query = `SELECT id_product, alternative_key, web, description, id_category, characteristics, stock, minimun_order,
-    maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat
-    FROM products
-    WHERE active = 1
-    AND id_product = ${idProduct}`;
-    return db.query(query);
+const addProvider = ({idProduct,idProvider,sales_unit}) => {
+    const query = (`INSERT INTO producto_providers (id_product, id_provider, sales_unit)
+    VALUES(${idProduct},${idProvider},'${sales_unit}')`);
+        return db.query(query)
 }
 
-const addProduct = ({alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
-    maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat}) => {
-    const query = `INSERT INTO products (alternative_key, web, description, id_category, characteristics, stock, minimun_order,
-        maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat,active) VALUES ('${alternative_key}','${web}','${description}',
-        ${id_category},'${caracteristics}','${stock}','${minimun_order}','${maximum_order}','${sales_unit}',
-        '${foto}','${ubication}','${price}','${sat_key}','${unit_sat}',${true})`;
-    return db.query(query);
+const updateProvider = (idProductProvider,{idProvider,sales_unit}) => {
+    const query = (`UPDATE producto_providers SET sales_unit = '${sales_unit}' WHERE id_product_providers = '${idProductProvider}'`);
+    return db.query(query)
 }
 
-const updateProduct = (idProduct,{alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
-    maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat}) =>{
-    const query = `UPDATE products SET alternative_key = '${alternative_key}', web = '${web}', description = '${description}',
-     id_category = '${id_category}', characteristics = '${caracteristics}', stock = '${stock}', minimun_order = '${minimun_order}',
-     maximum_order = '${maximum_order}', sales_unit = '${sales_unit}', foto = '${foto}', ubication = '${ubication}', price = '${price}', 
-     sat_key = '${sat_key}', unit_sat = '${unit_sat}'
-     WHERE id_product = ${idProduct}`;
-    return db.query(query);
-}
-
-const desactiveProduct = (idProduct) => {
-    const query = `DELETE FROM products WHERE id_product = ${idProduct}`;
-    return db.query(query);
+const deleteProvider = (idProductProvider) => {
+    const query = (`DELETE FROM producto_providers WHERE id_product_providers = ${idProductProvider}`);
+    return db.query(query)
 }
 
 module.exports = {
-    getProduct,
-    getProducts,
-    addProduct,
-    updateProduct,
-    desactiveProduct
+    getProviders,
+    addProvider,
+    updateProvider,
+    deleteProvider
 }

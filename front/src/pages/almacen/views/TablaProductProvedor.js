@@ -8,9 +8,16 @@ export default function TablaProveedoresProducto() {
         document.title = 'Proveedores Producto';
     }, []);
 
+    const handleWatchFormularioProveedor = () =>{
+        window.open(`${pages[2].dropdown[3].link}`, null, "width=800,height=600,left=300");
+      }
+
     return (
         <div className="">
-            <h1 className="center-align">Proveedor</h1>
+            <h4>Proveedor</h4>
+            <button className="waves-effect waves-light green btn btn-small" onClick={() => handleWatchFormularioProveedor()}>
+                <i className="material-icons left">add</i>Agregar Proveedor</button>
+
             <table className="highlight">
                 <thead>
                     <tr>
@@ -27,7 +34,8 @@ export default function TablaProveedoresProducto() {
                         <td>XXXXXX</td>
                         <td>
                             <div className="botones">
-                                <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1">
+                                <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
+                                onClick={() => handleWatchFormularioProveedor()}>
                                     <i className="material-icons">edit</i>
                                 </button>
                                 <button className="btn-floating btn-large waves-effect waves-light red darken-3">

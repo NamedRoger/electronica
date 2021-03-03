@@ -321,7 +321,10 @@ export default function Form({ match }) {
               </button>
             </div>
             <div className="col s6">
-              <button type="button" className="waves-effect waves-light btn-small red" style={{ display: 'block', margin: '0 auto' }}>
+              <button type="button" 
+              className="waves-effect waves-light btn-small red" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {window.close()}}>
                 Salir
             </button>
             </div>

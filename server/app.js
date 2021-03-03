@@ -14,6 +14,7 @@ var providerNotesRouter = require('./modules/providers/routes/routesNotes');
 var providerBanksRouter = require('./modules/providers/routes/routesBanks');
 var customersRouter = require('./modules/customers/routes/routesCustomers');
 var stockRouter = require('./modules/stock/routes/routesStock');
+var productRouter = require('./modules/stock/routes/routerProductsProvider');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -28,5 +29,6 @@ app.use('/providers/',providerNotesRouter);
 app.use('/providers/',providerBanksRouter);
 app.use('/providers',providersRouter);
 app.use('/customers',customersRouter);
+app.use('/stock',productRouter);
 app.use('/stock',stockRouter);
 module.exports = app;

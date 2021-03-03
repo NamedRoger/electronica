@@ -7,6 +7,7 @@ const getProviders = async (req,res) => {
 }
 
 const addProvider = async (req,res) =>{
+    const idProduct = req.params.idProduct;
     const newProvider = req.body;
     try {
         await productproviderService.addProvider(newProvider)
@@ -26,7 +27,7 @@ const updateProvider = async (req,res) => {
         await productproviderService.updateProvider(idProductProvider,newDataProvider);
         res.status(204).send();
     }catch(e){
-        res.status(e.status || 404).json({
+        res.status(e.status || 400).json({
             ...e,
             success:false
         });

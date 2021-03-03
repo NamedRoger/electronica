@@ -1,4 +1,6 @@
 const productService = require('../services/productService');
+const fs = require('fs');
+const path = require('path');
 
 const getProduct = async (req,res) => {
     const idProduct = req.params.idProduct;
@@ -14,7 +16,11 @@ const getProducts = async (req,res) => {
 const addProduct = async (req,res) => {
     const newProduct = req.body;
     try {
-        await productService.addProduct(newProduct)
+        
+        const {webPath,foto} = newProduct;
+        if(webPath.trim() !== "") copyFile(webPath,foto);
+
+        await productService.addProduct(newProduct);
         res.status(201).json({success:true});
     } catch (e) {
         res.status(400).json({
@@ -28,13 +34,14 @@ const updateProduct = async (req,res) => {
     const idProduct = req.params.idProduct;
     const newDataProduct = req.body;
     try{
+        const {webPath,foto} = newDataProduct;
+        
+        if(webPath.trim() !== "") copyFile(webPath,foto);
+
         await productService.updateProduct(idProduct,newDataProduct);
         res.status(204).send();
     }catch(e){
-        res.status(e.status || 404).json({
-            ...e,
-            success:false
-        });
+        res.status(e.status || 404).send(e);
     }
 
 }
@@ -50,6 +57,16 @@ const desactiveProduct = async (req,res) => {
             success:false
         });
     }
+}
+
+const copyFile = (webPath,file) => {
+    fs.readFile(webPath, function (err, data) {
+        if (err) throw err;
+        fs.writeFile(path.join("D:\\rogev\\Documents\\desarrollo\\javascript\\electron\\electronica\\front\\public\\img",file), data, function (err) {
+            if (err) throw err;
+            console.log('It\'s saved!');
+        });
+    });
 }
 
 module.exports ={

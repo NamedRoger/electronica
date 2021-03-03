@@ -10,7 +10,7 @@ function createWindow() {
       nodeIntegration:true,
       nodeIntegrationInSubFrames:true,
       nodeIntegrationInWorker:true,
-      preload:'./preload.js'
+      preload:'./preload.js',
     }
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);

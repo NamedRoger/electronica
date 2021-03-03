@@ -13,10 +13,10 @@ export const getStocks = async () => {
 
 export const addStock = async (datos) => {
     const {alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
-        maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat} = datos
+        maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat,webPath} = datos
     try {
         const res = await axios.post(`${URL}/stock/`,{alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
-            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat});
+            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat,webPath});
         return res;
     } catch (error) {
         return {error: `Falla en la Conexíon: ${error}`}
@@ -35,10 +35,10 @@ export const getStockById = async (id) => {
 
 export const updateStockById = async (id, datos) => {
         const {alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
-            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat} = datos;
+            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat,webPath} = datos;
     try {
         const res = await axios.put(`${URL}/stock/${id}`, {alternative_key, web, description, id_category, caracteristics, stock, minimun_order,
-            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat});
+            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat,webPath});
         return res;
     } catch (error) {
         return {error: `Falla en la Conexíon: ${error}`}

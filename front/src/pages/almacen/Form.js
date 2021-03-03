@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getStockById, addStock, updateStockById } from '../../services/Stock/getStock';
 import { getOptionsCatalgos } from '../../services/catalogs/catalogsOptionsService';
 
+
 export default function Form({ match }) {
     const [datos, setDatos] = useState({
         alternative_key: '',
@@ -13,7 +14,8 @@ export default function Form({ match }) {
         minimun_order: '',
         maximum_order: '',
         sales_unit: '',
-        foto: null,
+        foto: '',
+        webPath:'',
         ubication: '',
         price: '',
         sat_key: '',
@@ -35,11 +37,11 @@ export default function Form({ match }) {
                 .then(res => {
                     const { alternative_key, web, description, id_category, characteristics, stock, minimun_order,
                         maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat } = res[0];
-                        
+
                     setDatos(
                         {
                             alternative_key, web, description, id_category, caracteristics: characteristics, stock, minimun_order,
-                            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat
+                            maximum_order, sales_unit, foto, ubication, price, sat_key, unit_sat,webPath:''
                         }
                     );
                 })
@@ -129,6 +131,15 @@ export default function Form({ match }) {
                     ubication: e.target.value
                 });
                 break;
+            case 'foto':
+                const pathTemp = e.target.files[0].path
+                const pathFile = pathTemp.replace(/[/\\]/gm,"/").split("/").reverse()[0];
+                setDatos({
+                    ...datos,
+                    foto:pathFile,
+                    webPath: pathTemp
+                });
+                break;
             default:
                 break;
         }
@@ -140,7 +151,7 @@ export default function Form({ match }) {
             updateStockById(match.params.id, datos)
                 .then(res => {
                     if (res.status === 204) {
-                        window.close();
+                        //window.close();
                     }
                 });
         }
@@ -148,7 +159,7 @@ export default function Form({ match }) {
             addStock(datos)
                 .then(res => {
                     if (res.status === 201) {
-                        window.close();
+                        //window.close();
                     }
                 })
         }
@@ -162,7 +173,7 @@ export default function Form({ match }) {
                         <div className=" col s12">
                             <label className="center-align">
                                 <input className="filled-in" type="checkbox" name="web"
-                                    onChange={handleChange} checked={datos.web?true:false} />
+                                    onChange={handleChange} checked={datos.web ? true : false} />
                                 <span>Web</span>
                             </label>
                         </div>
@@ -174,7 +185,7 @@ export default function Form({ match }) {
                         <div className="col s6">
                             <label>Categoria</label>
                             <select name="categoria" className="browser-default"
-                               value={datos.id_category} onChange={handleChange} required>
+                                value={datos.id_category} onChange={handleChange} required>
                                 <option disabled selected>Seleccionar...</option>
                                 {category.map(item => <option key={item.id_option}
                                     value={item.id_option}>{item.name}</option>)}
@@ -239,11 +250,10 @@ export default function Form({ match }) {
                         <div className="file-field input-field col s12">
                             <div className="btn">
                                 <span>Archivo</span>
-                                <input type="file" name="foto" />
+                                <input type="file" name="foto" onChange={handleChange}/>
                             </div>
                             <div className="file-path-wrapper">
-                                <input className="file-path validate" id="textarea1" type="text" placeholder="Selecciona una foto"
-                                />
+                                <input className="file-path validate" id="textarea1" type="text" placeholder="Selecciona una foto"/>
                             </div>
                         </div>
                     </div>
@@ -251,14 +261,14 @@ export default function Form({ match }) {
                         <div className="col s6">
                             <button type="submit" className="waves-effect waves-light btn-small" style={{ display: 'block', margin: '0 auto' }}>
                                 Guardar
-              </button>
+                            </button>
                         </div>
                         <div className="col s6">
                             <button className="waves-effect waves-light btn-small red"
                                 style={{ display: 'block', margin: '0 auto' }}
                                 onClick={handleClose}>
                                 Salir
-            </button>
+                            </button>
                         </div>
                     </div>
                 </form>

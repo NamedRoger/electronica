@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { addProvider } from '../../services/Providers/getProviders';
 import { getProviderById, updateProviderById } from '../../services/Providers/getProviderById';
-const {ipcRenderer} = window.require('electron');
  
 export default function Form({ match }) {
   const [datos, setDatos] = useState({

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { pages } from '../../helpers/pages';
 import TablaProveedores from './views/TablaProveedores';
 import './index.css';
-const {ipcRenderer} = window.require('electron');
 
 export default function Proveedores() {
   

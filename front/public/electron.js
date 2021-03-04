@@ -1,4 +1,5 @@
 const {BrowserWindow,app,ipcMain} = require('electron');
+const url = require('url');
 
 const path = require('path');
 const isDev = require('electron-is-dev');
@@ -11,9 +12,15 @@ function createWindow() {
       nodeIntegrationInSubFrames:true,
       nodeIntegrationInWorker:true,
       preload:'./preload.js',
+      nativeWindowOpen:true
     }
   });
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  mainWindow.loadURL(isDev ? 'http://localhost:3000' : url.format({
+    pathname: path.join(__dirname,'../build/index.html'),
+    protocol:'file:',
+    slashes:true
+  }));
+
   if (isDev) {
     // Open the DevTools.
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
@@ -22,10 +29,11 @@ function createWindow() {
   mainWindow.title = `Electrónica`;
   //mainWindow.setMenu(null);
   mainWindow.maximize();
-  mainWindow.on('closed', () => mainWindow = null);
   mainWindow.on('close', () => {
     app.quit();
-});
+  });
+  mainWindow.on('closed', () => mainWindow = null);
+  
 }
 
 app.on('ready', createWindow);

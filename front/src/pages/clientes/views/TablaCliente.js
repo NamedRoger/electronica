@@ -3,6 +3,7 @@ import Search from '../../../components/Search';
 import { pages } from '../../../helpers/pages';
 import { getCustomers, desactiveCustomer } from '../../../services/customers/customersService'
 import M from 'materialize-css';
+import { BrowserWindow } from 'electron';
 
 const filterProviders = (filterText,...filters) => {
     filterText = filterText.trim();
@@ -58,6 +59,8 @@ export default function TablaCliente() {
     }, [switchBuscar]);
 
     const handleEdit = (id) => {
+        
+        
         window.open(`${pages[1].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
     }
 

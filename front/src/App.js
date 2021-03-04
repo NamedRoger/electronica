@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, HashRouter, Route, Switch } from 'react-router-dom';
 import Navigator from './components/Navigator';
 import FormProveedor from './pages/proveedores/Form';
 import ListadoBancos from './pages/proveedores/ListadoBancos';
@@ -19,33 +19,36 @@ import 'materialize-css/dist/css/materialize.min.css';
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navigator />
-        <main>
-          <Switch>
-            {/*Home*/}
-            <Route exact path="/" component={Home} />
-            {/*Proveedores*/}
-            <Route exact path="/addproveedor" component={FormProveedor} />
-            <Route exact path="/proveedores" component={Proveedores} />
-            <Route exact path="/listadobancos/:id" component={ListadoBancos} />
-            <Route exact path="/listadonotas/:id" component={ListadoNotas} />
-            <Route exact path="/edit/:id" component={FormProveedor} />
-            <Route exact path="/observaciones/:id" component={ListadoObservaciones} />
-            {/*Clientes*/}
-            <Route exact path="/clientes" component={Clientes} />
-            <Route exact path="/addclientes" component={FormCliente} />
-            <Route exact path="/editcliente/:id" component={FormCliente} />
+      <HashRouter basename="/">
+        <Router>
+          <Navigator />
+          <main>
+            <Switch>
+              {/*Home*/}
+              <Route exact path="/" component={Home} />
+              {/*Proveedores*/}
+              <Route exact path="/addproveedor" component={FormProveedor} />
+              <Route exact path="/proveedores" component={Proveedores} />
+              <Route exact path="/listadobancos/:id" component={ListadoBancos} />
+              <Route exact path="/listadonotas/:id" component={ListadoNotas} />
+              <Route exact path="/edit/:id" component={FormProveedor} />
+              <Route exact path="/observaciones/:id" component={ListadoObservaciones} />
+              {/*Clientes*/}
+              <Route exact path="/clientes" component={Clientes} />
+              <Route exact path="/addclientes" component={FormCliente} />
+              <Route exact path="/editcliente/:id" component={FormCliente} />
 
-            {/*Almacen*/}
-            <Route exact path="/almacen" component={Almacen} />
-            <Route exact path="/addalmacen" component={FormAlmacen} />
-            <Route exact path="/editalmacen/:id" component={FormAlmacen} />
-            <Route exact path="/editarTablaProductoProveedor/:id" component={TablaProductProvedor} />
-            <Route exact path="/añadirProveedor" component={FormularioProveedor} />
-          </Switch>
-        </main>
-      </Router>
+              {/*Almacen*/}
+              <Route exact path="/almacen" component={Almacen} />
+              <Route exact path="/addalmacen" component={FormAlmacen} />
+              <Route exact path="/editalmacen/:id" component={FormAlmacen} />
+              <Route exact path="/editarTablaProductoProveedor/:id" component={TablaProductProvedor} />
+              <Route exact path="/añadirProveedor" component={FormularioProveedor} />
+            </Switch>
+          </main>
+        </Router>
+      </HashRouter>
+      
     </div>
   );
 }

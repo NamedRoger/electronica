@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { addProvider } from '../../services/Providers/getProviders';
 import { getProviderById, updateProviderById } from '../../services/Providers/getProviderById';
+import { useHistory } from 'react-router-dom'
  
 export default function Form({ match }) {
   const [datos, setDatos] = useState({
@@ -17,6 +18,7 @@ export default function Form({ match }) {
     pais: '',
     cp: ''
   });
+  let history = useHistory();
   useEffect(() => {
     document.title = 'Añadir Proveedores';
     const editar = async () => {
@@ -162,11 +164,8 @@ export default function Form({ match }) {
        })
        .then(res=>{
          console.log(res);
-        if(res.status===204){
-          window.close();
-        }
-        else{
-          alert('Error');
+        if(res.status && res.status===204){
+          history.push('/proveedores');
         }
        }
        ).catch(e=>console.log(e));
@@ -186,19 +185,25 @@ export default function Form({ match }) {
         zip: cp
        })
        .then(res=>{
-        if(res.status===204){
-
-          window.close();
-        }
-        else{
-          alert('Error');
+        if(res.status && res.status===204){
+        history.push('/proveedores');
         }
        }
-       );
+       ).catch(()=>alert(
+         `Error de Registro\n
+         Es posible que algunos de los campos que has introducido ya existan en la base de datos\n
+         Información del error: HTTP STATUS 400 (Bad Request)`));
     }
   }
+
   return (
     <div>
+      <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {history.push('/proveedores')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
       <section className="container">
         <form onSubmit={handleSubmit}>
           <div className="row">
@@ -254,11 +259,6 @@ export default function Form({ match }) {
               <button type="submit" className="waves-effect waves-light btn-small" style={{ display: 'block', margin: '0 auto' }}>
                 Guardar
               </button>
-            </div>
-            <div className="col s6">
-              <button className="waves-effect waves-light btn-small red" style={{ display: 'block', margin: '0 auto' }}>
-                Salir
-            </button>
             </div>
           </div>
         </form>

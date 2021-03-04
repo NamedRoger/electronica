@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
-import { addObservation, deleteObservation, getObservations, updateObservation } from '../../services/Providers/observationsService';
+import { addObservation, 
+    deleteObservation, 
+    getObservations, 
+    updateObservation } from '../../services/Providers/observationsService';
+import { useHistory } from 'react-router-dom';
 
 export default function ListadoObservaciones({ match }) {
     const [observations, setObservations] = useState([]);
@@ -10,7 +14,8 @@ export default function ListadoObservaciones({ match }) {
         edit: false,
         id: null
     });
-
+    let history = useHistory();
+    
     useEffect(() => {
         document.title = 'Listado Observaciones';
 
@@ -88,6 +93,12 @@ export default function ListadoObservaciones({ match }) {
 
     return (
         <div>
+            <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {history.push('/proveedores')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
             <section className="container">
                 <div className="row">
                     <form className="col s12" onSubmit={handleSubmit}>

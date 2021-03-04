@@ -3,6 +3,7 @@ import Search from '../../../components/Search';
 import { pages } from '../../../helpers/pages';
 import { getCustomers, desactiveCustomer } from '../../../services/customers/customersService'
 import M from 'materialize-css';
+import { Link } from 'react-router-dom';
 
 const filterProviders = (filterText,...filters) => {
     filterText = filterText.trim();
@@ -57,11 +58,11 @@ export default function TablaCliente() {
         M.Tooltip.init(tooltip.current);
     }, [switchBuscar]);
 
-    const handleEdit = (id) => {
+    /*const handleEdit = (id) => {
         
         
         window.open(`${pages[1].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
-    }
+    }*/
 
     const handleDelete = async (id) => {
         try {
@@ -106,10 +107,12 @@ export default function TablaCliente() {
                                 <td>{cliente.business}</td>
                                 <td>
                                     <div className="botones container">
+                                        <Link to={`${pages[1].dropdown[2].link}/${cliente.id_customer}`}>
                                         <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-                                            onClick={() => { handleEdit(cliente.id_customer) }}>
+                                         >
                                             <i className="material-icons">edit</i>
                                         </button>
+                                        </Link>
                                         <button className="btn-floating btn-large waves-effect waves-light red darken-3"
                                             onClick={() => { handleDelete(cliente.id_customer) }}>
                                             <i className="material-icons">delete</i>

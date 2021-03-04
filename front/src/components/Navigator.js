@@ -44,7 +44,7 @@ const Navbar = () => {
                 <ul className="sidenav" id="menu" ref={navigator}>
                     {pages.map((item, index)=>{
                         return(
-                            <li key={index} onClick={handleClose} ><Link to={item.link} target={"_blank"}>{item.name}</Link></li>
+                            <li key={index} onClick={handleClose} ><Link to={item.link}>{item.name}</Link></li>
                         )
                     })}
                 </ul>

@@ -4,6 +4,7 @@ import Loader from '../../../components/Loader';
 import { getProviders, desactivateProvider, buscarProv } from '../../../services/Providers/getProviders';
 import Search from '../../../components/Search';
 import M from 'materialize-css';
+import { Link } from 'react-router-dom';
 
 
 export default function TablaProveedores() {
@@ -39,7 +40,7 @@ export default function TablaProveedores() {
   const handleChange = () => {
     setChange(false);
   }
-  const openEdit = (id) => {
+  /*const openEdit = (id) => {
     window.open(`${pages[0].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
   }
   const handleBancos = (id) => {
@@ -52,7 +53,7 @@ export default function TablaProveedores() {
 
   const handleNotas = (id) => {
     window.open(`${pages[0].dropdown[4].link}/${id}`, null, "width=800,height=600,left=300");
-  }
+  }*/
   const onDelete = (id) => {
     const instance = M.Modal.getInstance(modal.current);
     setDelete(id);
@@ -60,8 +61,7 @@ export default function TablaProveedores() {
   }
   const handleDelete = async (id) => {
     const instance = M.Modal.getInstance(modal.current);
-    const eliminar = await desactivateProvider(id);
-    console.log(eliminar);
+    await desactivateProvider(id);
     setLoad(false);
     instance.close();
   }
@@ -147,22 +147,27 @@ export default function TablaProveedores() {
                     <td>{`${prov.address} ${prov.city} ${prov.state} ${prov.country} ${prov.zip}`}</td>
                     <td>
                       <div className="botones">
-                        <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-                          onClick={() => openEdit(prov.id_provider)}>
+                        <Link to={`${pages[0].dropdown[2].link}/${prov.id_provider}`}>
+                        <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1">
                           <i className="material-icons">edit</i>
                         </button>
+                        </Link>
                         <button className="btn-floating btn-large waves-effect waves-light red darken-3"
-                          onClick={() => onDelete(prov.id_provider)}>
+                        onClick={()=> onDelete(prov.id_provider)}>
                           <i className="material-icons">delete</i>
                         </button>
-                        <button className="waves-effect waves-light grey darken-1 btn-small"
-                          onClick={() => handleBancos(prov.id_provider)}>Bancos</button>
-
-                        <button className="waves-effect waves-light red lighten-1 btn-small"
-                          onClick={() => handleNotas(prov.id_provider)}>Notas</button>
-
-                        <button className="waves-effect waves-light blue accent-2 btn-small"
-                          onClick={() => handleObservaciones(prov.id_provider)}>Observaciones</button>
+                        <Link to={`${pages[0].dropdown[3].link}/${prov.id_provider}`}>
+                        <button className="waves-effect waves-light grey darken-1 btn-small">
+                          Bancos</button>
+                          </Link>
+                          <Link to={`${pages[0].dropdown[4].link}/${prov.id_provider}`}>
+                        <button className="waves-effect waves-light red lighten-1 btn-small">
+                          Notas</button>
+                          </Link>
+                          <Link to={`${pages[0].dropdown[5].link}/${prov.id_provider}`}>
+                        <button className="waves-effect waves-light blue accent-2 btn-small">
+                          Observaciones</button>
+                          </Link>
                       </div>
                     </td>
                   </tr>

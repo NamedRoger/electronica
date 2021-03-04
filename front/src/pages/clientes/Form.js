@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { addCustomer,getCustomer, updateCustomer } from '../../services/customers/customersService';
 import {getOptionsCatalgos } from '../../services/catalogs/catalogsOptionsService';
+import { useHistory } from 'react-router-dom';
 
 export default function Form({ match }) {
   const [categorias,setCategorias] = useState([]);
   const [precios, setPrecios] = useState([]);
+  let history = useHistory();
 
   const [datos, setdatos] = useState({
     id_customer: 0,
@@ -163,13 +165,10 @@ export default function Form({ match }) {
         .then(res => {
           console.log(res);
           if (res.status === 204) {
-            window.close();
-          }
-          else {
-            alert('Error');
+            history.push('/clientes');
           }
         }
-        ).catch(e => console.log(e));
+        ).catch(e => alert(`Error: ${e}`));
     }
     else {
       addCustomer({
@@ -198,16 +197,22 @@ export default function Form({ match }) {
           if (res.status === 204) {
             window.close();
           }
-          else {
-            alert('Error');
-          }
         }
-        );
+        ).catch(()=>alert(
+          `Error de Registro\n
+          Es posible que algunos de los campos que has introducido ya existan en la base de datos\n
+          Información del error: HTTP STATUS 400 (Bad Request)`));
     }
   }
 
   return (
     <div>
+      <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {history.push('/clientes')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
       <section className="container">
         <form onSubmit={handleSubmit}>
           <div className="row">
@@ -308,7 +313,7 @@ export default function Form({ match }) {
               <label htmlFor="textarea1">Teléfono Empresa</label>
             </div>
 
-            <div className="input-field col s6">
+            <div className="input-field col s12">
               <input id="textarea1" type="text" name="cel_business" value={cel_business} onChange={handleChange} className="materialize-textarea" />
               <label htmlFor="textarea1">Celular Empresa</label>
             </div>
@@ -319,14 +324,6 @@ export default function Form({ match }) {
               <button type="submit" className="waves-effect waves-light btn-small" style={{ display: 'block', margin: '0 auto' }}>
                 Guardar
               </button>
-            </div>
-            <div className="col s6">
-              <button type="button" 
-              className="waves-effect waves-light btn-small red" 
-              style={{ display: 'block', margin: '0 auto' }}
-              onClick={() => {window.close()}}>
-                Salir
-            </button>
             </div>
           </div>
         </form>

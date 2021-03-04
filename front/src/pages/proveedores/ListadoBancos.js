@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { getBanks, addBank, updateBank, deleteBank } from '../../services/Providers/banksService';
 import Loader from '../../components/Loader'
-import './index.css'
+import './index.css';
+import { useHistory } from 'react-router-dom';
 
 export default function ListadoBancos({match}) {
     const [bancos, setBancos] = useState([]);
@@ -13,6 +14,7 @@ export default function ListadoBancos({match}) {
         edit: false,
         id: null
     });
+    let history = useHistory();
         useEffect(()=>{
             document.title= 'Listado De Bancos';
         }, []);
@@ -110,6 +112,12 @@ export default function ListadoBancos({match}) {
         }
     return (
         <div>
+            <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {history.push('/proveedores')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
             <section className="container">
         <div className="row">
             <form className="col s12" onSubmit={handleSubmit}>

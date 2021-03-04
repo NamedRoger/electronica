@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { addProvider } from '../../services/Providers/getProviders';
 import { getProviderById, updateProviderById } from '../../services/Providers/getProviderById';
+import { useHistory } from 'react-router-dom';
  
 export default function FormProveedor({ match }) {
   const [datos, setDatos] = useState({
@@ -17,6 +18,7 @@ export default function FormProveedor({ match }) {
     pais: '',
     cp: ''
   });
+  let history = useHistory();
   useEffect(() => {
     document.title = 'Añadir Proveedor';
     const editar = async () => {
@@ -199,6 +201,12 @@ export default function FormProveedor({ match }) {
   }
   return (
     <div>
+      <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {history.push('/almacen')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
       <section className="container">
         <form>
           <div className="row">
@@ -218,11 +226,6 @@ export default function FormProveedor({ match }) {
               <button type="submit" className="waves-effect waves-light btn-small" style={{ display: 'block', margin: '0 auto' }}>
                 Guardar
               </button>
-            </div>
-            <div className="col s6">
-              <button className="waves-effect waves-light btn-small red" style={{ display: 'block', margin: '0 auto' }}>
-                Salir
-            </button>
             </div>
           </div>
         </form>

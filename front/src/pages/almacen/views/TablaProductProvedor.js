@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {addProvider,getProviders,deleteProvider,updateProvider} from '../../../services/Stock/prodcutProviders';
-import * as providersService from '../../../services/Providers/getProviders'
+import * as providersService from '../../../services/Providers/getProviders';
+import { useHistory } from 'react-router-dom';
 
 export default function TablaProveedoresProducto({ match }) {
     const [proveedores, setProveedores] = useState([]);
@@ -8,8 +9,9 @@ export default function TablaProveedoresProducto({ match }) {
     const [idProvider,setIdProvider] = useState(0);
     const [sales_unit,setSalesUnit] = useState('');
     const [idProductProvider,setIdProductProvider] = useState(0);
-
     const idProduct = match.params.id;
+    let history = useHistory();
+
     useEffect(() => {
         document.title = 'Proveedores Producto';
     }, []);
@@ -70,9 +72,16 @@ export default function TablaProveedoresProducto({ match }) {
     }
     return (
         <div className="">
-            <h4>Proveedores</h4>
-            <div className="row">
+            <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', marginBottom: '30px' }}
+              onClick={() => {history.push('/almacen')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
+            <div className="container">
+            <h4 className="center-align">Proveedores</h4>
                 <form onSubmit={handleSubmit}>
+                    <div className="row">
                     <div className="input-field col s6">
                         <select className="browser-default" defaultValue={0} name="id_provider" value={idProvider} onChange={(e) => {setIdProvider(e.target.value)}}>
                             <option value="0" defaultValue disabled selected>Proveedor</option>
@@ -98,6 +107,7 @@ export default function TablaProveedoresProducto({ match }) {
                     </div>
                     <div>
                         <button className="waves-effect waves-light btn-small red " onClick={() => {resetForm()}}>Cancelar</button>
+                    </div>
                     </div>
                 </form>
             </div>

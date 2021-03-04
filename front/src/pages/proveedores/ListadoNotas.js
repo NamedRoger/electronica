@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './index.css';
 import { getNotes, addNote, updateNote, deleteNote } from '../../services/Providers/notesService';
 import Loader from '../../components/Loader';
+import { useHistory } from 'react-router-dom';
 
 
 export default function ListadoNotas({match}) {
@@ -11,7 +12,8 @@ export default function ListadoNotas({match}) {
     const [edit, setEdit] = useState({
         edit: false,
         id: null
-    })
+    });
+    let history = useHistory();
     useEffect(()=>{
         document.title= 'Notas';
     }, []);
@@ -76,6 +78,12 @@ export default function ListadoNotas({match}) {
       }
     return (
         <div>
+            <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {history.push('/proveedores')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
             <section className="container">
         <div className="row">
             <form className="col s12" onSubmit={handleSubmit}>

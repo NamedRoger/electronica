@@ -3,6 +3,7 @@ import { pages } from '../../../helpers/pages';
 import { getStocks, deleteStockById } from '../../../services/Stock/getStock';
 import { getOptionsCatalgos } from '../../../services/catalogs/catalogsOptionsService';
 import Loader from '../../../components/Loader';
+import { Link } from 'react-router-dom';
 
 export default function TablaProveedores() {
   const [almacen, setAlmacen] = useState([]);
@@ -21,13 +22,13 @@ export default function TablaProveedores() {
       })
   }, [load]);
 
-  const handleEdit = (id) => {
+  /*const handleEdit = (id) => {
     window.open(`${pages[2].dropdown[1].link}/${id}`, null, "width=800,height=600,left=300");
   }
 
   const handleWatchProviders = (id) => {
     window.open(`${pages[2].dropdown[2].link}/${id}`, null, "width=800,height=600,left=300");
-  }
+  }*/
 
   const handleDelete = (id) => {
     deleteStockById(id)
@@ -73,15 +74,20 @@ export default function TablaProveedores() {
                   <td>{stock.stock}</td>
                   <td>
                     <div className="botones">
+                      <Link to={`${pages[2].dropdown[1].link}/${stock.id_product}`}>
                       <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
-                        onClick={() => handleEdit(stock.id_product)}>
+                        >
                         <i className="material-icons" id="editar">edit</i>
                       </button>
+                      </Link>
                       <button className="btn-floating btn-large waves-effect waves-light red darken-3">
                         <i className="material-icons" onClick={() => handleDelete(stock.id_product)}>delete</i>
                       </button>
+                      <Link to={`${pages[2].dropdown[2].link}/${stock.id_product}`}>
                       <button className="waves-effect waves-light grey darken-1 btn-small"
-                        onClick={() => handleWatchProviders(stock.id_product)} id="proveedor">Ver proveedores</button>
+                         id="proveedor">
+                          Ver proveedores</button>
+                          </Link>
                     </div>
                   </td>
                 </tr>

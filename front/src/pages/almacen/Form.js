@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getStockById, addStock, updateStockById } from '../../services/Stock/getStock';
 import { getOptionsCatalgos } from '../../services/catalogs/catalogsOptionsService';
+import { useHistory } from 'react-router-dom';
 
 
 export default function Form({ match }) {
@@ -26,6 +27,7 @@ export default function Form({ match }) {
     useEffect(() => {
         document.title = 'Añadir Proveedores';
     }, []);
+    let history = useHistory();
 
     useEffect(() => {
         getOptionsCatalgos('CAT_CATEGPRODU')
@@ -47,9 +49,9 @@ export default function Form({ match }) {
                 })
         }
     }, [match.params.id]);
-    const handleClose = () => {
+    /*const handleClose = () => {
         window.close();
-    }
+    }*/
 
     const handleChange = (e) => {
         switch (e.target.name) {
@@ -166,6 +168,12 @@ export default function Form({ match }) {
     }
     return (
         <div>
+            <button type="button" 
+              className="btn-floating btn-large waves-effect waves-light red left" 
+              style={{ display: 'block', margin: '0 auto' }}
+              onClick={() => {history.push('/almacen')}}>
+                <i className="material-icons">arrow_back</i>
+            </button>
             <section className="container">
                 <form onSubmit={handleSubmit}>
                     <h2 className="center-align">{match.params.id ? 'Actualizar Almacén' : 'Insertar Almacén'}</h2>
@@ -261,13 +269,6 @@ export default function Form({ match }) {
                         <div className="col s6">
                             <button type="submit" className="waves-effect waves-light btn-small" style={{ display: 'block', margin: '0 auto' }}>
                                 Guardar
-                            </button>
-                        </div>
-                        <div className="col s6">
-                            <button className="waves-effect waves-light btn-small red"
-                                style={{ display: 'block', margin: '0 auto' }}
-                                onClick={handleClose}>
-                                Salir
                             </button>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ export default function Home() {
               <Link to={target.link}>
                 <div className="card card-panel hoverable">
                   <div className="card-image">
-                    <img src={target.img} alt={target.name} style={{width:'10rem'}}/>
+                    <img src="./static/media/ventas.58226e36.svg" alt={target.name} style={{width:'10rem'}}/>
                   </div>
                   <div className="card-action">
                     <h5 className="text center-align">{target.name}</h5>

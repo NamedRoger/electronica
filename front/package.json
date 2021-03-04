@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "public/electron.js",
+  "author": "Rogelio",
   "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -50,10 +51,22 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"  --allow-file-access-from-files",
-    "build":"npm run react-build && npm run electron-build"
+    "build":"npm run react-build && npm run electron-build",
+    "electron-pack": "electron-builder -c.extraMetadata.main=build/electron.js",
+    "preelectron-pack": "npm run react-build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NamedRoger/electronica.git"
+  },
+  "build": {
+    "appId": "com.namedroger.electronica",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "icons"
+    }
   }
 }

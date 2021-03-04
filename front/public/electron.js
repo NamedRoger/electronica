@@ -15,11 +15,7 @@ function createWindow() {
       nativeWindowOpen:true
     }
   });
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : url.format({
-    pathname: path.join(__dirname,'../build/index.html'),
-    protocol:'file:',
-    slashes:true
-  }));
+  mainWindow.loadURL(isDev ? 'http://localhost:3000' :  `file://${path.join(__dirname, "../build/index.html")}`);
 
   if (isDev) {
     // Open the DevTools.

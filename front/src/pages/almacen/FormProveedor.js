@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { addProvider } from '../../services/Providers/getProviders';
 import { getProviderById, updateProviderById } from '../../services/Providers/getProviderById';
-const {ipcRenderer} = window.require('electron');
  
 export default function FormProveedor({ match }) {
-  /*const [datos, setDatos] = useState({
+  const [datos, setDatos] = useState({
     nombre: '',
     rfc: '',
     razon: '',
@@ -197,7 +196,7 @@ export default function FormProveedor({ match }) {
        }
        );
     }
-  }*/
+  }
   return (
     <div>
       <section className="container">

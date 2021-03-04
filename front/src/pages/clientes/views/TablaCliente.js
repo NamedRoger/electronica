@@ -3,7 +3,6 @@ import Search from '../../../components/Search';
 import { pages } from '../../../helpers/pages';
 import { getCustomers, desactiveCustomer } from '../../../services/customers/customersService'
 import M from 'materialize-css';
-import { BrowserWindow } from 'electron';
 
 const filterProviders = (filterText,...filters) => {
     filterText = filterText.trim();

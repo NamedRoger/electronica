@@ -192,9 +192,11 @@ export default function Form({ match }) {
                         </div>
                         <div className="col s6">
                             <label>Categoria</label>
-                            <select name="categoria" className="browser-default"
-                                value={datos.id_category} onChange={handleChange} required>
-                                <option disabled selected>Seleccionar...</option>
+                            <select name="categoria" 
+                            className="browser-default"
+                            value={datos.id_category} 
+                            onChange={handleChange} required>
+                                <option disabled value='0'>Seleccionar...</option>
                                 {category.map(item => <option key={item.id_option}
                                     value={item.id_option}>{item.name}</option>)}
                             </select>

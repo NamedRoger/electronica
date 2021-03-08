@@ -83,8 +83,8 @@ export default function TablaProveedoresProducto({ match }) {
                 <form onSubmit={handleSubmit}>
                     <div className="row">
                     <div className="input-field col s6">
-                        <select className="browser-default" defaultValue={0} name="id_provider" value={idProvider} onChange={(e) => {setIdProvider(e.target.value)}}>
-                            <option value="0" defaultValue disabled selected>Proveedor</option>
+                        <select className="browser-default" defaultValue={'0'} name="id_provider" value={idProvider} onChange={(e) => {setIdProvider(e.target.value)}}>
+                            <option value="0"  > -- Proveedor-- </option>
                             {proveedoresSelect.map(p => (
                                 <option key={p.id_provider} value={p.id_provider}>{p.nick_name} </option>
                             ))}

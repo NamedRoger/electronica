@@ -94,12 +94,12 @@ export default function TablaProveedores() {
                 <div className="col s6">
                   <button className="btn-large waves-effect waves-light red left" onClick={() => handleDelete(eliminar)}>
                     Aceptar
-          </button>
+                  </button>
                 </div>
                 <div className="col s6">
                   <button className="btn-large waves-effect waves-light red modal-close right">
                     Cancelar
-          </button>
+                  </button>
                 </div>
               </div>
             </div>
@@ -148,26 +148,28 @@ export default function TablaProveedores() {
                     <td>
                       <div className="botones">
                         <Link to={`${pages[0].dropdown[2].link}/${prov.id_provider}`}>
-                        <button className="btn-floating btn-large waves-effect waves-light light-blue darken-1">
-                          <i className="material-icons">edit</i>
-                        </button>
+                          <button className="waves-effect waves-light light-blue darken-1 btn-small tooltipped" data-position="bottom" data-tooltip="I am a tooltip" >
+                            <i className="material-icons">edit</i>
+                          </button>
                         </Link>
-                        <button className="btn-floating btn-large waves-effect waves-light red darken-3"
-                        onClick={()=> onDelete(prov.id_provider)}>
+                        <button className="waves-effect waves-light red darken-3 btn-small"
+                          onClick={() => onDelete(prov.id_provider)}>
                           <i className="material-icons">delete</i>
                         </button>
                         <Link to={`${pages[0].dropdown[3].link}/${prov.id_provider}`}>
-                        <button className="waves-effect waves-light grey darken-1 btn-small">
-                          Bancos</button>
-                          </Link>
-                          <Link to={`${pages[0].dropdown[4].link}/${prov.id_provider}`}>
-                        <button className="waves-effect waves-light red lighten-1 btn-small">
-                          Notas</button>
-                          </Link>
-                          <Link to={`${pages[0].dropdown[5].link}/${prov.id_provider}`}>
-                        <button className="waves-effect waves-light blue accent-2 btn-small">
-                          Observaciones</button>
-                          </Link>
+                          <button className="waves-effect waves-light grey darken-1 btn-small">
+                            Bancos
+                          </button>
+                        </Link>
+                        <Link to={`${pages[0].dropdown[4].link}/${prov.id_provider}`}>
+                          <button className="waves-effect waves-light red lighten-1 btn-small">
+                            Notas</button>
+                        </Link>
+                        <Link to={`${pages[0].dropdown[5].link}/${prov.id_provider}`}>
+                          <button className="waves-effect waves-light blue accent-2 btn-small">
+                            Observaciones
+                          </button>
+                        </Link>
                       </div>
                     </td>
                   </tr>

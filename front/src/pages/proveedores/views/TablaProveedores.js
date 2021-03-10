@@ -82,7 +82,15 @@ export default function TablaProveedores() {
   }
   return (
     <>
-      {proveedores.error ? <h3>{proveedores.error}</h3> :
+      {proveedores.length===0 || proveedores.error ? <h2
+        style={{
+          textAlign: 'center',
+          width: '100%',
+          height: '100px',
+          left: '20%',
+          top: '50px'
+        }}
+      >{proveedores.error ? proveedores.error : 'No hay elementos en proveedores'}</h2> :
         <>
           <div className="modal" ref={modal}>
             <div className="modal-content center-align">

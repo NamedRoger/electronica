@@ -4,6 +4,7 @@ import { pages } from '../../../helpers/pages';
 import { getCustomers, desactiveCustomer } from '../../../services/customers/customersService'
 import M from 'materialize-css';
 import { Link } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 const filterProviders = (filterText,...filters) => {
     filterText = filterText.trim();
@@ -84,9 +85,24 @@ export default function TablaCliente() {
     const handleChange = () => {
         setChange(false);
     }
+
+    if(!load){
+        return <Loader />   
+     }
     return (
         <div>
             
+            {clientes.length===0 || clientes.error ? 
+            <h2
+            style={{
+              textAlign: 'center',
+              width: '100%',
+              height: '100px',
+              left: '20%',
+              top: '50px'
+            }}
+          >{clientes.error ? clientes.error : 'No hay elementos en clientes'}</h2>
+            :
             <table className="highlight">
                 <thead>
                     <tr>
@@ -123,7 +139,7 @@ export default function TablaCliente() {
                         )
                     })}
                 </tbody>
-            </table>
+            </table>}
         </div>
     )
 }

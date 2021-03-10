@@ -42,7 +42,7 @@ export default function TablaProveedores() {
   }
   return (
     <div>
-      {almacen.length === 0 ? <h2
+      {almacen.length === 0 || almacen.error ? <h2
         style={{
           textAlign: 'center',
           width: '100%',
@@ -50,7 +50,8 @@ export default function TablaProveedores() {
           left: '20%',
           top: '50px'
         }}
-      >No hay elementos en almacen</h2> :
+      >{almacen.error ? almacen.error : 'No hay elementos en almacen'}</h2>
+      :
         <table className="highlight">
           <thead>
             <tr>

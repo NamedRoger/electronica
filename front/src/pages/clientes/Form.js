@@ -223,7 +223,7 @@ export default function Form({ match }) {
             <div className="input-field col s6">
               <select className="browser-default" defaultValue={0} name="id_category" value={id_category} onChange={handleChange}>
               <option value="0" defaultValue disabled selected>Category</option>
-              {categorias.map(c => <option value={c.id_option} key={c.id_option}>{c.name}</option>)}
+              {categorias.length===0 && categorias.map(c => <option value={c.id_option} key={c.id_option}>{c.name}</option>)}
               </select>
             </div>
             <div className="input-field col s6">
@@ -299,7 +299,7 @@ export default function Form({ match }) {
             <div className="input-field col s12">
               <select className="browser-default" defaultValue={0} name="price_number" value={price_number} onChange={handleChange} >
                 <option value="0" disabled selected>Número de precio</option>
-                {precios.map(p => <option value={p.id_option} key={p.id_option}>{p.name}</option>)}
+                {precios.length===0 && precios.map(p => <option value={p.id_option} key={p.id_option}>{p.name}</option>)}
               </select>
             </div>
 

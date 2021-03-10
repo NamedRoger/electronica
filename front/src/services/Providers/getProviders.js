@@ -6,7 +6,7 @@ export const getProviders = async () =>{
     const res = await response.json();
     return res;
     } catch (error) {
-        return {error: 'Conexión Perdida'}
+        return {error: `Conexión Perdida: ${error}`}
     }
 }
 

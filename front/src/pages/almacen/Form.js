@@ -197,7 +197,7 @@ export default function Form({ match }) {
                             value={datos.id_category} 
                             onChange={handleChange} required>
                                 <option disabled value='0'>Seleccionar...</option>
-                                {category.map(item => <option key={item.id_option}
+                                {category.length===0 && category.map(item => <option key={item.id_option}
                                     value={item.id_option}>{item.name}</option>)}
                             </select>
                         </div>

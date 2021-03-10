@@ -8,7 +8,7 @@ export const getCustomers = async () => {
         return res;
     }catch(e){
         return {
-            error: "Conexion perdida"
+            error: `Conexíon Perdida: ${e}`
         }
     }
 }

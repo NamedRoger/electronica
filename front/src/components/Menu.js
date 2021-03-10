@@ -6,12 +6,12 @@ export default function Menu({show, handleOpen}) {
     }
     return (
         <>
-                <a onClick={handleOpen} data-target="menu"
+                <button onClick={handleOpen} data-target="menu"
                  className="btn-floating btn-large waves-effect waves-light blue darken-4" 
                  style={{marginLeft: '10px'}}
-                 href="#/">
+                 >
                     <i className="material-icons">menu</i>
-                    </a>
+                    </button>
         </>
     )
 }

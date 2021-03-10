@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import Navigator from './components/Navigator';
 import FormProveedor from './pages/proveedores/Form';
 import ListadoBancos from './pages/proveedores/ListadoBancos';
@@ -19,7 +19,6 @@ import 'materialize-css/dist/css/materialize.min.css';
 function App() {
   return (
     <div className="App">
-      <HashRouter basename="/">
         <Router>
           <Navigator />
           <main>
@@ -44,10 +43,11 @@ function App() {
               <Route exact path="/editalmacen/:id" component={FormAlmacen} />
               <Route exact path="/editarTablaProductoProveedor/:id" component={TablaProductProvedor} />
               <Route exact path="/añadirProveedor" component={FormularioProveedor} />
+
+              <Redirect to="/"/>
             </Switch>
           </main>
         </Router>
-      </HashRouter>
       
     </div>
   );

@@ -16,6 +16,8 @@ export default function TablaProveedores() {
   const [switchBuscar, setSwitchBuscar] = useState(false);
   const [search, setSearch] = useState({});
   const [eliminar, setDelete] = useState(null);
+  const fontSizeTitle = { fontSize: '15px' };
+  const fontSizeNormal = { fontSize: '12px' };
   useEffect(() => {
     const get = async () => {
       M.Modal.init(modal.current);
@@ -82,7 +84,7 @@ export default function TablaProveedores() {
   }
   return (
     <>
-      {proveedores.length===0 || proveedores.error ? <h2
+      {proveedores.length === 0 || proveedores.error ? <h2
         style={{
           textAlign: 'center',
           width: '100%',
@@ -128,53 +130,53 @@ export default function TablaProveedores() {
           <table className="highlight">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>RFC</th>
-                <th>Razón Social</th>
-                <th>Telefonos</th>
-                <th>Email</th>
-                <th>Paquete</th>
-                <th>Direccion Completa</th>
-                <th>Acciones</th>
+                <th style={fontSizeTitle}>Nombre</th>
+                <th style={fontSizeTitle}>RFC</th>
+                <th style={fontSizeTitle}>Razón Social</th>
+                <th style={fontSizeTitle}>Telefonos</th>
+                <th style={fontSizeTitle}>Email</th>
+                <th style={fontSizeTitle}>Paquete</th>
+                <th style={fontSizeTitle}>Direccion Completa</th>
+                <th style={fontSizeTitle}>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {proveedores.map(prov => {
                 return (
                   <tr key={prov.id_provider}>
-                    <td>{prov.nick_name}</td>
-                    <td>{prov.rfc}</td>
-                    <td>{prov.razon_social}</td>
-                    <td>{`
+                    <td style={fontSizeNormal}>{prov.nick_name}</td>
+                    <td style={fontSizeNormal}>{prov.rfc}</td>
+                    <td style={fontSizeNormal}>{prov.razon_social}</td>
+                    <td style={fontSizeNormal}>{`
             Telefono: ${prov.tel}
             Celular: ${prov.cel}
             `}
                     </td>
-                    <td>{prov.email}</td>
-                    <td>{prov.parcel}</td>
-                    <td>{`${prov.address} ${prov.city} ${prov.state} ${prov.country} ${prov.zip}`}</td>
+                    <td style={fontSizeNormal}>{prov.email}</td>
+                    <td style={fontSizeNormal}>{prov.parcel}</td>
+                    <td style={fontSizeNormal}>{`${prov.address} ${prov.city} ${prov.state} ${prov.country} ${prov.zip}`}</td>
                     <td>
                       <div className="botones">
                         <Link to={`${pages[0].dropdown[2].link}/${prov.id_provider}`}>
-                          <button className="waves-effect waves-light light-blue darken-1 btn-small tooltipped" data-position="bottom" data-tooltip="I am a tooltip" >
+                          <button className="waves-effect waves-light light-blue darken-1 btn-small tooltipped" data-position="bottom" data-tooltip="I am a tooltip" style={{ width: '45px' }}>
                             <i className="material-icons">edit</i>
                           </button>
                         </Link>
-                        <button className="waves-effect waves-light red darken-3 btn-small"
+                        <button className="waves-effect waves-light red darken-3 btn-small" style={{ width: '45px' }}
                           onClick={() => onDelete(prov.id_provider)}>
                           <i className="material-icons">delete</i>
                         </button>
                         <Link to={`${pages[0].dropdown[3].link}/${prov.id_provider}`}>
-                          <button className="waves-effect waves-light grey darken-1 btn-small">
+                          <button className="waves-effect waves-light grey darken-1 btn-small" style={{ width: '63px', fontSize: '10px' }}>
                             Bancos
                           </button>
                         </Link>
                         <Link to={`${pages[0].dropdown[4].link}/${prov.id_provider}`}>
-                          <button className="waves-effect waves-light red lighten-1 btn-small">
+                          <button className="waves-effect waves-light red lighten-1 btn-small" style={{ width: '60px', fontSize: '10px' }}  >
                             Notas</button>
                         </Link>
                         <Link to={`${pages[0].dropdown[5].link}/${prov.id_provider}`}>
-                          <button className="waves-effect waves-light blue accent-2 btn-small">
+                          <button className="waves-effect waves-light blue accent-2 btn-small" style={{ width: '110px', fontSize: '10px' }} >
                             Observaciones
                           </button>
                         </Link>

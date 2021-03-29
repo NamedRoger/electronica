@@ -227,73 +227,73 @@ export default function Form({ match }) {
               </select>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="representative" value={representative} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Representante</label>
+              <input id="txtRepresentante" type="text" name="representative" value={representative} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtRepresentante">Representante</label>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="tel" name="tel_customer" value={tel_customer} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Teléfono</label>
+              <input id="txtTel" type="tel" name="tel_customer" value={tel_customer} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtTel">Teléfono</label>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="tel" name="cel_customer" value={cel_customer} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Celular</label>
+              <input id="txtCelular" type="tel" name="cel_customer" value={cel_customer} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtCelular">Celular</label>
             </div>
             <div className="input-field col s6">
               <input id="email" type="email" name="email" value={email} onChange={handleChange} className="validate" />
               <label htmlFor="email">Email</label>
             </div>
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="note" value={note} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Nota</label>
+              <input id="txtNota" type="text" name="note" value={note} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtNota">Nota</label>
             </div>
             <div className="input-field col s12">
-              <input id="textarea1" type="text" name="address" value={address} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Domicilio</label>
+              <input id="txtDomicilio" type="text" name="address" value={address} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtDomicilio">Domicilio</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="city" value={city} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Cuidad</label>
+              <input id="txtCiudad" type="text" name="city" value={city} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtCiudad">Cuidad</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="state" value={state} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Estado</label>
+              <input id="txtEstado" type="text" name="state" value={state} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtEstado">Estado</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="country" value={country} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">País</label>
+              <input id="txtPais" type="text" name="country" value={country} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtPais">País</label>
             </div>
 
             <div className="input-field col s6">
               <input
-                id="textarea1"
+                id="txtRazonSocial"
                 type="text"
                 className="materialize-textarea"
                 name="razon_social" value={razon_social} onChange={handleChange}
               />
-              <label htmlFor="textarea1">Razon Social</label>
+              <label htmlFor="txtRazonSocial">Razon Social</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="rfc" value={rfc} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">RFC</label>
+              <input id="txtRFC" type="text" name="rfc" value={rfc} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtRFC">RFC</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="bank" value={bank} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Banco</label>
+              <input id="txtBanco" type="text" name="bank" value={bank} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtBanco">Banco</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="bank_account" value={bank_account} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Cuenta Bancaria</label>
+              <input id="txtCuentaBancaria" type="text" name="bank_account" value={bank_account} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="txtCuentaBancaria">Cuenta Bancaria</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="bank_key" value={bank_key} onChange={handleChange}   className="materialize-textarea" />
-              <label htmlFor="textarea1">Clave Interbancaria</label>
+              <input id="txtClaveInter" type="text" name="bank_key" value={bank_key} onChange={handleChange}   className="materialize-textarea" />
+              <label htmlFor="txtClaveInter">Clave Interbancaria</label>
             </div>
 
             <div className="input-field col s12">
@@ -304,18 +304,18 @@ export default function Form({ match }) {
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="business" value={business} onChange={handleChange}  className="materialize-textarea" />
-              <label htmlFor="textarea1">Empresa</label>
+              <input id="txtEmpresa" type="text" name="business" value={business} onChange={handleChange}  className="materialize-textarea" />
+              <label htmlFor="txtEmpresa">Empresa</label>
             </div>
 
             <div className="input-field col s6">
-              <input id="textarea1" type="text" name="tel_business" value={tel_business} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Teléfono Empresa</label>
+              <input id="telEmpresa" type="text" name="tel_business" value={tel_business} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="telEmpresa">Teléfono Empresa</label>
             </div>
 
             <div className="input-field col s12">
-              <input id="textarea1" type="text" name="cel_business" value={cel_business} onChange={handleChange} className="materialize-textarea" />
-              <label htmlFor="textarea1">Celular Empresa</label>
+              <input id="celEmpresa" type="text" name="cel_business" value={cel_business} onChange={handleChange} className="materialize-textarea" />
+              <label htmlFor="celEmpresa">Celular Empresa</label>
             </div>
 
           </div>

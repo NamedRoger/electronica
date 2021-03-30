@@ -171,10 +171,6 @@ export default function TablaProveedores() {
                             Bancos
                           </button>
                         </Link>
-                        <Link to={`${pages[0].dropdown[4].link}/${prov.id_provider}`}>
-                          <button className="waves-effect waves-light red lighten-1 btn-small" style={{ width: '60px', fontSize: '10px' }}  >
-                            Notas</button>
-                        </Link>
                         <Link to={`${pages[0].dropdown[5].link}/${prov.id_provider}`}>
                           <button className="waves-effect waves-light blue accent-2 btn-small" style={{ width: '110px', fontSize: '10px' }} >
                             Observaciones

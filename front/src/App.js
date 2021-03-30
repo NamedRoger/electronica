@@ -12,6 +12,8 @@ import Clientes from './pages/clientes/Clientes';
 import FormCliente from './pages/clientes/Form';
 import TablaProductProvedor from './pages/almacen/views/TablaProductProvedor'
 import FormularioProveedor from './pages/almacen/FormProveedor'
+import TablaCategorias from './pages/almacen/views/TablaCategorias'
+
 
 import Home from './pages/Home';
 import 'materialize-css/dist/css/materialize.min.css';
@@ -43,6 +45,8 @@ function App() {
               <Route exact path="/editalmacen/:id" component={FormAlmacen} />
               <Route exact path="/editarTablaProductoProveedor/:id" component={TablaProductProvedor} />
               <Route exact path="/añadirProveedor" component={FormularioProveedor} />
+              <Route exact path="/categorias" component={TablaCategorias} />
+
 
               <Redirect to="/"/>
             </Switch>

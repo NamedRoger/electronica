@@ -26,7 +26,9 @@ export const pages = [
         dropdown: [{ name: 'Añadir Almacen', link: "/addalmacen" },
         { name: 'Editar Almacen', link: "/editalmacen" },
         { name: 'Ver Proveedores', link: "/editarTablaProductoProveedor" },
-        {name: 'Formulario Proveedor', link: "/añadirProveedor"}]
+        {name: 'Formulario Proveedor', link: "/añadirProveedor"},
+        {name:'Tabla Categorias',link:'/categorias'}]
+ 
     },
     {
         name: 'Insumos', link: "/insumos", img: <Insumos />,

@@ -24,9 +24,16 @@ const desactiveOption = (idOption) => {
     return database.query(query);
 }
 
+const activeOption = (idOption) => {
+    const query = `UPDATE catalog_options SET active = ${true} WHERE id_option = ${idOption}`;
+    return database.query(query);
+}
+
+
 module.exports = {
     getOptions,
     addOption,
     updateOption,
-    desactiveOption
+    desactiveOption,
+    activeOption
 }

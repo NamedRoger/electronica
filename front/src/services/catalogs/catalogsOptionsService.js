@@ -11,3 +11,22 @@ export const getOptionsCatalgos = async (code) => {
         return e;
     }
 }
+
+export const desactiveOptionsCatalogs = async (id) => {
+    try{
+        const res = (await(await fetch(`${URL}/catalogs/options/${id}`,{method:'delete'})).json());
+        return res;
+    }catch(e){
+        return e;
+    }
+}
+
+
+export const activeOptionsCatalogs = async (id) => {
+    try{
+        const res = (await(await fetch(`${URL}/catalogs/options/${id}/active/`,{method:'put'})).json());
+        return res;
+    }catch(e){
+        return e;
+    }
+}

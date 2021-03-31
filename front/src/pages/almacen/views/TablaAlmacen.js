@@ -75,7 +75,7 @@ export default function TablaProveedores() {
 
                   <td><img src={`img/${stock.foto}`} alt="" style={{ width: '4rem' }}></img></td>
                   <td style={fontSizeNormal}>{stock.description}</td>
-                  <td style={fontSizeNormal}>{cat.name}</td>
+                  <td style={fontSizeNormal}>{cat ? cat.name:''}</td>
                   <td style={fontSizeNormal}>{stock.stock}</td>
                   <td>
                     <div className="botones">

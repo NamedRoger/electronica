@@ -41,10 +41,20 @@ const desactiveOption = async (req, res) =>{
     }
 }
 
+const actveOption = async () => {
+    const idOption = req.params.idOption;
+    try{
+        await OptionsService.desactiveOption(idOption);
+    }catch(e){
+        res.status(e.status || 404).send();
+    }
+}
+
 module.exports = {
     getOptions,
     addOption,
     updateOption,
-    desactiveOption
+    desactiveOption,
+    actveOption
 }
 

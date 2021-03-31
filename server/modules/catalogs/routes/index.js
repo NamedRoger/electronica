@@ -21,8 +21,11 @@ router.get('/options/:idCatalog',optionsController.getOptions);
 
 router.post('/options/:idCatalog',optionsController.addOption);
 
-router.put('/options/:idOption',optionsController.desactiveOption);
+router.put('/options/:idOption',optionsController.updateOption);
 
 router.delete('/options/:idOption',optionsController.desactiveOption);
+
+router.put('/options/:idOption/active',optionsController.actveOption);
+
 
 module.exports = router;

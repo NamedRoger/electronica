@@ -197,8 +197,12 @@ export default function Form({ match }) {
                             value={datos.id_category} 
                             onChange={handleChange} required>
                                 <option disabled value='0'>Seleccionar...</option>
-                                {category.length===0 && category.map(item => <option key={item.id_option}
-                                    value={item.id_option}>{item.name}</option>)}
+                                {
+                                    category.map(op => op.active ? 
+                                    <option key={op.id_option}
+                                        value={op.id_option}>{op.name}
+                                    </option>:'')
+                                }
                             </select>
                         </div>
                         <div className="input-field col s12">
